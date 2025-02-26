@@ -436,6 +436,8 @@
   start: '2025-08-03'
   end: '2025-08-07'
   timezone: AoE
+  place: Toronto, ON, Canada
+  date: August 3 - August 7, 2025
   tags:
   - data-mining
   - machine-learning
