@@ -673,3 +673,19 @@
   place: Malmö, Sweden
   tags: 
   - computer-vision
+  
+- title: CoRL
+  year: 2025
+  id: corl25
+  full_name: Conference on Robot Learning
+  link: https://www.corl.org/
+  deadline: '2025-04-30 23:59:59'
+  abstract_deadline: '2025-04-23 23:59:59'
+  timezone: UTC-12
+  place: Seoul, South Korea
+  date: September 27 - 30, 2025
+  start: 2025-09-27
+  end: 2025-09-30
+  tags:
+    - robot-learning
+  note: The Conference on Robot Learning (CoRL) is an annual international conference focusing on the intersection of robotics and machine learning. CoRL 2025 will be held in Seoul, Korea. This year, CoRL 2025 and Humanoids 2025 will be co-located at the same venue.
