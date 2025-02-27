@@ -25,6 +25,7 @@ interface ConferenceDialogProps {
 
 const ConferenceDialog = ({ conference, open, onOpenChange }: ConferenceDialogProps) => {
   const deadlineDate = conference.deadline && conference.deadline !== 'TBD' ? parseISO(conference.deadline) : null;
+  const deadlineTimeZone = conference.timezone && conference.timezone !== 'TBD' ? conference.timezone : null;
   const [countdown, setCountdown] = useState<string>('');
 
   useEffect(() => {
@@ -35,8 +36,13 @@ const ConferenceDialog = ({ conference, open, onOpenChange }: ConferenceDialogPr
       }
 
       const now = new Date().getTime();
-      const difference = deadlineDate.getTime() - now;
+      var difference = deadlineDate.getTime() - now;
 
+      if (deadlineTimeZone){
+        // TODO: Check the validity of the deadlineTimeZone
+        const localDeadlineDate = new Date(`${deadlineDate} ${deadlineTimeZone}`);
+        difference = localDeadlineDate.getTime() - now;
+      }
       if (difference <= 0) {
         setCountdown('Deadline passed');
         return;
