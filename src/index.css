@@ -29,6 +29,10 @@
 
   body {
     @apply bg-neutral-light text-neutral-dark antialiased;
+    overflow: auto;
+    height: 100%;
+    margin:0;
+    
   }
 }
 
