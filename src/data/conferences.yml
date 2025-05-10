@@ -820,3 +820,17 @@
   tags:
   - machine-learning
   - optimization
+
+- title: BMVC
+  year: 2025
+  id: bmvc2025
+  full_name: The British Machine Vision Conference
+  link: https://bmvc2025.bmva.org/
+  deadline: 2025-05-16 23:59
+  abstract_deadline: 2025-05-13 23:59
+  timezone: AoE
+  city: Sheffield
+  country: UK
+  date: November, 2025
+  tags:
+  - Computer Vision
