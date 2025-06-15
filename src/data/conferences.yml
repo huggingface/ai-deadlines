@@ -860,3 +860,55 @@
   - human-computer-interaction
   note: Mandatory abstract deadline on Sep 04, 2025. More info <a href='https://chi2026.acm.org/authors/papers/'>here</a>.
 
+
+- title: EMNLP (System Demonstrations Track)
+  year: 2025
+  id: emnlp25sys
+  full_name: The annual Conference on Empirical Methods in Natural Language Processing (System Demonstrations Track)
+  link: https://2025.emnlp.org/
+  deadline: '2025-07-04 23:59:59'
+  timezone: UTC-12
+  date: November 5 - 9, 2025
+  tags:
+  - natural-language-processing
+  city: Suzhou
+  country: China
+  rankings: 'CCF: B, CORE: A*, THCPL: A'
+  venue: Suzhou, China
+  start: '2025-11-05'
+  end: '2025-11-09'
+
+
+- title: EMNLP (Industry Track)
+  year: 2025
+  id: emnlp25ind
+  full_name: The annual Conference on Empirical Methods in Natural Language Processing (Industry Track)
+  link: https://2025.emnlp.org/
+  deadline: '2025-07-04 23:59:59'
+  timezone: UTC-12
+  date: November 5 - 9, 2025
+  tags:
+  - natural-language-processing
+  city: Suzhou
+  country: China
+  rankings: 'CCF: B, CORE: A*, THCPL: A'
+  venue: Suzhou, China
+  start: '2025-11-05'
+  end: '2025-11-09'
+
+- title: Interspeech
+  year: 2026
+  id: interspeech2026
+  full_name: Interspeech
+  link: https://interspeech2026.org
+  deadline: '2026-03-02 23:59:59'
+  timezone: UTC-12
+  city: Sydney
+  country: Australia
+  venue: International Convention Centre (ICC) Sydney
+  date: September 29-October 1, 2026
+  start: 2026-09-27
+  end: 2026-10-01
+  tags:
+  - speech
+  - signal-processing
