@@ -1,3 +1,24 @@
+- title: IJCNLP & AACL
+  year: 2025
+  id: ijcnlpaacl25
+  full_name: International Joint Conference on Natural Language Processing & Asia-Pacific Chapter of the Association for Computational Linguistics
+  link: https://2025.aaclnet.org/
+  deadline: 2025-07-28
+  abstract_deadline: 
+  timezone: UTC-12
+  city: Mumbai
+  country: India
+  venue: 
+  date: December, 20-24, 2025
+  start: 2025-12-20
+  end: 2025-12-24
+  paperslink: 
+  pwclink: 
+  hindex: 
+  tags:
+  - natural language processing
+  note: Submissions through ARR.
+  
 - title: CIKM
   year: 2025
   id: cikm25
