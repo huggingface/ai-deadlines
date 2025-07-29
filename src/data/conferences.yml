@@ -1,3 +1,24 @@
+- title: IJCNLP & AACL
+  year: 2025
+  id: ijcnlpaacl25
+  full_name: International Joint Conference on Natural Language Processing & Asia-Pacific Chapter of the Association for Computational Linguistics
+  link: https://2025.aaclnet.org/
+  deadline: 2025-07-28
+  abstract_deadline: 
+  timezone: UTC-12
+  city: Mumbai
+  country: India
+  venue: 
+  date: December, 20-24, 2025
+  start: 2025-12-20
+  end: 2025-12-24
+  paperslink: 
+  pwclink: 
+  hindex: 
+  tags:
+  - natural language processing
+  note: Submissions through ARR.
+  
 - title: CIKM
   year: 2025
   id: cikm25
@@ -860,7 +881,6 @@
   - human-computer-interaction
   note: Mandatory abstract deadline on Sep 04, 2025. More info <a href='https://chi2026.acm.org/authors/papers/'>here</a>.
 
-
 - title: EMNLP (System Demonstrations Track)
   year: 2025
   id: emnlp25sys
@@ -877,7 +897,6 @@
   venue: Suzhou, China
   start: '2025-11-05'
   end: '2025-11-09'
-
 
 - title: EMNLP (Industry Track)
   year: 2025
@@ -929,3 +948,28 @@
   tags:
   - speech
   - signal-processing
+
+- title: ICLR
+  year: 2026
+  id: iclr26
+  full_name: The International Conference on Learning Representations
+  link: https://iclr.cc/Conferences/2026
+  deadline: '2025-09-24 23:59:59'
+  abstract_deadline: '2025-09-19 23:59:59'
+  timezone: UTC-12
+  city: To be announced
+  country: To be announced
+  venue: To be announced
+  date: To be announced
+  start: To be announced
+  end: To be announced
+  hindex: 304
+  tags:
+  - data-mining
+  - machine-learning
+  - natural-language-processing
+  - computer-vision
+  - robotics
+  - mathematics
+  - reinforcement-learning
+  note: Mandatory abstract deadline on Sep 19, 2025. More info <a href='https://iclr.cc/Conferences/2026/Dates#'>here</a>.
