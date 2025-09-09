@@ -1,22 +1,22 @@
 - title: CVPR
-  year: 2025
-  id: cvpr25
+  year: 2026
+  id: cvpr26
   full_name: IEEE/CVF Conference on Computer Vision and Pattern Recognition
-  link: https://cvpr.thecvf.com/Conferences/2025/CallForPapers
-  deadline: '2024-11-14 23:59:00'
-  timezone: UTC-8
-  date: June 10-17, 2025
+  link: https://cvpr.thecvf.com/Conferences/2026/CallForPapers
+  deadline: '2025-11-14 23:59:00'
+  timezone: UTC-0
+  date: June 6-12, 2026
   tags:
   - computer-vision
-  city: Nashville
-  country: Tennessee
-  abstract_deadline: '2024-11-07 23:59:00'
+  city: Denver
+  country: Colorado
+  abstract_deadline: '2025-11-07 23:59:00'
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  venue: Music City Center, Nashville, USA
+  venue: # Denver Convention Center, Colorado, USA
   hindex: 389
-  rebuttal_period_end: '2025-01-31 07:59:59'
-  final_decision_date: '2025-02-26 07:59:59'
-  review_release_date: '2025-01-23 07:59:59'
-  note: OpenReview account creation deadline on Nov 1st, paper registration deadline
-    on Nov 8th, supplementary materials deadline on Nov 22nd. Reviews released on
-    Jan 23rd, rebuttal period ends Jan 31st, and final decisions on Feb 26th.
+  rebuttal_period_end: # '2025-01-31 07:59:59'
+  final_decision_date: # '2025-02-26 07:59:59'
+  review_release_date: # '2025-01-23 07:59:59'
+  note: # OpenReview account creation deadline on Nov 1st, paper registration deadline
+        # on Nov 7th, supplementary materials deadline on Nov 22nd. Reviews released on
+        # Jan 23rd, rebuttal period ends Jan 31st, and final decisions on Feb 26th.
