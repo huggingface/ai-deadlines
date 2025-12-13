@@ -23,7 +23,7 @@
   pwclink: null
   hindex: null
   tags:
-    - reasoning
-    - machine learning
-    - knowledge representation
+  - reasoning
+  - machine learning
+  - knowledge representation
   note: Part of “Declarative AI: Rules, Reasoning, Decisions, and Explanations”. Proceedings published by Springer LNCS. Long papers: up to 15 pages (excluding references) + 2 pages for references; Short papers: up to 8 pages (excluding references) + 1 page for references. Notification: June 26, 2026 (AoE).
