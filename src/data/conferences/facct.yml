@@ -1,0 +1,20 @@
+- title: FAccT
+  year: 2025
+  id: facct25
+  full_name:  ACM Conference on Fairness, Accountability, and Transparency
+  link: https://facctconference.org/2026/index.html
+  deadline: '2026-01-13 23:59:59'
+  timezone: UTC-12
+  date: June 27 - June 30, 2026
+  tags:
+  - fairness
+  - machine-learning
+  - natural-language-processing
+  - computer-vision
+  city: MONTREAL
+  country: CANADA
+  abstract_deadline: '2026-01-08 23:59:59'
+  rankings: 'CCF: , CORE: , THCPL: '
+  venue: Hotel Bonaventure, Montreal, QC, CANADA
+  hindex: 103
+  note: ACM FAccT is an interdisciplinary conference dedicated to bringing together a diverse community of scholars from computer science, law, social sciences, and humanities to investigate and tackle issues in this emerging area. Research challenges are not limited to technological solutions regarding potential bias, but include the question of whether decisions should be outsourced to data- and code-driven computing systems. We particularly seek to evaluate technical solutions with respect to existing problems, reflecting upon their benefits and risks; to address pivotal questions about economic incentive structures, perverse implications, distribution of power, and redistribution of welfare; and to ground research on fairness, accountability, and transparency in existing legal requirements.
