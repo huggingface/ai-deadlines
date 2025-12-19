@@ -11,3 +11,17 @@
   city: Rio de Janeiro
   country: Brazil
   rankings: 'CCF: B, CORE: A, THCPL: B'
+- title: UAI
+  year: 2026
+  id: uai26
+  full_name: Conference on Uncertainty in Artificial Intelligence
+  link: https://www.auai.org/uai2026/
+  deadline: '2026-02-25 23:59:59'
+  timezone: AoE
+  date: August 17-21, 2025
+  tags:
+  - machine-learning
+  city: Amsterdam
+  country: Netherlands
+  rankings: 'CCF: B, CORE: A, THCPL: B'
+  hindex: 50
