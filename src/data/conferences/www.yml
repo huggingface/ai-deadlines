@@ -5,6 +5,7 @@
   link: https://www2026.thewebconf.org/
   deadline: '2025-10-07 23:59:59'
   abstract_deadline: '2025-09-30 23:59:59'
+  era_rating: a
   deadlines:
   - type: abstract
     label: Abstract deadline on 2025-09-30 23:59:59 UTC-12!

@@ -6,6 +6,7 @@
   deadline: '2025-02-10 23:59:59'
   timezone: AoE
   date: July 21-25, 2025
+  era_rating: a
   tags:
   - machine-learning
   city: Rio de Janeiro
@@ -19,6 +20,7 @@
   deadline: '2026-02-25 23:59:59'
   timezone: AoE
   date: August 17-21, 2025
+  era_rating: a
   tags:
   - machine-learning
   city: Amsterdam

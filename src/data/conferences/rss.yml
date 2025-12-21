@@ -6,6 +6,7 @@
   deadline: '2025-01-24 23:59:00'
   timezone: AoE
   date: June 21-25, 2025
+  era_rating: a
   tags:
   - robotics
   - machine-learning
@@ -19,6 +20,7 @@
   id: rss26
   full_name: Robotics Science and Systems
   link: https://roboticsconference.org
+  era_rating: a
   deadlines:
   - type: abstract
     label: Abstract Submission

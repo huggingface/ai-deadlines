@@ -6,6 +6,7 @@
   deadline: '2024-07-15 12:00:00'
   timezone: UTC-4
   date: May 19-23, 2025
+  era_rating: a
   tags:
   - machine-learning
   - robotics
@@ -20,6 +21,7 @@
   id: icra26
   full_name: International Conference on Robotics and Automation
   link: https://2026.ieee-icra.org/
+  era_rating: a
   deadlines:
   - type: submission
     label: Paper Submission

@@ -6,6 +6,7 @@
   deadline: '2025-01-30 23:59:59'
   timezone: UTC-12
   date: July 11-19, 2025
+  era_rating: a
   tags:
   - machine-learning
   city: Vancouver
@@ -23,6 +24,7 @@
   deadline: '2026-01-28 23:59:59'
   timezone: UTC-12
   date: July 6-11, 2026
+  era_rating: a
   tags:
   - machine-learning
   deadlines:

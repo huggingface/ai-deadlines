@@ -6,6 +6,7 @@
   deadline: '2025-02-05 23:59:59'
   timezone: UTC-12
   date: June 30 - July 5, 2025
+  era_rating: a
   tags:
   - machine-learning
   city: Rome
@@ -19,6 +20,7 @@
   deadline: '2025-09-24 23:59:59'
   timezone: UTC-12
   date: June 21-26, 2026
+  era_rating: a
   tags:
   - machine-learning
   city: Maastricht

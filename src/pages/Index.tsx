@@ -10,7 +10,8 @@ import { extractCountry } from "@/utils/countryExtractor";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { X, ChevronRight, Filter, Globe } from "lucide-react";
+import { X, ChevronRight, Filter, Globe, HelpCircle } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { getAllCountries } from "@/utils/countryExtractor";
 import { getDeadlineInLocalTime } from "@/utils/dateUtils";
 import { sortConferencesByDeadline } from "@/utils/conferenceUtils";
@@ -21,6 +22,7 @@ const Index = () => {
   const [selectedCountries, setSelectedCountries] = useState<Set<string>>(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [showPastConferences, setShowPastConferences] = useState(false);
+  const [showTopTierOnly, setShowTopTierOnly] = useState(true);
 
   // Dynamically generate category buttons from conference data
   const categoryButtons = useMemo(() => {
@@ -58,6 +60,9 @@ const Index = () => {
         // Filter by deadline (past/future) - use new deadline logic
         if (!showPastConferences && !hasUpcomingDeadlines(conf)) return false;
 
+        // Filter by top tier (ERA A-rated conferences)
+        if (showTopTierOnly && conf.era_rating !== 'a') return false;
+
         // Filter by tags
         const matchesTags = selectedTags.size === 0 || 
           (Array.isArray(conf.tags) && conf.tags.some(tag => selectedTags.has(tag)));
@@ -76,7 +81,7 @@ const Index = () => {
     
     // Use the proper sorting function that handles both deadline formats
     return sortConferencesByDeadline(filtered);
-  }, [selectedTags, selectedCountries, searchQuery, showPastConferences]);
+  }, [selectedTags, selectedCountries, searchQuery, showPastConferences, showTopTierOnly]);
 
   // Update handleTagsChange to handle multiple tags
   const handleTagsChange = (newTags: Set<string>) => {
@@ -204,6 +209,27 @@ const Index = () => {
                 id="show-past"
                 checked={showPastConferences}
                 onCheckedChange={setShowPastConferences}
+              />
+            </div>
+            
+            <div className="flex items-center gap-2 bg-white p-2 rounded-md shadow-sm">
+              <label htmlFor="top-tier-only" className="text-sm text-neutral-600 flex items-center gap-1">
+                Top tier only
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="h-3.5 w-3.5 text-neutral-400 hover:text-neutral-600 cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent side="top" className="max-w-xs">
+                      <p>Filter on only conferences which have an ERA rating of A according to <a href="http://www.conferenceranks.com/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">conferenceranks.com</a></p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </label>
+              <Switch
+                id="top-tier-only"
+                checked={showTopTierOnly}
+                onCheckedChange={setShowTopTierOnly}
               />
             </div>
             

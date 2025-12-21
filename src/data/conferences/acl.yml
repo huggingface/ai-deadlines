@@ -6,6 +6,7 @@
   deadline: '2025-02-15 23:59:59'
   timezone: UTC-12
   date: July 27 - August 1, 2025
+  era_rating: a
   tags:
   - natural-language-processing
   city: Vienna
@@ -23,6 +24,7 @@
   deadline: '2026-01-05 23:59:59'
   timezone: UTC-12
   date: July 2-7, 2026
+  era_rating: a
   tags:
   - natural-language-processing
   city: San Diego

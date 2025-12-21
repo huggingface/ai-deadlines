@@ -35,4 +35,5 @@ export interface Conference {
   commitment_deadline?: string;
   paperslink?: string;
   pwclink?: string;
+  era_rating?: string; // ERA rating (e.g., 'a', 'b', 'c')
 } 

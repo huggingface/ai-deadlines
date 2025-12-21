@@ -6,6 +6,7 @@
   deadline: '2024-10-01 23:59:59'
   timezone: UTC-12
   date: April 24-28, 2025
+  era_rating: a
   tags:
   - machine-learning
   - computer-vision
@@ -26,6 +27,7 @@
   link: https://iclr.cc/Conferences/2026
   deadline: '2025-09-24 23:59:59'
   abstract_deadline: '2025-09-19 23:59:59'
+  era_rating: a
   deadlines:
   - type: abstract
     label: Abstract Submission
