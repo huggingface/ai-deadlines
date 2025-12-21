@@ -18,3 +18,24 @@
   rebuttal_period_start: '2025-04-04'
   rebuttal_period_end: '2025-04-18'
   final_decision_date: '2025-05-16'
+- title: KDD
+  year: 2026
+  id: kdd26
+  full_name: ACM SIGKDD Conference on Knowledge Discovery and Data Mining
+  link: https://kdd2026.kdd.org/
+  deadline: '2026-02-08 23:59:59'
+  abstract_deadline: '2026-02-01 23:59:59'
+  timezone: UTC-0
+  city: Jeju
+  country: Korea
+  date: August 9 - August 13, 2025
+  start: '2026-08-09'
+  end: '2026-08-13'
+  tags:
+  - data-mining
+  - machine-learning
+  note: AI for Sciences Track
+  rebuttal_period_start: '2026-04-04'
+  rebuttal_period_end: '2026-04-18'
+  final_decision_date: '2026-05-16'
+  hindex: 124
