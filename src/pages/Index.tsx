@@ -22,22 +22,30 @@ const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showPastConferences, setShowPastConferences] = useState(false);
 
-  // Category buttons configuration
-  const categoryButtons = [
-    { id: "machine-learning", label: "Machine Learning" },
-    { id: "lifelong-learning", label: "Lifelong Learning" },
-    { id: "robotics", label: "Robotics" },
-    { id: "computer-vision", label: "Computer Vision" },
-    { id: "web-search", label: "Web Search" },
-    { id: "data-mining", label: "Data Mining" },
-    { id: "natural-language-processing", label: "Natural Language Processing" },
-    { id: "signal-processing", label: "Signal Processing" },
-    { id: "speech", label: "Speech" },
-    { id: "human-computer-interaction", label: "Human Computer Interaction" },
-    { id: "computer-graphics", label: "Computer Graphics" },
-    { id: "mathematics", label: "Mathematics" },
-    { id: "reinforcement-learning", label: "Reinforcement Learning" },
-  ];
+  // Dynamically generate category buttons from conference data
+  const categoryButtons = useMemo(() => {
+    if (!Array.isArray(conferencesData)) return [];
+    
+    // Count occurrences of each tag
+    const tagCounts = new Map<string, number>();
+    conferencesData.forEach((conf: Conference) => {
+      if (Array.isArray(conf.tags)) {
+        conf.tags.forEach(tag => {
+          tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+        });
+      }
+    });
+    
+    // Sort by frequency (most common first) and convert to button format
+    return Array.from(tagCounts.entries())
+      .sort((a, b) => b[1] - a[1])
+      .map(([tag]) => ({
+        id: tag,
+        label: tag.split("-").map(word => 
+          word.charAt(0).toUpperCase() + word.slice(1)
+        ).join(" ")
+      }));
+  }, []);
 
   const filteredConferences = useMemo(() => {
     if (!Array.isArray(conferencesData)) {

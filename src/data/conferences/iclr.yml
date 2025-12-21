@@ -11,6 +11,7 @@
   - computer-vision
   - natural-language-processing
   - signal-processing
+  - representation-learning
   country: Singapore
   abstract_deadline: '2024-09-27 23:59:59'
   rankings: 'CCF: N, CORE: A*, THCPL: A'
@@ -58,4 +59,5 @@
   - robotics
   - mathematics
   - reinforcement-learning
+  - representation-learning
   note: Mandatory abstract deadline on Sep 19, 2025. More info <a href='https://iclr.cc/Conferences/2026/Dates#'>here</a>.
