@@ -14,3 +14,28 @@
   - natural-language-processing
   rankings: 'CCF: B, CORE: A, THCPL: B'
   venue: Vienna, Austria
+
+- title: CoNLL
+  year: 2026
+  id: conll26
+  full_name: The SIGNLL Conference on Computational Natural Language Learning
+  link: https://conll.org/
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2026-02-19 23:59:59'
+    timezone: UTC-12
+  - type: notification
+    label: Notification of acceptance
+    date: '2026-05-21 23:59:59'
+    timezone: UTC-12
+  - type: camera_ready
+    label: Camera-ready papers due
+    date: '2026-05-12 23:59:59'
+    timezone: UTC-12
+  timezone: UTC-12
+  city: San Diego
+  country: USA
+  date: July 3-4, 2026
+  tags:
+  - natural-language-processing

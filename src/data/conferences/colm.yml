@@ -14,3 +14,25 @@
   abstract_deadline: '2025-03-20 23:59:59'
   rankings: 'CCF: N, CORE: N, THCPL: N'
   venue: Palais des Congrès Montreal, Canada
+
+- title: COLM
+  year: 2026
+  id: colm26
+  full_name: Conference on Language Modeling
+  link: https://colmweb.org/
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2026-03-26 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Paper Submission
+    date: '2026-03-31 23:59:59'
+    timezone: AoE
+  timezone: AoE
+  date: October 7-9, 2026
+  city: San Francisco
+  country: USA
+  era_rating: a
+  tags:
+  - natural-language-processing
