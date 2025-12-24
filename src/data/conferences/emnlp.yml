@@ -1,16 +1,33 @@
 - title: EMNLP
-  year: 2025
-  id: emnlp25
+  year: 2026
+  id: emnlp26
   full_name: The annual Conference on Empirical Methods in Natural Language Processing
-  link: https://2025.emnlp.org/
-  deadline: '2025-05-19 23:59:59'
+  link: https://2026.emnlp.org/
+  deadline: '2026-05-19 23:59:59'
   timezone: UTC-12
-  date: November 5 - 9, 2025
+  date: November 5 - 9, 2026
   tags:
   - natural-language-processing
-  city: Suzhou
-  country: China
+  city: TBA
+  country: TBA
   rankings: 'CCF: B, CORE: A*, THCPL: A'
-  venue: Suzhou, China
-  start: '2025-11-05'
-  end: '2025-11-09'
+  venue: TBA
+  start: '2026-11-05'
+  end: '2026-11-09'
+
+- title: EMNLP
+  year: 2026
+  id: emnlp26
+  full_name: The annual Conference on Empirical Methods in Natural Language Processing
+  link: https://2026.emnlp.org/
+  deadline: '2026-05-19 23:59:59'
+  timezone: UTC-12
+  date: November 5 - 9, 2026
+  tags:
+  - natural-language-processing
+  city: TBA
+  country: TBA
+  rankings: 'CCF: B, CORE: A*, THCPL: A'
+  venue: TBA
+  start: '2026-11-05'
+  end: '2026-11-09'

@@ -3,40 +3,90 @@
   id: aaai25
   full_name: AAAI Conference on Artificial Intelligence
   link: https://aaai.org/conference/aaai/aaai-25/
-  deadline: '2024-08-15 23:59:59'
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2024-08-07 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Paper submission deadline
+      date: '2024-08-15 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Author notification
+      date: '2024-12-09 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2024-12-19 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: February 25 - March 4, 2025
+  start: 2025-02-25
+  end: 2025-03-04
   tags:
   - data-mining
   - machine-learning
   - natural-language-processing
   - computer-vision
-  city: PHILADELPHIA
-  country: PENNSYLVANIA
-  abstract_deadline: '2024-08-07 23:59:59'
+  city: Philadelphia
+  country: Pennsylvania
   rankings: 'CCF: A, CORE: A*, THCPL: A'
   venue: Pennsylvania Convention Center, Philadelphia, USA
   hindex: 212
-  note: Mandatory abstract deadline on Aug 07, 2024, and supplementary material deadline
-    on Aug 19, 2024. More info <a href='https://aaai.org/conference/aaai/aaai-25/'>here</a>.
+  note: All deadlines are "anywhere on earth" (UTC-12). More info <a href='https://aaai.org/conference/aaai/aaai-25/'>here</a>.
 
 - title: AAAI
   year: 2026
   id: aaai26
   full_name: AAAI Conference on Artificial Intelligence
   link: https://aaai.org/conference/aaai/aaai-26/
-  deadline: '2025-08-01 23:59:59'
-  abstract_deadline: '2025-07-25 23:59:59'
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2025-07-25 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-08-01 23:59:59'
+      timezone: UTC-12
+    - type: supplementary
+      label: Supplementary material and code deadline
+      date: '2025-08-04 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Phase 1 rejection notifications
+      date: '2025-09-15 23:59:59'
+      timezone: UTC-12
+    - type: rebuttal_start
+      label: Author feedback window start
+      date: '2025-10-07 23:59:59'
+      timezone: UTC-12
+    - type: rebuttal_end
+      label: Author feedback window end
+      date: '2025-10-13 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Final acceptance/rejection notices
+      date: '2025-11-08 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2025-11-13 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
-  date: January 20 – January 27, 2026
+  date: January 20 - 27, 2026
+  start: 2026-01-20
+  end: 2026-01-27
   tags:
   - data-mining
   - machine-learning
   - natural-language-processing
   - computer-vision
+  city: Singapore
   country: Singapore
   rankings: 'CCF: A, CORE: A*, THCPL: A'
   venue: Singapore EXPO, Singapore
   hindex: 220
-  note: Mandatory abstract deadline on Jul 25, 2025, and supplementary material deadline
-    on Aug 04, 2025. More info <a href='https://aaai.org/conference/aaai/aaai-26/'>here</a>.
+  note: All deadlines are "anywhere on earth" (UTC-12). More info <a href='https://aaai.org/conference/aaai/aaai-26/'>here</a>.
+  era_rating: a

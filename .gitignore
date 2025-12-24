@@ -22,3 +22,22 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environments
+env/
+.venv
+
+# Keys
+*.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# DS_Store files
+.DS_Store
+
+# Outputs folder
+outputs/
+
+# Claude Code local settings (contains secrets)
+.claude/settings.local.json

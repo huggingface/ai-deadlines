@@ -3,15 +3,22 @@
   id: colm25
   full_name: Conference on Language Modeling
   link: https://colmweb.org/cfp.html
-  deadline: '2025-03-27 23:59:59'
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2025-03-22 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Paper Submission
+    date: '2025-03-28 23:59:59'
+    timezone: AoE
   timezone: AoE
-  date: October 7-9, 2025
+  date: October 7-10, 2025
   era_rating: a
   tags:
   - natural-language-processing
   city: Montreal
   country: Canada
-  abstract_deadline: '2025-03-20 23:59:59'
   rankings: 'CCF: N, CORE: N, THCPL: N'
   venue: Palais des Congrès Montreal, Canada
 
@@ -30,7 +37,7 @@
     date: '2026-03-31 23:59:59'
     timezone: AoE
   timezone: AoE
-  date: October 7-9, 2026
+  date: October 6-9, 2026
   city: San Francisco
   country: USA
   era_rating: a

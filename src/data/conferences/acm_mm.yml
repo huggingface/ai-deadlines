@@ -3,20 +3,33 @@
   id: acm25
   full_name: ACM Multimedia
   link: https://acmmm2025.org/
-  deadline: '2025-04-11 23:59:59'
-  abstract_deadline: '2025-04-04 23:59:59'
-  rebuttal_period_start: '2025-06-22'
-  rebuttal_period_end: '2025-06-09'
-  final_decision_date: '2025-07-04'
-  timezone: UTC-12
+  deadlines:
+    - type: abstract
+      label: Abstract submission for regular papers
+      date: '2025-04-04 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Regular paper submission (including supplementary materials, if applicable)
+      date: '2025-04-11 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Rebuttal period start
+      date: '2025-06-09 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Rebuttal period end
+      date: '2025-06-19 23:59:59'
+      timezone: AoE
+  timezone: AoE
   city: Dublin
   country: Ireland
   date: October 27-31, 2025
   start: '2025-10-27'
   end: '2025-10-31'
   venue: Dublin Royal Convention Center, Dublin, Ireland
-  note: All important dates can be found <a href='https://acmmm2025.org/important-dates/'>here</a>.
+  note: All important dates can be found <a href='https://acmmm2025.org/important-dates/'>here</a>. The time for all dates is 23:59 AoE (Anywhere-on-Earth).
   tags:
   - computer-vision
   - machine-learning
   - human-computer-interaction
+  era_rating: a

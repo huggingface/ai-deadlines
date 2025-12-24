@@ -12,3 +12,37 @@
   country: Italy
   rankings: 'CCF: C, CORE: B, THCPL: B'
   venue: Politecnico di Milano, Milan, Italy
+- title: ALT
+  year: 2026
+  id: alt2026
+  full_name: International Conference on Algorithmic Learning Theory
+  link: https://algorithmiclearningtheory.org/alt2026/
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-10-02 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2025-12-18 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Author feedback period start
+      date: '2025-11-17 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Author feedback period end
+      date: '2025-11-23 23:59:59'
+      timezone: AoE
+  timezone: America/Toronto
+  date: February 23-26, 2026
+  start: 2026-02-23
+  end: 2026-02-26
+  tags:
+  - machine-learning
+  city: Toronto
+  country: Canada
+  rankings: 'CCF: C, CORE: B, THCPL: B'
+  venue: Fields Institute, Toronto, Canada
+  note: In-person conference. ShaiFest event on February 27, 2026
+  era_rating: a

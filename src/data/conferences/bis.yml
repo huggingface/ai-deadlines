@@ -3,7 +3,19 @@
   id: bis2026
   full_name: International Conference on Business Information Systems
   link: https://bisconf.org/2026
-  deadline: 2026-01-15 23:59
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2026-01-15 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Author notification
+      date: '2026-03-04 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Final paper submission
+      date: '2026-03-25 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   city: Prague
   country: Czech Republic
@@ -18,4 +30,4 @@
   - data-mining
   - large-language-models
   - knowledge-graphs
-  venue: Prague, Czech Republic
+  venue: Prague University of Economics and Business, Nám. W. Churchilla 4, Prague 130 67, Czech Republic

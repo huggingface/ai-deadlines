@@ -1,0 +1,10 @@
+[project]
+name = "ai-deadlines-hub"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "aiofiles>=25.1.0",
+    "claude-agent-sdk>=0.1.18",
+]

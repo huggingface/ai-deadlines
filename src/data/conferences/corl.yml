@@ -15,3 +15,22 @@
   venue: COEX Convention & Exhibition Center, Seoul, South Korea
   start: '2025-09-27'
   end: '2025-09-30'
+
+- title: CoRL
+  year: 2026
+  id: corl26
+  full_name: The Conference on Robot Learning
+  link: https://www.corl.org/
+  deadline: null
+  timezone: AoE
+  date: TBD 2026
+  tags:
+  - machine-learning
+  - robotics
+  city: Austin
+  country: United States
+  rankings: 'CCF: N, CORE: N, THCPL: N'
+  venue: TBD
+  start: null
+  end: null
+  note: Conference announced for Austin, TX. Specific dates and venue TBD.

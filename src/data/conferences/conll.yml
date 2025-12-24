@@ -21,13 +21,13 @@
   full_name: The SIGNLL Conference on Computational Natural Language Learning
   link: https://conll.org/
   deadlines:
-  - type: abstract
-    label: Abstract Submission
+  - type: paper
+    label: Paper submission deadline
     date: '2026-02-19 23:59:59'
     timezone: UTC-12
   - type: notification
     label: Notification of acceptance
-    date: '2026-05-21 23:59:59'
+    date: '2026-04-21 23:59:59'
     timezone: UTC-12
   - type: camera_ready
     label: Camera-ready papers due
@@ -39,3 +39,5 @@
   date: July 3-4, 2026
   tags:
   - natural-language-processing
+  rankings: 'CCF: B, CORE: A, THCPL: B'
+  era_rating: a

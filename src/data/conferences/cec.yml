@@ -11,3 +11,21 @@
   city: Hangzhou
   country: China
   rankings: 'CCF: N, CORE: B, THCPL: N'
+- title: CEC
+  year: 2026
+  id: cec2026
+  full_name: IEEE Congress on Evolutionary Computation
+  link: https://attend.ieee.org/wcci-2026/
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-01-31 23:59:59'
+      timezone: UTC-12
+  timezone: UTC-12
+  date: June 21-26, 2026
+  tags:
+  - machine-learning
+  city: Maastricht
+  country: Netherlands
+  rankings: 'CCF: N, CORE: B, THCPL: N'
+  era_rating: a

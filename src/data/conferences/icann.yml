@@ -17,3 +17,40 @@
   - machine-learning
   note: Deadline for full paper submission extended to 29th March 2025. More info
     <a href='https://e-nns.org/icann2025'>here</a>.
+
+- title: ICANN
+  year: 2026
+  id: icann26
+  full_name: 35th International Conference on Artificial Neural Networks
+  link: https://e-nns.org/icann2026/
+  deadlines:
+  - type: abstract
+    label: Abstract and Full Paper Submission
+    date: '2026-03-16 23:59:59'
+    timezone: UTC-12
+  - type: submission
+    label: Full Paper Submission
+    date: '2026-03-16 23:59:59'
+    timezone: UTC-12
+  - type: notification
+    label: Final Notification
+    date: '2026-05-29 23:59:59'
+    timezone: UTC-12
+  - type: camera_ready
+    label: Camera-ready Paper Upload and Author Registration
+    date: '2026-06-29 23:59:59'
+    timezone: UTC-12
+  timezone: UTC-12
+  city: Padua
+  country: Italy
+  venue: University of Padua, Padua, Italy
+  date: September 14-17, 2026
+  start: 2026-09-14
+  end: 2026-09-17
+  paperslink: https://link.springer.com/conference/icann
+  hindex: 32.0
+  tags:
+  - machine-learning
+  - neural-networks
+  - artificial-intelligence
+  note: 35th International Conference on Artificial Neural Networks. More info <a href='https://e-nns.org/icann2026/call-for-papers-2/'>here</a>.

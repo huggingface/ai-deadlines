@@ -3,11 +3,46 @@
   id: cpal25
   full_name: The Conference on Parsimony and Learning
   link: https://cpal.cc/
-  deadline: '2024-11-25 23:59:59'
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2024-11-25 23:59:59'
+      timezone: AoE
   timezone: AoE
   date: March 24-27, 2025
+  start: '2025-03-24'
+  end: '2025-03-27'
   tags:
   - machine-learning
-  city: California
+  city: Stanford
   country: USA
+  venue: Simonyi Conference Center, Stanford University
   rankings: 'CCF: N, CORE: N, THCPL: N'
+- title: CPAL
+  year: 2026
+  id: cpal26
+  full_name: The Conference on Parsimony and Learning
+  link: https://cpal.cc/
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2025-12-12 23:59:59'
+      timezone: AoE
+    - type: abstract
+      label: Tutorial proposals deadline
+      date: '2025-12-10 23:59:59'
+      timezone: AoE
+    - type: submission
+      label: Rising Stars Award applications
+      date: '2025-12-15 23:59:59'
+      timezone: AoE
+  timezone: AoE
+  date: March 23-26, 2026
+  start: '2026-03-23'
+  end: '2026-03-26'
+  tags:
+  - machine-learning
+  city: Tübingen
+  country: Germany
+  venue: Max Planck Institute for Intelligent Systems
+  note: Organized by Max Planck Institute for Intelligent Systems and ELLIS Institute Tübingen

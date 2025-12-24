@@ -3,7 +3,11 @@
   id: colt25
   full_name: Annual Conference on Learning Theory
   link: https://learningtheory.org/colt2025/
-  deadline: '2025-02-06 16:59:59'
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2025-02-06 16:59:59'
+      timezone: UTC-5
   timezone: UTC-5
   date: June 30 - July 4, 2025
   tags:
@@ -11,3 +15,38 @@
   city: Lyon
   country: France
   rankings: 'CCF: B, CORE: A*, THCPL: A'
+  era_rating: a
+- title: COLT
+  year: 2026
+  id: colt26
+  full_name: Annual Conference on Learning Theory
+  link: https://learningtheory.org/colt2026/
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2026-02-04 23:59:59'
+      timezone: UTC-12
+    - type: review_release
+      label: Reviews released
+      date: '2026-04-03 00:00:00'
+      timezone: UTC-12
+    - type: rebuttal_start
+      label: Initial author response due
+      date: '2026-04-10 00:00:00'
+      timezone: UTC-12
+    - type: rebuttal_end
+      label: Discussion period
+      date: '2026-04-20 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Author notification
+      date: '2026-05-04 00:00:00'
+      timezone: UTC-12
+  timezone: UTC-12
+  date: June 29 - July 3, 2026
+  tags:
+  - machine-learning
+  city: San Diego
+  country: United States
+  rankings: 'CCF: B, CORE: A*, THCPL: A'
+  era_rating: a

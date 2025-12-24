@@ -1,9 +1,13 @@
 - title: COLING
   year: 2025
   id: coling25
-  full_name: INTERNATIONNAL CONFERENCE ON COMPUTATIONAL LINGUISTICS
+  full_name: International Conference on Computational Linguistics
   link: https://coling2025.org/
-  deadline: '2024-09-16 23:59:59'
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2024-09-16 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: Jan 19 - Jan 24, 2025
   tags:
@@ -15,4 +19,5 @@
   rankings: 'CCF: B, CORE: B, THCPL: B'
   venue: Abu Dhabi National Exhibition Centre (ADNEC), Abu Dhabi, UAE
   hindex: 73
+  era_rating: a
   note: More info can be found <a href="https://coling2025.org/calls/main_conference_papers/#important-dates">here</a>.

@@ -3,7 +3,19 @@
   id: acl25
   full_name: Annual Meeting of the Association for Computational Linguistics
   link: https://2025.aclweb.org/
-  deadline: '2025-02-15 23:59:59'
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-02-15 23:59:59'
+      timezone: UTC-12
+    - type: commitment_deadline
+      label: ARR commitment deadline
+      date: '2025-04-10 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Author notification date
+      date: '2025-05-15 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: July 27 - August 1, 2025
   era_rating: a
@@ -12,8 +24,6 @@
   city: Vienna
   country: Austria
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  final_decision_date: '2025-05-15 23:59:59'
-  commitment_deadline: '2025-04-10 23:59:59'
   note: ARR commitment deadline on April 10th, 2025.
 
 - title: ACL
@@ -21,7 +31,19 @@
   id: acl26
   full_name: Annual Meeting of the Association for Computational Linguistics
   link: https://2026.aclweb.org/
-  deadline: '2026-01-05 23:59:59'
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-01-05 23:59:59'
+      timezone: UTC-12
+    - type: commitment_deadline
+      label: ARR commitment deadline
+      date: '2026-03-14 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Author notification date
+      date: '2026-04-04 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: July 2-7, 2026
   era_rating: a
@@ -30,5 +52,3 @@
   city: San Diego
   country: USA
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  final_decision_date: '2026-04-04 23:59:59'
-  commitment_deadline: '2026-03-14 23:59:59'

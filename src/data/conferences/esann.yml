@@ -4,11 +4,41 @@
   full_name: European Symposium on Artificial Neural Networks, Computational Intelligence
     and Machine Learning
   link: https://www.esann.org/
-  deadline: '2024-11-20 00:00:00'
-  timezone: UTC-8
-  date: April 23 - April 25, 2025
-  tags: []
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2024-11-20 00:00:00'
+      timezone: UTC-8
+  date: April 23 - 25, 2025
+  start: 2025-04-23
+  end: 2025-04-25
+  tags:
+    - machine learning
   city: Bruges
   country: Belgium
-  abstract_deadline: '2024-11-20 00:00:00'
+  rankings: 'CCF: N, CORE: B, THCPL: N'
+
+- title: ESANN
+  year: 2026
+  id: esann26
+  full_name: European Symposium on Artificial Neural Networks, Computational Intelligence
+    and Machine Learning
+  link: https://www.esann.org/
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-11-19 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2026-01-23 23:59:59'
+      timezone: AoE
+  date: April 22 - 24, 2026
+  start: 2026-04-22
+  end: 2026-04-24
+  tags:
+    - machine learning
+  city: Bruges
+  country: Belgium
+  note: Hybrid event (in-person and online)
   rankings: 'CCF: N, CORE: B, THCPL: N'

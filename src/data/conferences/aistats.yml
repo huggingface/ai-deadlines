@@ -17,17 +17,34 @@
   venue: TBA
   hindex: 100
   note: Abstract deadline on October 3, 2024. More info <a href='https://aistats.org/aistats2025/call-for-papers.html'>here</a>
+
 - title: AISTATS
   year: 2026
   id: aistats26
   full_name: International Conference on Artificial Intelligence and Statistics
   link: https://virtual.aistats.org/Conferences/2026
   deadlines:
-  - type: submission
-    label: Abstract deadline on 2025-09-25 23:59:59 UTC-12!
-    date: '2025-10-03 13:59:59'
-    timezone: GMT+02
-  timezone: GMT+02
+  - type: abstract
+    label: Abstract submission deadline
+    date: '2025-09-25 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Full paper submission deadline
+    date: '2025-10-02 23:59:59'
+    timezone: AoE
+  - type: supplementary
+    label: Supplementary material deadline
+    date: '2025-10-09 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Paper decision notifications
+    date: '2026-01-23 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera-ready deadline
+    date: '2026-01-31 23:59:59'
+    timezone: AoE
+  timezone: AoE
   date: May 2-5, 2026
   tags:
   - machine-learning
@@ -38,4 +55,5 @@
   rankings: 'CCF: C, CORE: A, THCPL: B'
   venue: TBA
   hindex: 101
-  note: Abstract deadline on 2025-09-25 23:59:59 UTC-12!
+  note: More info <a href='https://virtual.aistats.org/Conferences/2026/CallForPapers'>here</a>
+  era_rating: b

@@ -3,11 +3,19 @@
   id: eecv26
   full_name: European Conference on Computer Vision
   link: https://eccv.ecva.net/Conferences/2026
-  deadline: '2026-03-06 11:00:00'
-  timezone: UTC+0
   city: Malmö
   country: Sweden
   date: September 8-13, 2026
   era_rating: a
   tags:
   - computer-vision
+  deadlines:
+  - type: submission
+    label: Paper Submission
+    date: '2026-03-06 11:00:00'
+    timezone: UTC+1
+  - type: submission
+    label: Workshop/Tutorial Proposal Submission
+    date: '2026-02-14 23:59:59'
+    timezone: UTC-12
+  note: Paper submission deadline on March 6th, 2026 at 12:00 PM CET. Workshop/tutorial proposal deadline on February 14th, 2026 (AOE). Additional deadlines including abstract submission, supplementary materials, review release, rebuttal period, notification, and camera ready will be announced closer to the submission date.
