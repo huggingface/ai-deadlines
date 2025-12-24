@@ -3,8 +3,15 @@
   id: ecir25
   full_name: European Conference on Information Retrieval
   link: https://ecir2025.eu/
-  deadline: '2024-10-09 23:59:59'
-  abstract_deadline: '2024-10-02 23:59:59'
+  deadlines:
+    - type: abstract
+      label: Abstract deadline
+      date: '2024-10-02 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Paper submission deadline
+      date: '2024-10-09 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   city: Lucca
   country: Tuscany
@@ -14,4 +21,4 @@
   end: '2025-04-10'
   tags:
   - data-mining
-  note: Abstract deadline on Oct 2, 2024. More info <a href='https://ecir2025.eu/'>here</a>.
+  note: More info <a href='https://ecir2025.eu/'>here</a>.

@@ -3,31 +3,17 @@
   id: emnlp26
   full_name: The annual Conference on Empirical Methods in Natural Language Processing
   link: https://2026.emnlp.org/
-  deadline: '2026-05-19 23:59:59'
-  timezone: UTC-12
-  date: November 5 - 9, 2026
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-05-19 23:59:59'
+      timezone: UTC-12
+  date: October 24 - 29, 2026
   tags:
   - natural-language-processing
-  city: TBA
-  country: TBA
+  city: Budapest
+  country: Hungary
   rankings: 'CCF: B, CORE: A*, THCPL: A'
   venue: TBA
-  start: '2026-11-05'
-  end: '2026-11-09'
-
-- title: EMNLP
-  year: 2026
-  id: emnlp26
-  full_name: The annual Conference on Empirical Methods in Natural Language Processing
-  link: https://2026.emnlp.org/
-  deadline: '2026-05-19 23:59:59'
-  timezone: UTC-12
-  date: November 5 - 9, 2026
-  tags:
-  - natural-language-processing
-  city: TBA
-  country: TBA
-  rankings: 'CCF: B, CORE: A*, THCPL: A'
-  venue: TBA
-  start: '2026-11-05'
-  end: '2026-11-09'
+  start: '2026-10-24'
+  end: '2026-10-29'

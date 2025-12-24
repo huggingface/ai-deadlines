@@ -3,17 +3,41 @@
   id: ecai25
   full_name: European Conference on Artificial Intelligence
   link: https://ecai2025.org/deadlines/
-  deadline: '2025-05-06 23:59:59'
+  deadlines:
+    - type: abstract
+      label: Abstract deadline
+      date: '2025-04-29 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-05-06 23:59:59'
+      timezone: UTC-12
+    - type: rebuttal_start
+      label: Rebuttal period start
+      date: '2025-06-23 23:59:59'
+      timezone: UTC-12
+    - type: rebuttal_end
+      label: Rebuttal period end
+      date: '2025-06-25 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Author notification
+      date: '2025-07-10 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2025-08-26 23:59:59'
+      timezone: UTC-12
+    - type: registration
+      label: Early registration deadline
+      date: '2025-09-03 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: October 25-30, 2025
   tags:
   - machine-learning
   city: Bologna
   country: Italy
-  abstract_deadline: '2025-04-29 23:59:59'
   rankings: 'CCF: B, CORE: A, THCPL: N'
   venue: Bologna Congress Center and The Engineering School (University of Bologna)
-  rebuttal_period_start: '2025-06-23'
-  rebuttal_period_end: '2025-06-25'
-  final_decision_date: '2025-07-10'
   note: All important dates can be found <a href='https://ecai2025.org/call-for-papers/'>here</a>.

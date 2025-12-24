@@ -73,3 +73,7 @@ When no timezone information is given, use the Anywhere on Earth (AoE) timezone 
 ## Refactoring
 
 If a conference still uses the legacy "deadline:" and "abstract_deadline" formats, feel free to refactor them to the newer "deadlines" format which lists the type, label, label and timezone of each deadline. 
+
+## Use of git
+
+After making changes, make sure to git add and git commit the results using the Bash tool.
