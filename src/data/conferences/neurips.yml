@@ -3,7 +3,11 @@
   id: neurips25
   full_name: Conference on Neural Information Processing Systems
   link: https://neurips.cc/
-  deadline: '2025-05-16 23:59:59'
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-05-16 23:59:59'
+      timezone: UTC-8
   timezone: UTC-8
   city: San Diego
   country: USA
@@ -11,6 +15,17 @@
   date: December 2-7, 2025
   start: '2025-12-02'
   end: '2025-12-07'
+  era_rating: a
+  tags:
+  - machine-learning
+- title: NeurIPS
+  year: 2026
+  id: neurips26
+  full_name: Conference on Neural Information Processing Systems
+  link: https://neurips.cc/
+  date: December 6-12, 2026
+  city: Sydney
+  country: Australia
   era_rating: a
   tags:
   - machine-learning
