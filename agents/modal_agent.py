@@ -21,10 +21,8 @@ Setup:
 1. Install Modal: uv add modal
 2. Authenticate: uv run modal setup
 3. Create secrets:
-   uv run modal secret create anthropic-base-url ANTHROPIC_BASE_URL=<your-base-url>
    uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-key>
-   uv run modal secret create github-pat GITHUB_PAT=<token-with-repo-and-pr-scope>
-   uv run modal secret create exa EXA_API_KEY=<your-key>  # optional
+   uv run modal secret create github-token GH_TOKEN=<token-with-repo-and-pr-scope>
 
 Note: The GITHUB_PAT token needs the following scopes:
   - `repo` - for cloning and pushing to the repository
@@ -62,7 +60,7 @@ def get_conferences(base_dir: str = REPO_DIR) -> list[str]:
 
 # Define the Modal image with all required dependencies
 image = (
-    modal.Image.debian_slim(python_version="3.12")
+    modal.Image.debian_slim(python_version="3.11")
     .apt_install("git", "curl")
     .run_commands(
         # Install GitHub CLI
@@ -105,10 +103,8 @@ app = modal.App(
     name="conference-deadlines-agent",
     image=image,
     secrets=[
-        modal.Secret.from_name("anthropic-base-url"),
         modal.Secret.from_name("anthropic"),
-        modal.Secret.from_name("github-pat"),
-        modal.Secret.from_name("exa", required=False),
+        modal.Secret.from_name("github-token"),
     ],
 )
 
@@ -118,12 +114,9 @@ def setup_git_and_clone():
     import os
     import subprocess
 
-    github_pat = os.environ.get("GITHUB_PAT", "")
-    if not github_pat:
-        raise ValueError("GITHUB_PAT environment variable is required")
-
-    # Set GH_TOKEN for GitHub CLI authentication
-    os.environ["GH_TOKEN"] = github_pat
+    github_token = os.environ.get("GH_TOKEN", "")
+    if not github_token:
+        raise ValueError("GH_TOKEN environment variable is required")
 
     # Configure git user
     subprocess.run(
@@ -144,7 +137,7 @@ def setup_git_and_clone():
     # Store credentials
     credentials_file = os.path.expanduser("~/.git-credentials")
     with open(credentials_file, "w") as f:
-        f.write(f"https://x-access-token:{github_pat}@github.com\n")
+        f.write(f"https://x-access-token:{github_token}@github.com\n")
     os.chmod(credentials_file, 0o600)
 
     # Clone the repository if it doesn't exist
@@ -189,13 +182,18 @@ def process_single_conference(conference_name: str) -> dict:
     setup_git_and_clone()
 
     # Add the app directory to the path for imports
-    sys.path.insert(0, "/home/agent/app")
+    # IMPORTANT: /home/agent/app must be first so the mounted code is used,
+    # not the cloned repo code
     sys.path.insert(0, REPO_DIR)
+    sys.path.insert(0, "/home/agent/app")
 
     # Change to repo directory so relative paths work
     os.chdir(REPO_DIR)
+    
+    # Tell agent.py to use current working directory as PROJECT_ROOT
+    os.environ["USE_CWD_AS_PROJECT_ROOT"] = "1"
 
-    # Import and run the agent
+    # Import and run the agent (uses mounted code from /home/agent/app/agents/)
     from agents.agent import find_conference_deadlines
 
     async def _process():
