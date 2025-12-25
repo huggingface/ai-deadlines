@@ -23,8 +23,12 @@ Setup:
 3. Create secrets:
    uv run modal secret create anthropic-base-url ANTHROPIC_BASE_URL=<your-base-url>
    uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-key>
-   uv run modal secret create github-pat GITHUB_PAT=<token-with-repo-scope>
+   uv run modal secret create github-pat GITHUB_PAT=<token-with-repo-and-pr-scope>
    uv run modal secret create exa EXA_API_KEY=<your-key>  # optional
+
+Note: The GITHUB_PAT token needs the following scopes:
+  - `repo` - for cloning and pushing to the repository
+  - `pull_request` or `repo` - for creating pull requests via the GitHub CLI
 """
 
 import os
@@ -59,7 +63,15 @@ def get_conferences(base_dir: str = REPO_DIR) -> list[str]:
 # Define the Modal image with all required dependencies
 image = (
     modal.Image.debian_slim(python_version="3.12")
-    .apt_install("git")
+    .apt_install("git", "curl")
+    .run_commands(
+        # Install GitHub CLI
+        "curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg",
+        "chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg",
+        'echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null',
+        "apt-get update",
+        "apt-get install -y gh",
+    )
     .pip_install(
         "claude-agent-sdk>=0.1.18",
         "aiofiles>=25.1.0",
@@ -109,6 +121,9 @@ def setup_git_and_clone():
     github_pat = os.environ.get("GITHUB_PAT", "")
     if not github_pat:
         raise ValueError("GITHUB_PAT environment variable is required")
+
+    # Set GH_TOKEN for GitHub CLI authentication
+    os.environ["GH_TOKEN"] = github_pat
 
     # Configure git user
     subprocess.run(
