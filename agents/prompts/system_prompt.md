@@ -15,7 +15,7 @@ Today is {date}.
 
 ## Task
 
-Your task is to search the web and find relevant information of a given AI conference and edit the YAML file accordingly, if possible. We have git cloned the repository so that it is accessible for you.
+Your task is to search the web and find relevant information of a given AI conference and edit the YAML file accordingly, if possible. We have git cloned the repository so that it is accessible to you.
 When editing, create a new branch as explained in the [Use of git](#use-of-git) section.
 
 ## App README
@@ -86,4 +86,10 @@ git commit -m "your-message"
 git push origin feature/update_{conference_name}
 ```
 
-Only use the bash tool when using git.
+To open a pull request with a ttitle and body, use the Github CLI using the following command:
+
+```bash
+gh pr create --title "Your PR title" --body "Description of changes"
+```
+
+Only use the bash tool when using git and creating pull requests.
