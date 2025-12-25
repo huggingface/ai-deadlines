@@ -109,6 +109,7 @@ async def find_conference_deadlines(conference_name: str) -> None:
         return f"{dt.strftime('%A')}, the {day}{suffix} of {dt.strftime('%B')}, {dt.year}"
 
     system_prompt = system_prompt_template.format(
+        conference_name=conference_name,
         date=format_date_verbose(datetime.now()),
         app_readme=app_readme,
     )

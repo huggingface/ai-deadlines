@@ -11,3 +11,30 @@
   tags:
   - computer-graphics
   venue: London
+
+- title: Eurographics
+  year: 2026
+  id: eurographics26
+  full_name: The 47th Annual Conference of the European Association for Computer Graphics
+  link: https://eg2026.github.io/
+  deadlines:
+    - type: notification
+      label: Final notification
+      date: '2026-02-06 23:59:59'
+      timezone: UTC
+    - type: camera_ready
+      label: Camera-ready version due
+      date: '2026-02-20 23:59:59'
+      timezone: UTC
+    - type: registration
+      label: Author registration deadline
+      date: '2026-04-03 23:59:59'
+      timezone: UTC
+  city: Aachen
+  country: Germany
+  venue: Aachen, Germany
+  date: May 4 - 8, 2026
+  start: 2026-05-04
+  end: 2026-05-08
+  tags:
+  - computer-graphics
