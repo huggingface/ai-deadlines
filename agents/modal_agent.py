@@ -8,25 +8,24 @@ Usage:
 
 ```bash
 # Run all conferences once
-modal run agents/modal_agent.py
+uv run modal run agents/modal_agent.py
 
 # Run single conference (for testing)
-modal run agents/modal_agent.py --conference-name neurips
+uv run modal run agents/modal_agent.py --conference-name neurips
 
 # Deploy for weekly scheduled runs
-modal deploy agents/modal_agent.py
+uv run modal deploy agents/modal_agent.py
 ```
 
 Setup:
 1. Install Modal: uv add modal
 2. Authenticate: uv run modal setup
 3. Create secrets:
-   uv run modal secret create anthropic-base-url ANTHROPIC_BASE_URL=<your-base-url>
-   uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-key>
-   uv run modal secret create github-pat GITHUB_PAT=<token-with-repo-and-pr-scope>
-   uv run modal secret create exa EXA_API_KEY=<your-key>  # optional
+   uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-api-key>
+   uv run modal secret create github-token GH_TOKEN=<token-with-repo-and-pr-scope>
+   uv run modal secret create exa EXA_API_KEY=<your-key>
 
-Note: The GITHUB_PAT token needs the following scopes:
+Note: The GH_TOKEN token needs the following scopes:
   - `repo` - for cloning and pushing to the repository
   - `pull_request` or `repo` - for creating pull requests via the GitHub CLI
 """
@@ -62,7 +61,7 @@ def get_conferences(base_dir: str = REPO_DIR) -> list[str]:
 
 # Define the Modal image with all required dependencies
 image = (
-    modal.Image.debian_slim(python_version="3.12")
+    modal.Image.debian_slim(python_version="3.11")
     .apt_install("git", "curl")
     .run_commands(
         # Install GitHub CLI
@@ -74,7 +73,7 @@ image = (
     )
     .pip_install(
         "claude-agent-sdk>=0.1.18",
-        "aiofiles>=25.1.0",
+        "aiofiles>=24.1.0",
     )
     .run_commands(
         # Create non-root user (required for claude-agent-sdk bypassPermissions)
@@ -105,10 +104,9 @@ app = modal.App(
     name="conference-deadlines-agent",
     image=image,
     secrets=[
-        modal.Secret.from_name("anthropic-base-url"),
         modal.Secret.from_name("anthropic"),
-        modal.Secret.from_name("github-pat"),
-        modal.Secret.from_name("exa", required=False),
+        modal.Secret.from_name("github-token"),
+        modal.Secret.from_name("exa"),
     ],
 )
 
@@ -117,13 +115,6 @@ def setup_git_and_clone():
     """Configure git and clone the repository."""
     import os
     import subprocess
-
-    github_pat = os.environ.get("GITHUB_PAT", "")
-    if not github_pat:
-        raise ValueError("GITHUB_PAT environment variable is required")
-
-    # Set GH_TOKEN for GitHub CLI authentication
-    os.environ["GH_TOKEN"] = github_pat
 
     # Configure git user
     subprocess.run(
@@ -140,6 +131,10 @@ def setup_git_and_clone():
         ["git", "config", "--global", "credential.helper", "store"],
         check=True,
     )
+
+    github_pat = os.environ.get("GH_TOKEN", "")
+    if not github_pat:
+        raise ValueError("GH_TOKEN environment variable is required")
 
     # Store credentials
     credentials_file = os.path.expanduser("~/.git-credentials")
@@ -188,14 +183,19 @@ def process_single_conference(conference_name: str) -> dict:
     # Setup git and clone/pull repo
     setup_git_and_clone()
 
-    # Add the app directory to the path for imports
-    sys.path.insert(0, "/home/agent/app")
+    # Add REPO_DIR first, then app directory (last insert is at position 0, so app takes priority)
+    # This ensures local mounted code is used instead of cloned repo code
     sys.path.insert(0, REPO_DIR)
+    sys.path.insert(0, "/home/agent/app")
 
     # Change to repo directory so relative paths work
     os.chdir(REPO_DIR)
+    
+    # Tell agent.py to use current working directory as PROJECT_ROOT
+    # This ensures conference data is read from the cloned repo, not the mounted app directory
+    os.environ["USE_CWD_AS_PROJECT_ROOT"] = "1"
 
-    # Import and run the agent
+    # Import and run the agent (uses /home/agent/app/agents due to sys.path order)
     from agents.agent import find_conference_deadlines
 
     async def _process():
