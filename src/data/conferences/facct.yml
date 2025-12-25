@@ -1,18 +1,18 @@
 - title: FAccT
-  year: 2025
-  id: facct25
+  year: 2026
+  id: facct26
   full_name:  ACM Conference on Fairness, Accountability, and Transparency
   link: https://facctconference.org/2026/index.html
   deadlines:
   - type: abstract
     label: Abstract Submission
     date: '2026-01-08 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: submission
     label: Paper Submission
     date: '2026-01-13 23:59:59'
-    timezone: UTC-12
-  timezone: UTC-12
+    timezone: AoE
+  timezone: AoE
   date: June 27 - June 30, 2026
   tags:
   - fairness
@@ -21,7 +21,6 @@
   - computer-vision
   city: Montreal
   country: Canada
-  abstract_deadline: '2026-01-08 23:59:59'
   rankings: 'CCF: , CORE: , THCPL: '
   venue: Hotel Bonaventure, Montreal, QC, Canada
   hindex: 103
