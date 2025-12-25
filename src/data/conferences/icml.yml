@@ -3,27 +3,49 @@
   id: icml25
   full_name: International Conference on Machine Learning
   link: https://icml.cc/Conferences/2025
-  deadline: '2025-01-30 23:59:59'
-  timezone: UTC-12
-  date: July 11-19, 2025
+  date: July 13-19, 2025
+  start: 2025-07-13
+  end: 2025-07-19
   era_rating: a
   tags:
   - machine-learning
   city: Vancouver
   country: Canada
-  abstract_deadline: '2025-01-23 23:59:59'
   rankings: 'CCF: A, CORE: A*, THCPL: A'
   venue: Vancouver Convention Center
-  submission_deadline: '2025-01-31 03:59:59'
-  timezone_submission: PST
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2025-01-23 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Paper Submission
+    date: '2025-01-30 23:59:59'
+    timezone: AoE
+  - type: review_release
+    label: Reviews Released
+    date: '2025-03-25 23:59:59'
+    timezone: AoE
+  - type: rebuttal_end
+    label: Author Response Deadline
+    date: '2025-03-31 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Author Notification
+    date: '2025-05-01 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera Ready Deadline
+    date: '2025-06-09 23:59:59'
+    timezone: AoE
 - title: ICML
   year: 2026
   id: icml26
   full_name: International Conference on Machine Learning
   link: https://icml.cc/Conferences/2026/CallForPapers
-  deadline: '2026-01-28 23:59:59'
-  timezone: UTC-12
   date: July 6-11, 2026
+  start: 2026-07-06
+  end: 2026-07-11
   era_rating: a
   tags:
   - machine-learning
@@ -31,13 +53,16 @@
   - type: abstract
     label: Abstract Submission
     date: '2026-01-23 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: paper
     label: Paper Submission
     date: '2026-01-28 23:59:59'
-    timezone: UTC-12
-  city: Seoul, South Korea
+    timezone: AoE
+  - type: notification
+    label: Author Notification
+    date: '2026-04-30 23:59:59'
+    timezone: AoE
+  city: Seoul
   country: South Korea
-  abstract_deadline: '2026-01-23 23:59:59'
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  venue:  Coex Convention & Exhibition Center
+  venue: Coex Convention & Exhibition Center
