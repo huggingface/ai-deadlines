@@ -3,11 +3,15 @@
   id: icann25
   full_name: International Conference on Artificial Neural Networks
   link: https://e-nns.org/icann2025/
-  deadline: 2025-03-29 23:59
-  abstract_deadline: 2025-03-29 23:59
+  deadlines:
+  - type: submission
+    label: Abstract and Full Paper Submission
+    date: '2025-03-29 23:59:59'
+    timezone: UTC-12
   timezone: UTC-12
   city: Kaunas
   country: Lithuania
+  venue: Kaunas, Lithuania
   date: September, 9-12, 2025
   start: 2025-09-09
   end: 2025-09-12
