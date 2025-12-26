@@ -3,14 +3,64 @@
   id: siggraph25
   full_name: Conference on Computer Graphics and Interactive Techniques
   link: https://s2025.siggraph.org/
-  deadline: '2025-01-16 23:59:59'
-  timezone: UTC-8
+  deadlines:
+    - type: submission
+      label: Submission form and conflicts deadline
+      date: '2025-01-16 22:00:00'
+      timezone: UTC
+    - type: paper
+      label: Paper deadline
+      date: '2025-01-23 22:00:00'
+      timezone: UTC
   city: Vancouver
   country: Canada
   venue: Convention Centre, Vancouver, Canada
   date: August 10-14, 2025
   start: '2025-08-10'
   end: '2025-08-14'
+  era_rating: a
+  tags:
+  - computer-graphics
+- title: SIGGRAPH
+  year: 2026
+  id: siggraph26
+  full_name: Conference on Computer Graphics and Interactive Techniques
+  link: https://s2026.siggraph.org/
+  deadlines:
+    - type: submission
+      label: Art Papers deadline
+      date: '2026-01-13 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Technical Papers submission form deadline
+      date: '2026-01-15 22:00:00'
+      timezone: UTC
+    - type: paper
+      label: Technical Papers deadline
+      date: '2026-01-22 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Upload and conflicts deadline
+      date: '2026-01-23 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Technical Workshops deadline
+      date: '2026-01-27 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Talks, Production Sessions, Panels, Courses, Educator's Forum deadline
+      date: '2026-02-10 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Frontiers deadline
+      date: '2026-04-07 22:00:00'
+      timezone: UTC
+  city: Los Angeles
+  country: United States
+  venue: Los Angeles Convention Center, Los Angeles, California
+  date: July 19-23, 2026
+  start: '2026-07-19'
+  end: '2026-07-23'
   era_rating: a
   tags:
   - computer-graphics
