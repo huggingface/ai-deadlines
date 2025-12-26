@@ -2,16 +2,25 @@
   year: 2026
   id: lrec26
   full_name: Language Resources and Evaluation Conference
-  link: https://www.elra.info/lrec2026/
+  link: https://lrec2026.info/
   deadlines:
   - type: submission
     label: Paper Submission
-    date: '2025-10-18 13:59:59'
-    timezone: GMT+02
-  timezone: GMT+02
+    date: '2025-10-24 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Notification of Acceptance
+    date: '2026-02-13 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera Ready Due
+    date: '2026-03-06 23:59:59'
+    timezone: AoE
+  timezone: AoE
   date: May 11-16, 2026
   city: Palma, Mallorca
   country: Spain
+  venue: Palau de Congressos de Palma
   start: 2026-05-11
   end: 2026-05-16
   tags:
