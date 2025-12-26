@@ -8,13 +8,13 @@ Usage:
 
 ```bash
 # Run all conferences once
-modal run agents/modal_agent.py
+uv run modal run agents/modal_agent.py
 
 # Run single conference (for testing)
-modal run agents/modal_agent.py --conference-name neurips
+uv run modal run agents/modal_agent.py --conference-name neurips
 
 # Deploy for weekly scheduled runs
-modal deploy agents/modal_agent.py
+uv run modal deploy agents/modal_agent.py
 ```
 
 Setup:

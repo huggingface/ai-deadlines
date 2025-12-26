@@ -25,6 +25,7 @@ from claude_agent_sdk import (
     UserMessage,
     query,
 )
+from claude_agent_sdk.types import McpHttpServerConfig
 
 # Script directory for resolving relative paths
 SCRIPT_DIR = Path(__file__).parent
@@ -128,11 +129,21 @@ async def find_conference_deadlines(conference_name: str) -> None:
         # Fallback to home directory (for Modal non-root user)
         settings_path = Path.home() / ".claude" / "settings.local.json"
     settings_path = str(settings_path)
+
+    exa_api_key = os.environ.get("EXA_API_KEY", "")
+    exa_mcp_url = f"https://mcp.exa.ai/mcp?exaApiKey={exa_api_key}" if exa_api_key else "https://mcp.exa.ai/mcp"
+    mcp_servers = {
+        "exa": McpHttpServerConfig(
+            type="http",
+            url=exa_mcp_url,
+        )
+    }
     
     options = ClaudeAgentOptions(
         system_prompt=system_prompt,
         permission_mode="bypassPermissions",
         settings=settings_path,
+        mcp_servers=mcp_servers,
     )
 
     # Run the agent query

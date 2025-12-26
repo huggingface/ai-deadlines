@@ -4,7 +4,21 @@ This folder contains 2 scripts which leverage the [Claude Agents SDK](https://pl
 
 ## Usage
 
-It can be run like so:
+First create a `keys.env` file at the root of the repository which contains the following environment variables:
+
+```bash
+ANTHROPIC_API_KEY=
+GITHUB_PAT=
+EXA_API_KEY=
+```
+
+In case you want to leverage MiniMax 2.1 instead of Claude, get your API key from https://platform.minimax.io/ and add the following:
+
+```bash
+ANTHROPIC_BASE_URL=https://api.minimax.io/anthropic
+```
+
+Next, the agent can be run like so on a conference of choice:
 
 ```bash
 uv run --env-file keys.env -m agents.agent --conference_name neurips
