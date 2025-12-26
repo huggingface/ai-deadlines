@@ -132,8 +132,8 @@ def setup_git_and_clone():
         check=True,
     )
 
-    github_pat = os.environ.get("GH_TOKEN", "")
-    if not github_pat:
+    github_token = os.environ.get("GH_TOKEN", "")
+    if not github_token:
         raise ValueError("GH_TOKEN environment variable is required")
 
     # Store credentials
