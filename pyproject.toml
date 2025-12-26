@@ -7,4 +7,5 @@ requires-python = ">=3.12"
 dependencies = [
     "aiofiles>=25.1.0",
     "claude-agent-sdk>=0.1.18",
+    "ruff>=0.14.10",
 ]

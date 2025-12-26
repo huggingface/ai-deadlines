@@ -33,7 +33,11 @@ SCRIPT_DIR = Path(__file__).parent
 # Project root directory - use current working directory if set (for Modal),
 # otherwise use parent of agents/ directory (for local development)
 # This allows Modal to clone the repo and chdir to it before importing this module
-PROJECT_ROOT = Path(os.getcwd()) if os.environ.get("USE_CWD_AS_PROJECT_ROOT") else SCRIPT_DIR.parent
+PROJECT_ROOT = (
+    Path(os.getcwd())
+    if os.environ.get("USE_CWD_AS_PROJECT_ROOT")
+    else SCRIPT_DIR.parent
+)
 
 
 async def read_prompt(filename: str) -> str:
@@ -52,37 +56,41 @@ async def read_app_readme() -> str:
 
 async def load_conference_data(conference_name: str) -> str:
     """Load conference data from YAML file.
-    
+
     Args:
         conference_name: The name of the conference (e.g., 'neurips', 'aaai')
-        
+
     Returns:
         The YAML content as a string, or an empty string if file not found.
     """
     yaml_path = PROJECT_ROOT / "src" / "data" / "conferences" / f"{conference_name}.yml"
-    
+
     if not yaml_path.exists():
         print(f"Warning: Conference file not found at {yaml_path}")
         return ""
-    
+
     async with aiofiles.open(yaml_path, "r", encoding="utf-8") as f:
         return await f.read()
 
 
-def format_user_prompt(template: str, conference_name: str, conference_data: str) -> str:
+def format_user_prompt(
+    template: str, conference_name: str, conference_data: str
+) -> str:
     """Format the user prompt template with conference name and data.
-    
+
     Args:
         template: The user prompt template with placeholders.
         conference_name: The name of the conference.
         conference_data: The YAML content of the conference data.
-        
+
     Returns:
         The formatted user prompt.
     """
     return template.format(
         conference_name=conference_name,
-        conference_data=conference_data if conference_data else "No existing data found.",
+        conference_data=conference_data
+        if conference_data
+        else "No existing data found.",
     )
 
 
@@ -96,19 +104,22 @@ async def find_conference_deadlines(conference_name: str) -> None:
 
     # Load conference data from YAML file
     conference_data = await load_conference_data(conference_name)
-    
+
     # Read app README for system prompt
     app_readme = await read_app_readme()
-    
+
     # Read and format system prompt
     system_prompt_template = await read_prompt("prompts/system_prompt.md")
-    from datetime import datetime
 
     def format_date_verbose(dt: datetime) -> str:
         # e.g. "Monday, the 1st of April, 2025"
         day = dt.day
-        suffix = "th" if 11 <= day <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
-        return f"{dt.strftime('%A')}, the {day}{suffix} of {dt.strftime('%B')}, {dt.year}"
+        suffix = (
+            "th" if 11 <= day <= 13 else {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+        )
+        return (
+            f"{dt.strftime('%A')}, the {day}{suffix} of {dt.strftime('%B')}, {dt.year}"
+        )
 
     system_prompt = system_prompt_template.format(
         conference_name=conference_name,
@@ -130,14 +141,14 @@ async def find_conference_deadlines(conference_name: str) -> None:
         # Fallback to home directory (for Modal non-root user)
         settings_path = Path.home() / ".claude" / "settings.local.json"
     settings_path = str(settings_path)
-    
+
     # Configure Exa MCP server for web search capabilities (only if API key is available)
     # See: https://docs.exa.ai/reference/exa-mcp
     # Note: On Modal, MCP causes claude-agent-sdk to exit early, so we disable it there
     exa_api_key = os.environ.get("EXA_API_KEY", "")
     disable_mcp = os.environ.get("DISABLE_EXA_MCP", "").lower() in ("1", "true", "yes")
     mcp_servers: dict[str, McpHttpServerConfig] = {}
-    
+
     if disable_mcp:
         print("Exa MCP disabled via DISABLE_EXA_MCP environment variable")
         print("Using built-in WebSearch tool instead")
@@ -150,7 +161,7 @@ async def find_conference_deadlines(conference_name: str) -> None:
         )
     else:
         print("EXA_API_KEY not found, Exa MCP will not be available")
-    
+
     # Only pass mcp_servers if we have any configured
     # Passing empty dict or MCP servers can cause issues in some environments
     options_kwargs = {
@@ -163,7 +174,7 @@ async def find_conference_deadlines(conference_name: str) -> None:
         print(f"Configuring with MCP servers: {list(mcp_servers.keys())}")
     else:
         print("No MCP servers configured, using built-in tools only")
-    
+
     options = ClaudeAgentOptions(**options_kwargs)
 
     # Run the agent query
@@ -216,14 +227,18 @@ async def find_conference_deadlines(conference_name: str) -> None:
                             # Get the tool name from our tracking dict
                             tool_name = tool_names.get(block.tool_use_id, "unknown")
                             # Truncate long results for readability
-                            content_str = str(block.content) if block.content else "(empty)"
+                            content_str = (
+                                str(block.content) if block.content else "(empty)"
+                            )
                             if len(content_str) > 500:
                                 content_str = content_str[:500] + "... (truncated)"
                             error_indicator = " [ERROR]" if block.is_error else ""
-                            print(f"[result]{error_indicator} {tool_name}: {content_str}")
+                            print(
+                                f"[result]{error_indicator} {tool_name}: {content_str}"
+                            )
             elif isinstance(message, ResultMessage):
                 # Print result details
-                if hasattr(message, 'error') and message.error:
+                if hasattr(message, "error") and message.error:
                     print(f"[result] ERROR: {message.error}")
                 if message.total_cost_usd and message.total_cost_usd > 0:
                     print(f"\nCost: ${message.total_cost_usd:.4f}")

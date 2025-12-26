@@ -43,21 +43,20 @@ CONFERENCES_DIR = "src/data/conferences"
 
 def get_conferences(base_dir: str = REPO_DIR) -> list[str]:
     """Get list of all conferences by reading yml files from the conferences directory.
-    
+
     Args:
         base_dir: Base directory of the repository.
-        
+
     Returns:
         Sorted list of conference names (yml filenames without extension).
     """
     conferences_path = Path(base_dir) / CONFERENCES_DIR
     if not conferences_path.exists():
         raise FileNotFoundError(f"Conferences directory not found: {conferences_path}")
-    
-    conferences = [
-        f.stem for f in conferences_path.glob("*.yml")
-    ]
+
+    conferences = [f.stem for f in conferences_path.glob("*.yml")]
     return sorted(conferences)
+
 
 # Define the Modal image with all required dependencies
 image = (
@@ -160,7 +159,7 @@ def setup_git_and_clone():
 @app.function(timeout=600)
 def process_single_conference(conference_name: str) -> dict:
     """Process a single conference using the Claude Agent SDK.
-    
+
     The agent will update the conference data and handle git add/commit/push.
 
     Args:
@@ -181,10 +180,10 @@ def process_single_conference(conference_name: str) -> dict:
     os.environ["HOME"] = agent_user.pw_dir
     os.environ["USER"] = "agent"
     os.environ["LOGNAME"] = "agent"
-    
+
     # Ensure subprocess inherits correct user context
     os.environ["SHELL"] = "/bin/bash"
-    
+
     # Disable MCP for now - known issue where MCP causes SDK to exit early on Modal
     # The agent will use built-in WebSearch tool instead
     # See MODAL_DEBUGGING.md for details
@@ -200,7 +199,7 @@ def process_single_conference(conference_name: str) -> dict:
 
     # Change to repo directory so relative paths work
     os.chdir(REPO_DIR)
-    
+
     # Tell agent.py to use current working directory as PROJECT_ROOT
     # This ensures conference data is read from the cloned repo, not the mounted app directory
     os.environ["USE_CWD_AS_PROJECT_ROOT"] = "1"
@@ -228,7 +227,7 @@ def process_single_conference(conference_name: str) -> dict:
 @app.function(timeout=43200)  # 12 hours max for all conferences
 def process_all_conferences() -> list[dict]:
     """Process all conferences sequentially.
-    
+
     Each conference is processed one at a time. The agent handles
     git add/commit/push for each conference via its Bash tool.
 
@@ -236,16 +235,16 @@ def process_all_conferences() -> list[dict]:
         List of results for each processed conference.
     """
     import pwd
-    
+
     # Switch to non-root user (required for git operations)
     agent_user = pwd.getpwnam("agent")
     os.setgid(agent_user.pw_gid)
     os.setuid(agent_user.pw_uid)
     os.environ["HOME"] = agent_user.pw_dir
-    
+
     # Clone repo first to get the list of conferences
     setup_git_and_clone()
-    
+
     # Get conferences from yml files in the cloned repo
     conferences = get_conferences()
     results = []
@@ -263,11 +262,13 @@ def process_all_conferences() -> list[dict]:
 
         except Exception as e:
             print(f"Error processing {conference}: {e}")
-            results.append({
-                "conference": conference,
-                "status": "error",
-                "error": str(e),
-            })
+            results.append(
+                {
+                    "conference": conference,
+                    "status": "error",
+                    "error": str(e),
+                }
+            )
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conferences)} conferences")
@@ -284,15 +285,15 @@ def scheduled_run():
     """Scheduled weekly run of all conferences."""
     print("Starting scheduled weekly conference update...")
     results = process_all_conferences.remote()
-    
+
     # Summary
     completed = sum(1 for r in results if r.get("status") == "completed")
     errors = sum(1 for r in results if r.get("status") == "error")
-    
-    print(f"\nWeekly run completed:")
+
+    print("\nWeekly run completed:")
     print(f"  - Completed: {completed}")
     print(f"  - Errors: {errors}")
-    
+
     return results
 
 
@@ -335,13 +336,13 @@ def main(
         print(f"\n{'=' * 60}")
         print("Summary:")
         print(f"{'=' * 60}")
-        
+
         completed = [r for r in results if r.get("status") == "completed"]
         errors = [r for r in results if r.get("status") == "error"]
-        
+
         print(f"Completed: {len(completed)}")
         print(f"Errors: {len(errors)}")
-        
+
         if errors:
             print("\nErrors:")
             for r in errors:
