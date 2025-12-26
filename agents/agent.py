@@ -25,6 +25,7 @@ from claude_agent_sdk import (
     UserMessage,
     query,
 )
+from claude_agent_sdk.types import McpHttpServerConfig
 
 # Script directory for resolving relative paths
 SCRIPT_DIR = Path(__file__).parent
@@ -163,10 +164,18 @@ async def find_conference_deadlines(conference_name: str) -> None:
 
     # Only pass mcp_servers if we have any configured
     # Passing empty dict or MCP servers can cause issues in some environments
+    
+    # IMPORTANT: stderr callback is required for Modal to work correctly!
+    # Without it, the SDK only returns SystemMessage (init) and then exits.
+    # See agents/MODAL_DEBUGGING.md for details.
+    def on_stderr(data: str):
+        print(f"[stderr] {data.strip()}")
+    
     options_kwargs = {
         "system_prompt": system_prompt,
         "permission_mode": "bypassPermissions",
         "settings": settings_path,
+        "stderr": on_stderr,  # Capture stderr to see what Claude Code is doing
     }
     if mcp_servers:
         options_kwargs["mcp_servers"] = mcp_servers
@@ -185,8 +194,6 @@ async def find_conference_deadlines(conference_name: str) -> None:
 
     print(f"Starting agent query with settings: {settings_path}")
     print(f"Settings path exists: {Path(settings_path).exists()}")
-    print(f"System prompt length: {len(system_prompt)}")
-    print(f"Conference data loaded: {len(conference_data)} characters")
 
     message_count = 0
     try:

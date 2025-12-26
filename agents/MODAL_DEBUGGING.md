@@ -37,22 +37,26 @@ os.environ["USE_CWD_AS_PROJECT_ROOT"] = "1"
 PROJECT_ROOT = Path(os.getcwd()) if os.environ.get("USE_CWD_AS_PROJECT_ROOT") else SCRIPT_DIR.parent
 ```
 
-### 4. ✅ Overly Complex ClaudeAgentOptions
-Removed unnecessary options that might cause issues:
-- Removed `mcp_servers` (Exa MCP server)
-- Removed `cwd` parameter
-- Removed `stderr` callback
-- Removed `max_turns`
-- Removed `extra_args={"debug-to-stderr": None}`
+### 4. ✅ stderr Callback REQUIRED (CRITICAL!)
+**This was the key fix discovered on 2025-12-26:** The `stderr` callback MUST be provided for the SDK to work on Modal. Without it, the async generator only yields the SystemMessage and then exits immediately.
 
-**Simplified to:**
+**Required configuration:**
 ```python
+def on_stderr(data: str):
+    print(f"[stderr] {data.strip()}")
+
 options = ClaudeAgentOptions(
     system_prompt=system_prompt,
     permission_mode="bypassPermissions",
     settings=settings_path,
+    stderr=on_stderr,  # REQUIRED for Modal!
 )
 ```
+
+The stderr callback likely helps keep the async event loop properly active in Modal's serverless environment.
+
+### 5. ✅ MCP Servers Disabled
+Exa MCP server causes issues on Modal. Set `DISABLE_EXA_MCP=1` to use the built-in WebSearch tool instead.
 
 ## Working Configuration
 
@@ -60,11 +64,12 @@ options = ClaudeAgentOptions(
 - Python 3.11 (matching working example)
 - Correct sys.path order (mounted code takes priority)
 - Set `USE_CWD_AS_PROJECT_ROOT=1` before importing agent
-- Minimal secrets: just `anthropic` and `github-token`
+- Set `DISABLE_EXA_MCP=1` to disable MCP servers
 
 ### agent.py Key Points:
-- Simple `ClaudeAgentOptions` with just system_prompt, permission_mode, settings
+- `ClaudeAgentOptions` with system_prompt, permission_mode, settings, AND stderr callback
 - Dynamic `PROJECT_ROOT` based on environment variable
+- MCP servers only enabled when not on Modal
 
 ## Test Command
 
@@ -72,7 +77,7 @@ options = ClaudeAgentOptions(
 uv run modal run agents/modal_agent.py --conference-name neurips
 ```
 
-Expected: Multiple messages (50+), web searches, file edits, git operations.
+Expected: Multiple messages (28+), web searches, file edits, git operations.
 
 ## Modal Secrets Required
 
