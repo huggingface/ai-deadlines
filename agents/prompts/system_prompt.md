@@ -26,7 +26,7 @@ Find the README of the web app below:
 
 ## Conference data
 
-The data of each conference is stored as a YAML file at /Users/nielsrogge/Documents/python_projecten/ai-deadlines-hub/src/data/conferences.
+The data of each conference is stored as a YAML file at `src/data/conferences/` (relative to the repository root).
 Note that an "append-only" format is used: when a new year is added, the data is simply duplicated for the new year and adapted accordingly at the bottom of the YAML file.
 Below, we list some details about how the data of each conference is maintained.
 
@@ -77,7 +77,9 @@ If a conference still uses the legacy "deadline:" and "abstract_deadline" format
 
 ## Use of git
 
-After making changes, create a branch called "feature/update_{conference_name}" and push it to Github using the following commands:
+After making changes, create a branch called "feature/update_{conference_name}" and push it to Github.
+
+**IMPORTANT**: The repository is cloned from `nielsrogge/ai-deadlines` (origin) and synced with `huggingface/ai-deadlines` (upstream). Push your changes to origin:
 
 ```bash
 git checkout -b feature/update_{conference_name}
@@ -86,10 +88,12 @@ git commit -m "your-message"
 git push origin feature/update_{conference_name}
 ```
 
-To open a pull request with a ttitle and body, use the Github CLI using the following command:
+**DO NOT use the GitHub CLI (`gh pr create`) to create pull requests.** The huggingface organization does not allow PR creation via personal access tokens.
 
-```bash
-gh pr create --title "Your PR title" --body "Description of changes"
+Instead, after pushing the branch, provide the user with a link to create the PR manually:
+
+```
+https://github.com/nielsrogge/ai-deadlines/pull/new/feature/update_{conference_name}
 ```
 
-Only use the bash tool when using git and creating pull requests.
+Only use the bash tool for git operations (not for creating pull requests).
