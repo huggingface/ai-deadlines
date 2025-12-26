@@ -13,7 +13,7 @@
       date: '2025-05-15 23:59:59'
       timezone: AoE
     - type: supplementary
-      label: Supplementary material deadline
+      label: Supplementary materials deadline
       date: '2025-05-22 23:59:59'
       timezone: AoE
     - type: notification
@@ -27,7 +27,7 @@
   timezone: AoE
   city: San Diego
   country: USA
-  venue: San Diego Convention Center, San Diego, USA
+  venue: Hilton Reforma & San Diego Convention Center, San Diego, USA
   date: November 30 - December 7, 2025
   start: '2025-11-30'
   end: '2025-12-07'
