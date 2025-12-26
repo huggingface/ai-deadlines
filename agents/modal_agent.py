@@ -36,7 +36,8 @@ from pathlib import Path
 import modal
 
 # Repository configuration
-REPO_URL = "https://github.com/huggingface/ai-deadlines.git"
+ORIGIN_REPO_URL = "https://github.com/nielsrogge/ai-deadlines.git"
+UPSTREAM_REPO_URL = "https://github.com/huggingface/ai-deadlines.git"
 REPO_DIR = "/home/agent/ai-deadlines"
 CONFERENCES_DIR = "src/data/conferences"
 
@@ -111,7 +112,7 @@ app = modal.App(
 
 
 def setup_git_and_clone():
-    """Configure git and clone the repository."""
+    """Configure git, clone from origin (fork), add upstream, and sync with upstream."""
     import os
     import subprocess
 
@@ -138,22 +139,47 @@ def setup_git_and_clone():
     # Store credentials
     credentials_file = os.path.expanduser("~/.git-credentials")
     with open(credentials_file, "w") as f:
-        f.write(f"https://x-access-token:{github_pat}@github.com\n")
+        f.write(f"https://x-access-token:{github_token}@github.com\n")
     os.chmod(credentials_file, 0o600)
 
-    # Clone the repository if it doesn't exist
+    # Clone from origin (nielsrogge fork) if it doesn't exist
     if not os.path.exists(REPO_DIR):
         subprocess.run(
-            ["git", "clone", REPO_URL, REPO_DIR],
+            ["git", "clone", ORIGIN_REPO_URL, REPO_DIR],
             check=True,
         )
-    else:
-        # Pull latest changes
+        print(f"Cloned from origin: {ORIGIN_REPO_URL}")
+    
+    # Add upstream remote (huggingface) if it doesn't exist
+    result = subprocess.run(
+        ["git", "remote", "get-url", "upstream"],
+        cwd=REPO_DIR,
+        capture_output=True,
+    )
+    if result.returncode != 0:
+        # Upstream remote doesn't exist, add it
         subprocess.run(
-            ["git", "pull", "--rebase"],
+            ["git", "remote", "add", "upstream", UPSTREAM_REPO_URL],
             cwd=REPO_DIR,
             check=True,
         )
+        print(f"Added upstream remote: {UPSTREAM_REPO_URL}")
+    else:
+        print(f"Upstream remote already exists: {result.stdout.decode().strip()}")
+    
+    # Fetch and merge from upstream to sync with huggingface/ai-deadlines
+    print("Fetching from upstream...")
+    subprocess.run(
+        ["git", "fetch", "upstream"],
+        cwd=REPO_DIR,
+        check=True,
+    )
+    print("Merging upstream/main...")
+    subprocess.run(
+        ["git", "merge", "upstream/main", "--no-edit"],
+        cwd=REPO_DIR,
+        check=True,
+    )
 
 
 @app.function(timeout=600)

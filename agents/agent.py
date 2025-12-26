@@ -25,7 +25,6 @@ from claude_agent_sdk import (
     UserMessage,
     query,
 )
-from claude_agent_sdk.types import McpHttpServerConfig
 
 # Script directory for resolving relative paths
 SCRIPT_DIR = Path(__file__).parent
