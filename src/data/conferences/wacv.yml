@@ -20,16 +20,20 @@
   link: https://wacv.thecvf.com/
   deadlines:
   - type: registration
-    label: Round 2 New Paper Registration
-    date: '2025-09-12 23:59:59'
+    label: Round 1 Paper Registration
+    date: '2025-07-11 23:59:59'
     timezone: UTC-12
   - type: submission
-    label: Round 2 Paper Submission
-    date: '2025-09-19 23:59:59'
+    label: Round 1 Paper Submission
+    date: '2025-07-18 23:59:59'
     timezone: UTC-12
-  - type: submission
-    label: Round 2 Supplementary Material Submission
-    date: '2025-09-19 23:59:59'
+  - type: supplementary
+    label: Round 1 Supplementary Material Submission
+    date: '2025-07-18 23:59:59'
+    timezone: UTC-12
+  - type: notification
+    label: Round 1 Reviews and Decisions to Authors
+    date: '2025-09-03 23:59:59'
     timezone: UTC-12
   - type: rebuttal_and_revision
     label: Round 1 Rebuttal and Revision Submission
@@ -37,14 +41,32 @@
     timezone: UTC-12
   - type: notification
     label: Round 1 Final Decisions Released to Authors
-    date: '2025-11-06 07:59:59'
-    timezone: UTC
+    date: '2025-11-05 23:59:59'
+    timezone: UTC-12
+  - type: registration
+    label: Round 2 New Paper Registration
+    date: '2025-09-12 23:59:59'
+    timezone: UTC-12
+  - type: submission
+    label: Round 2 Paper Submission
+    date: '2025-09-19 23:59:59'
+    timezone: UTC-12
+  - type: supplementary
+    label: Round 2 Supplementary Material Submission
+    date: '2025-09-19 23:59:59'
+    timezone: UTC-12
   - type: notification
     label: Round 2 Reviews and Final Decisions to Authors
     date: '2025-11-06 07:59:59'
     timezone: UTC
+  - type: camera_ready
+    label: Camera-Ready Deadline
+    date: '2026-01-09 23:59:59'
+    timezone: America/Los_Angeles
   timezone: UTC-12
   date: March 6 - March 10, 2026
+  start: 2026-03-06
+  end: 2026-03-10
   city: Tucson, Arizona
   country: USA
   venue: JW Marriott Starpass in Tucson, Arizona, USA
