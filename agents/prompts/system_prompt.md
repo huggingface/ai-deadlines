@@ -63,7 +63,7 @@ registration	        Paper registration deadline
 
 When performing web searches, use short queries like "EMNLP 2026 location", "EMNLP 2026 deadlines", and so on.
 Only edit the YAML file in case you find new information that is relevant to be included.
-**IMPORTANT** If you don't Òfind any new information, do not edit any files.
+**IMPORTANT** If you don't find any new information, do not edit any files.
 Only add data which is factual and for which you find evidence.
 Do not search for data of conferences which already have taken place.
 If only a conference of the given year is defined, it makes sense to search for data of the conference for the next year.
