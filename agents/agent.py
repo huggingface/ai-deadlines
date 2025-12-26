@@ -133,25 +133,38 @@ async def find_conference_deadlines(conference_name: str) -> None:
     
     # Configure Exa MCP server for web search capabilities (only if API key is available)
     # See: https://docs.exa.ai/reference/exa-mcp
+    # Note: On Modal, MCP causes claude-agent-sdk to exit early, so we disable it there
     exa_api_key = os.environ.get("EXA_API_KEY", "")
-    mcp_servers: dict[str, McpHttpServerConfig] | None = None
+    disable_mcp = os.environ.get("DISABLE_EXA_MCP", "").lower() in ("1", "true", "yes")
+    mcp_servers: dict[str, McpHttpServerConfig] = {}
     
-    if exa_api_key:
+    if disable_mcp:
+        print("Exa MCP disabled via DISABLE_EXA_MCP environment variable")
+        print("Using built-in WebSearch tool instead")
+    elif exa_api_key:
+        print(f"EXA_API_KEY found (length: {len(exa_api_key)})")
         exa_mcp_url = f"https://mcp.exa.ai/mcp?exaApiKey={exa_api_key}"
-        mcp_servers = {
-            "exa": McpHttpServerConfig(
-                type="http",
-                url=exa_mcp_url,
-            )
-        }
+        mcp_servers["exa"] = McpHttpServerConfig(
+            type="http",
+            url=exa_mcp_url,
+        )
+    else:
+        print("EXA_API_KEY not found, Exa MCP will not be available")
     
-    options = ClaudeAgentOptions(
-        system_prompt=system_prompt,
-        permission_mode="bypassPermissions",
-        settings=settings_path,
-        mcp_servers=mcp_servers,
-        cwd=str(PROJECT_ROOT),
-    )
+    # Only pass mcp_servers if we have any configured
+    # Passing empty dict or MCP servers can cause issues in some environments
+    options_kwargs = {
+        "system_prompt": system_prompt,
+        "permission_mode": "bypassPermissions",
+        "settings": settings_path,
+    }
+    if mcp_servers:
+        options_kwargs["mcp_servers"] = mcp_servers
+        print(f"Configuring with MCP servers: {list(mcp_servers.keys())}")
+    else:
+        print("No MCP servers configured, using built-in tools only")
+    
+    options = ClaudeAgentOptions(**options_kwargs)
 
     # Run the agent query
     # See: https://platform.claude.com/docs/en/agent-sdk/python
@@ -164,7 +177,6 @@ async def find_conference_deadlines(conference_name: str) -> None:
     print(f"Settings path exists: {Path(settings_path).exists()}")
     print(f"System prompt length: {len(system_prompt)}")
     print(f"Conference data loaded: {len(conference_data)} characters")
-    print(f"Exa MCP server configured: {'Yes' if exa_api_key else 'No (EXA_API_KEY not set)'}")
 
     message_count = 0
     try:
@@ -173,6 +185,8 @@ async def find_conference_deadlines(conference_name: str) -> None:
             options=options,
         ):
             message_count += 1
+            msg_type = type(message).__name__
+            print(f"Message {message_count}: {msg_type}")
             if isinstance(message, AssistantMessage):
                 # Determine which agent is making this call
                 if message.parent_tool_use_id is None:
@@ -207,12 +221,12 @@ async def find_conference_deadlines(conference_name: str) -> None:
                                 content_str = content_str[:500] + "... (truncated)"
                             error_indicator = " [ERROR]" if block.is_error else ""
                             print(f"[result]{error_indicator} {tool_name}: {content_str}")
-            elif (
-                isinstance(message, ResultMessage)
-                and message.total_cost_usd
-                and message.total_cost_usd > 0
-            ):
-                print(f"\nCost: ${message.total_cost_usd:.4f}")
+            elif isinstance(message, ResultMessage):
+                # Print result details
+                if hasattr(message, 'error') and message.error:
+                    print(f"[result] ERROR: {message.error}")
+                if message.total_cost_usd and message.total_cost_usd > 0:
+                    print(f"\nCost: ${message.total_cost_usd:.4f}")
     except Exception as e:
         print(f"Error during agent query: {type(e).__name__}: {e}")
         import traceback

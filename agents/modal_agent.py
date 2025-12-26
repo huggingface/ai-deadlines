@@ -179,6 +179,16 @@ def process_single_conference(conference_name: str) -> dict:
     os.setgid(agent_user.pw_gid)
     os.setuid(agent_user.pw_uid)
     os.environ["HOME"] = agent_user.pw_dir
+    os.environ["USER"] = "agent"
+    os.environ["LOGNAME"] = "agent"
+    
+    # Ensure subprocess inherits correct user context
+    os.environ["SHELL"] = "/bin/bash"
+    
+    # Disable MCP for now - known issue where MCP causes SDK to exit early on Modal
+    # The agent will use built-in WebSearch tool instead
+    # See MODAL_DEBUGGING.md for details
+    os.environ["DISABLE_EXA_MCP"] = "1"
 
     # Setup git and clone/pull repo
     setup_git_and_clone()
