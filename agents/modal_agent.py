@@ -8,30 +8,26 @@ Usage:
 
 ```bash
 # Run all conferences once
-modal run agents/modal_agent.py
+uv run modal run agents/modal_agent.py
 
 # Run single conference (for testing)
-modal run agents/modal_agent.py --conference-name neurips
+uv run modal run agents/modal_agent.py --conference-name neurips
 
 # Deploy for weekly scheduled runs
-modal deploy agents/modal_agent.py
+uv run modal deploy agents/modal_agent.py
 ```
 
 Setup:
 1. Install Modal: uv add modal
 2. Authenticate: uv run modal setup
 3. Create secrets:
-   uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-key>
+   uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-api-key>
    uv run modal secret create github-token GH_TOKEN=<token-with-repo-and-pr-scope>
+   uv run modal secret create exa EXA_API_KEY=<your-key>
 
-Note: The GH_TOKEN needs the following permissions:
-  - Write access to the origin repository (nielsrogge/ai-deadlines)
-  - `repo` scope - for cloning and pushing to the repository
-  - `pull_request` or `repo` scope - for creating pull requests via the GitHub CLI
-
-The agent clones from nielsrogge/ai-deadlines (origin), fetches and merges from
-huggingface/ai-deadlines (upstream), then pushes changes to origin and creates
-PRs against the upstream.
+Note: The GH_TOKEN token needs the following scopes:
+  - `repo` - for cloning and pushing to the repository
+  - `pull_request` or `repo` - for creating pull requests via the GitHub CLI
 """
 
 import os
@@ -48,21 +44,20 @@ CONFERENCES_DIR = "src/data/conferences"
 
 def get_conferences(base_dir: str = REPO_DIR) -> list[str]:
     """Get list of all conferences by reading yml files from the conferences directory.
-    
+
     Args:
         base_dir: Base directory of the repository.
-        
+
     Returns:
         Sorted list of conference names (yml filenames without extension).
     """
     conferences_path = Path(base_dir) / CONFERENCES_DIR
     if not conferences_path.exists():
         raise FileNotFoundError(f"Conferences directory not found: {conferences_path}")
-    
-    conferences = [
-        f.stem for f in conferences_path.glob("*.yml")
-    ]
+
+    conferences = [f.stem for f in conferences_path.glob("*.yml")]
     return sorted(conferences)
+
 
 # Define the Modal image with all required dependencies
 image = (
@@ -78,7 +73,7 @@ image = (
     )
     .pip_install(
         "claude-agent-sdk>=0.1.18",
-        "aiofiles>=25.1.0",
+        "aiofiles>=24.1.0",
     )
     .run_commands(
         # Create non-root user (required for claude-agent-sdk bypassPermissions)
@@ -111,6 +106,7 @@ app = modal.App(
     secrets=[
         modal.Secret.from_name("anthropic"),
         modal.Secret.from_name("github-token"),
+        modal.Secret.from_name("exa"),
     ],
 )
 
@@ -119,10 +115,6 @@ def setup_git_and_clone():
     """Configure git, clone from origin (fork), add upstream, and sync with upstream."""
     import os
     import subprocess
-
-    github_token = os.environ.get("GH_TOKEN", "")
-    if not github_token:
-        raise ValueError("GH_TOKEN environment variable is required")
 
     # Configure git user
     subprocess.run(
@@ -139,6 +131,10 @@ def setup_git_and_clone():
         ["git", "config", "--global", "credential.helper", "store"],
         check=True,
     )
+
+    github_pat = os.environ.get("GH_TOKEN", "")
+    if not github_pat:
+        raise ValueError("GH_TOKEN environment variable is required")
 
     # Store credentials
     credentials_file = os.path.expanduser("~/.git-credentials")
@@ -189,7 +185,7 @@ def setup_git_and_clone():
 @app.function(timeout=600)
 def process_single_conference(conference_name: str) -> dict:
     """Process a single conference using the Claude Agent SDK.
-    
+
     The agent will update the conference data and handle git add/commit/push.
 
     Args:
@@ -208,23 +204,33 @@ def process_single_conference(conference_name: str) -> dict:
     os.setgid(agent_user.pw_gid)
     os.setuid(agent_user.pw_uid)
     os.environ["HOME"] = agent_user.pw_dir
+    os.environ["USER"] = "agent"
+    os.environ["LOGNAME"] = "agent"
+
+    # Ensure subprocess inherits correct user context
+    os.environ["SHELL"] = "/bin/bash"
+
+    # Disable MCP for now - known issue where MCP causes SDK to exit early on Modal
+    # The agent will use built-in WebSearch tool instead
+    # See MODAL_DEBUGGING.md for details
+    os.environ["DISABLE_EXA_MCP"] = "1"
 
     # Setup git and clone/pull repo
     setup_git_and_clone()
 
-    # Add the app directory to the path for imports
-    # IMPORTANT: /home/agent/app must be first so the mounted code is used,
-    # not the cloned repo code
+    # Add REPO_DIR first, then app directory (last insert is at position 0, so app takes priority)
+    # This ensures local mounted code is used instead of cloned repo code
     sys.path.insert(0, REPO_DIR)
     sys.path.insert(0, "/home/agent/app")
 
     # Change to repo directory so relative paths work
     os.chdir(REPO_DIR)
-    
+
     # Tell agent.py to use current working directory as PROJECT_ROOT
+    # This ensures conference data is read from the cloned repo, not the mounted app directory
     os.environ["USE_CWD_AS_PROJECT_ROOT"] = "1"
 
-    # Import and run the agent (uses mounted code from /home/agent/app/agents/)
+    # Import and run the agent (uses /home/agent/app/agents due to sys.path order)
     from agents.agent import find_conference_deadlines
 
     async def _process():
@@ -247,7 +253,7 @@ def process_single_conference(conference_name: str) -> dict:
 @app.function(timeout=43200)  # 12 hours max for all conferences
 def process_all_conferences() -> list[dict]:
     """Process all conferences sequentially.
-    
+
     Each conference is processed one at a time. The agent handles
     git add/commit/push for each conference via its Bash tool.
 
@@ -255,16 +261,16 @@ def process_all_conferences() -> list[dict]:
         List of results for each processed conference.
     """
     import pwd
-    
+
     # Switch to non-root user (required for git operations)
     agent_user = pwd.getpwnam("agent")
     os.setgid(agent_user.pw_gid)
     os.setuid(agent_user.pw_uid)
     os.environ["HOME"] = agent_user.pw_dir
-    
+
     # Clone repo first to get the list of conferences
     setup_git_and_clone()
-    
+
     # Get conferences from yml files in the cloned repo
     conferences = get_conferences()
     results = []
@@ -282,11 +288,13 @@ def process_all_conferences() -> list[dict]:
 
         except Exception as e:
             print(f"Error processing {conference}: {e}")
-            results.append({
-                "conference": conference,
-                "status": "error",
-                "error": str(e),
-            })
+            results.append(
+                {
+                    "conference": conference,
+                    "status": "error",
+                    "error": str(e),
+                }
+            )
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conferences)} conferences")
@@ -303,15 +311,15 @@ def scheduled_run():
     """Scheduled weekly run of all conferences."""
     print("Starting scheduled weekly conference update...")
     results = process_all_conferences.remote()
-    
+
     # Summary
     completed = sum(1 for r in results if r.get("status") == "completed")
     errors = sum(1 for r in results if r.get("status") == "error")
-    
-    print(f"\nWeekly run completed:")
+
+    print("\nWeekly run completed:")
     print(f"  - Completed: {completed}")
     print(f"  - Errors: {errors}")
-    
+
     return results
 
 
@@ -354,13 +362,13 @@ def main(
         print(f"\n{'=' * 60}")
         print("Summary:")
         print(f"{'=' * 60}")
-        
+
         completed = [r for r in results if r.get("status") == "completed"]
         errors = [r for r in results if r.get("status") == "error"]
-        
+
         print(f"Completed: {len(completed)}")
         print(f"Errors: {len(errors)}")
-        
+
         if errors:
             print("\nErrors:")
             for r in errors:
