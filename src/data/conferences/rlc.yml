@@ -3,14 +3,42 @@
   id: rlc25
   full_name: Reinforcement Learning Conference
   link: https://rl-conference.cc/
-  deadline: '2025-02-28 23:59:59'
-  abstract_deadline: '2025-02-21 23:59:59'
-  final_decision_date: '2025-05-09'
-  timezone: UTC-12
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date: '2025-02-21 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission
+      date: '2025-02-28 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2025-05-09 23:59:59'
+      timezone: AoE
+  timezone: America/Edmonton
   city: Edmonton
   country: Canada
-  date: August 5 - August 8, 2025
+  venue: Centennial Centre for Interdisciplinary Science (CCIS), University of Alberta
+  date: August 5 - 9, 2025
+  start: 2025-08-05
+  end: 2025-08-09
   tags:
   - machine-learning
   - reinforcement-learning
   note: Mandatory abstract deadline on Feb 21, 2025.
+- title: RLC
+  year: 2026
+  id: rlc26
+  full_name: Reinforcement Learning Conference
+  link: https://rl-conference.cc/
+  deadlines: []
+  timezone: America/Montreal
+  city: Montreal
+  country: Canada
+  date: August 16 - 19, 2026
+  start: 2026-08-16
+  end: 2026-08-19
+  tags:
+  - machine-learning
+  - reinforcement-learning
