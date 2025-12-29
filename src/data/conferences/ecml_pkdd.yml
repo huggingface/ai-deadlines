@@ -4,12 +4,46 @@
   full_name: European Conference on Machine Learning and Principles and Practice of
     Knowledge Discovery in Databases
   link: https://ecmlpkdd.org/2025/
-  deadline: '2025-03-14 23:59:59'
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date: '2025-03-07 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission
+      date: '2025-03-14 23:59:59'
+      timezone: AoE
   timezone: AoE
   city: Porto
   country: Portugal
-  abstract_deadline: '2025-03-07 23:59:59'
-  date: September 15 - September 19, 2025
+  venue: Alfândega Porto Congress Centre
+  date: September 15 - 19, 2025
+  start: 2025-09-15
+  end: 2025-09-19
+  tags:
+  - machine-learning
+  - data-mining
+- title: ECML PKDD
+  year: 2026
+  id: ecmlpkdd26
+  full_name: European Conference on Machine Learning and Principles and Practice of
+    Knowledge Discovery in Databases
+  link: https://ecmlpkdd.org/2026/
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date: '2026-03-06 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission
+      date: '2026-03-13 23:59:59'
+      timezone: AoE
+  timezone: AoE
+  city: Naples
+  country: Italy
+  date: September 7 - 11, 2026
+  start: 2026-09-07
+  end: 2026-09-11
   tags:
   - machine-learning
   - data-mining
