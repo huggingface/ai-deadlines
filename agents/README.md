@@ -12,7 +12,7 @@ GITHUB_PAT=
 EXA_API_KEY=
 ```
 
-In case you want to leverage MiniMax 2.1 instead of Claude, get your API key from https://platform.minimax.io/ and add the following:
+In case you want to leverage [MiniMax 2.1](https://huggingface.co/MiniMaxAI/MiniMax-M2.1) instead of Claude, get your API key from https://platform.minimax.io/ and add the following:
 
 ```bash
 ANTHROPIC_BASE_URL=https://api.minimax.io/anthropic
