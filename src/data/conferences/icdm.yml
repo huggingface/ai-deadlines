@@ -3,12 +3,44 @@
   id: icdm25
   full_name: International Conference on Data Mining
   link: https://www3.cs.stonybrook.edu/~icdm2025/index.html
-  deadline: '2025-06-06 23:59:59'
-  timezone: AoE
   city: Washington DC
   country: USA
-  date: November 12 - November 15, 2025
+  date: November 12 - 15, 2025
   start: '2025-11-12'
   end: '2025-11-15'
   tags:
   - data-mining
+  deadlines:
+  - type: paper
+    label: Full Paper Submission
+    date: '2025-06-06 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Author Notification
+    date: '2025-08-25 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera Ready Deadline
+    date: '2025-09-25 23:59:59'
+    timezone: AoE
+- title: ICDM
+  year: 2026
+  id: icdm26
+  full_name: International Conference on Data Mining
+  link: http://icdm2026.neu.edu.cn/
+  city: Shenyang
+  country: China
+  date: November 12 - 15, 2026
+  start: '2026-11-12'
+  end: '2026-11-15'
+  tags:
+  - data-mining
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2026-05-30 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Full Paper Submission
+    date: '2026-06-06 23:59:59'
+    timezone: AoE
