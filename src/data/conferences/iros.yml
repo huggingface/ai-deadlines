@@ -3,11 +3,39 @@
   id: iros25
   full_name: IEEE\RSJ International Conference on Intelligent Robots and Systems
   link: http://www.iros25.org/
-  deadline: '2025-03-01 23:59:59'
-  timezone: UTC-8
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-03-02 23:59:59'
+      timezone: PST
+    - type: notification
+      label: Notification of acceptance
+      date: '2025-06-30 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Final paper submission deadline
+      date: '2025-07-31 23:59:59'
+      timezone: AoE
   date: October 19-25, 2025
+  start: 2025-10-19
+  end: 2025-10-25
+  venue: Hangzhou International Expo Center (HIEC)
   tags:
   - robotics
   city: Hangzhou
   country: China
+  rankings: 'CCF: C, CORE: A, THCPL: B'
+- title: IROS
+  year: 2026
+  id: iros26
+  full_name: IEEE\RSJ International Conference on Intelligent Robots and Systems
+  link: https://www.ieee-ras.org/
+  date: September 27 - October 1, 2026
+  start: 2026-09-27
+  end: 2026-10-01
+  venue: David L. Lawrence Convention Center
+  tags:
+  - robotics
+  city: Pittsburgh
+  country: USA
   rankings: 'CCF: C, CORE: A, THCPL: B'
