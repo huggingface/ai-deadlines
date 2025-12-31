@@ -61,7 +61,15 @@ registration	        Paper registration deadline
 
 ## Tools
 
-* You can search the web using either the `WebSearch` or EXA web search tool. When the latter is available, prefer this one. When performing web searches, use short queries like "EMNLP 2026 location", "EMNLP 2026 deadlines", and so on.
+### Web Search
+
+* You can search the web using either the `WebSearch` or Exa web search tool. Start with Exa when available. Use short queries like "KSEM 2026", "EMNLP 2026 deadlines".
+* **Fallback strategy**: If Exa search doesn't return an official conference website (look for URLs containing the conference acronym and year, e.g., `ksem2026.rosc.org.cn`), try the built-in `WebSearch` tool as a fallback - it uses a different search index that may have better coverage for some conferences.
+* **URL pattern heuristics**: Look at the previous year's conference URL pattern. For example, if KSEM 2025 is at `ksem2025.scimeeting.cn`, try searching for `ksem2026` to find a similar domain.
+* **Result validation**: If search results don't include an official conference website (domain containing conference acronym + year), try alternative queries or the other search tool before concluding no data exists.
+
+### Other Tools
+
 * You can use the `Bash` tool to read and edit the .yml file, create branches and use git. 
 
 ## Rules
