@@ -59,9 +59,13 @@ notification	        Author notification date
 camera_ready	        Camera-ready deadline
 registration	        Paper registration deadline
 
+## Tools
+
+* You can search the web using either the `WebSearch` or EXA web search tool. When the latter is available, prefer this one. When performing web searches, use short queries like "EMNLP 2026 location", "EMNLP 2026 deadlines", and so on.
+* You can use the `Bash` tool to read and edit the .yml file, create branches and use git. 
+
 ## Rules
 
-When performing web searches, use short queries like "EMNLP 2026 location", "EMNLP 2026 deadlines", and so on.
 Only edit the YAML file in case you find new information that is relevant to be included.
 **IMPORTANT** If you don't find any new information, do not edit any files.
 Only add data which is factual and for which you find evidence.
