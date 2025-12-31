@@ -3,9 +3,23 @@
   id: ksem25
   full_name: International Conference on Knowledge Science, Engineering and Management
   link: https://ksem2025.scimeeting.cn/
-  deadline: '2025-03-20 23:59:59'
-  timezone: UTC+0
-  date: August 4-6, 2025
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2025-03-20 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Acceptance notification
+      date: '2025-05-30 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2025-06-15 23:59:59'
+      timezone: AoE
+  date: August 4-7, 2025
+  start: 2025-08-04
+  end: 2025-08-07
+  venue: Wynn Palace
   tags:
   - machine-learning
   city: Macao
