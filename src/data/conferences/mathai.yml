@@ -37,11 +37,11 @@
     - type: abstract
       label: Abstract registration deadline
       date: '2026-02-01 00:00:00'
-      timezone: UTC
+      timezone: GMT
     - type: paper
       label: Full paper submission deadline
-      date: '2026-03-01 00:00:00'
-      timezone: UTC
+      date: '2026-02-19 00:00:00'
+      timezone: GMT
   city: Sochi
   country: Russia
   venue: Sirius International Mathematics Center, Sirius
