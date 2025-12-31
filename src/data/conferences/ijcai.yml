@@ -3,12 +3,70 @@
   id: ijcai25
   full_name: International Joint Conference on Artificial Intelligence
   link: https://2025.ijcai.org/
-  deadline: '2025-01-23 23:59:59'
-  timezone: UTC-12
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2025-01-16 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Full paper submission deadline
+      date: '2025-01-23 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Paper notification
+      date: '2025-04-28 23:59:59'
+      timezone: AoE
   date: August 16-22, 2025
-  tags:
-  - machine-learning
+  start: 2025-08-16
+  end: 2025-08-22
+  timezone: America/Montreal
   city: Montreal
   country: Canada
-  abstract_deadline: '2025-01-16 23:59:59'
+  venue: Palais des congrès, Montreal
+  tags:
+  - machine-learning
+  rankings: 'CCF: A, CORE: A*, THCPL: B'
+- title: IJCAI
+  year: 2026
+  id: ijcai26
+  full_name: International Joint Conference on Artificial Intelligence
+  link: https://2026.ijcai.org/
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2026-01-12 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Full paper submission deadline
+      date: '2026-01-19 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Phase I notification
+      date: '2026-03-04 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Author response period start
+      date: '2026-04-07 00:00:00'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Author response period end
+      date: '2026-04-10 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Paper notification
+      date: '2026-04-29 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera ready deadline
+      date: '2026-05-15 23:59:59'
+      timezone: AoE
+  date: August 15-21, 2026
+  start: 2026-08-15
+  end: 2026-08-21
+  timezone: Europe/Berlin
+  city: Bremen
+  country: Germany
+  venue: Bremen Conference Centre, Bremen
+  tags:
+  - machine-learning
   rankings: 'CCF: A, CORE: A*, THCPL: B'
