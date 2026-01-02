@@ -1,11 +1,21 @@
 - title: SGP
   year: 2025
   id: sgp25
-  full_name: Synopsium on Geometric Processing
+  full_name: Symposium on Geometry Processing
   link: https://sgp2025.my.canva.site/
-  deadline: '2025-02-07 23:59:59'
-  abstract_deadline: '2025-02-04 23:59:59'
-  final_decision_date: '2025-03-15'
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date: '2025-02-04 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Paper submission
+      date: '2025-02-07 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Notification of acceptance
+      date: '2025-03-15 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   city: Bilbao
   country: Spain
@@ -14,6 +24,63 @@
   end: '2025-07-04'
   venue: Bizkaia Aretoa, Bilbao, Spain
   note: All important dates can be found <a href='https://sgp2025.my.canva.site/submit-page-sgp'>here</a>.
+  tags:
+  - computer-vision
+  - machine-learning
+- title: SGP
+  year: 2026
+  id: sgp26
+  full_name: Symposium on Geometry Processing
+  link: https://sgp26.org/
+  deadlines:
+    - type: abstract
+      label: Abstract submission (Round 1)
+      date: '2026-02-02 22:59:00'
+      timezone: UTC
+    - type: paper
+      label: Paper submission (Round 1)
+      date: '2026-02-04 22:59:00'
+      timezone: UTC
+    - type: notification
+      label: Notification of acceptance (Round 1)
+      date: '2026-03-16 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Revised version due (Round 1)
+      date: '2026-03-26 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera ready due (Round 1)
+      date: '2026-04-02 23:59:59'
+      timezone: AoE
+    - type: abstract
+      label: Abstract submission (Round 2)
+      date: '2026-04-13 22:59:00'
+      timezone: UTC
+    - type: paper
+      label: Paper submission (Round 2)
+      date: '2026-04-15 22:59:00'
+      timezone: UTC
+    - type: notification
+      label: Notification of acceptance (Round 2)
+      date: '2026-05-25 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Revised version due (Round 2)
+      date: '2026-06-04 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera ready due (Round 2)
+      date: '2026-06-11 23:59:59'
+      timezone: AoE
+  timezone: UTC
+  city: Bern
+  country: Switzerland
+  date: July 1-3, 2026
+  start: '2026-07-01'
+  end: '2026-07-03'
+  venue: University of Bern, Switzerland
+  note: Graduate School June 29-30, 2026. All important dates can be found <a href='https://sgp26.org/submit/'>here</a>.
   tags:
   - computer-vision
   - machine-learning
