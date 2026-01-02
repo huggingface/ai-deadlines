@@ -1,9 +1,8 @@
 - title: NLBSE
   year: 2026
-  id: nlbse26  # title as lower case + last two digits of year
-  full_name: The 5th International Workshop on Natural Language-based Software Engineering  # full conference name
+  id: nlbse26
+  full_name: The 5th International Workshop on Natural Language-based Software Engineering
   link: https://nlbse2026.github.io/
-  deadline: '2025-11-04 11:59:59'  # backward compatibility
   deadlines:
     - type: submission
       label: Paper submission deadline
