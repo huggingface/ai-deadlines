@@ -90,3 +90,26 @@
   hindex: 220
   note: All deadlines are "anywhere on earth" (UTC-12). More info <a href='https://aaai.org/conference/aaai/aaai-26/'>here</a>.
   era_rating: a
+
+- title: AAAI
+  year: 2027
+  id: aaai27
+  full_name: AAAI Conference on Artificial Intelligence
+  link: https://aaai.org/conference/aaai/aaai-27/
+  deadlines: []
+  timezone: UTC-12
+  date: February 16 - 23, 2027
+  start: 2027-02-16
+  end: 2027-02-23
+  tags:
+  - data-mining
+  - machine-learning
+  - natural-language-processing
+  - computer-vision
+  city: Montreal
+  country: Canada
+  rankings: 'CCF: A, CORE: A*, THCPL: A'
+  venue: Les Galeries du Palais, Palais des congrès de Montréal, Montreal, Canada
+  hindex: 220
+  note: Submission deadlines not yet announced. Check <a href='https://aaai.org/conference/aaai/aaai-27/'>official website</a> for updates.
+  era_rating: a
