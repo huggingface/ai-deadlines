@@ -3,19 +3,27 @@
   id: aamas25
   full_name: International Conference on Autonomous Agents and Multiagent Systems
   link: https://aamas2025.org/
-  deadline: '2024-10-16 23:59:59'
+  deadlines:
+  - type: abstract
+    label: Abstract submission
+    date: '2024-10-09 23:59:59'
+    timezone: UTC-12
+  - type: paper
+    label: Paper submission
+    date: '2024-10-16 23:59:59'
+    timezone: UTC-12
   timezone: UTC-12
   date: May 19-23, 2025
+  city: Detroit
+  country: United States
+  venue: Detroit Marriott at the Renaissance Center, Detroit, Michigan
+  start: '2025-05-19'
+  end: '2025-05-23'
   tags:
   - machine-learning
   - robotics
-  city: Detroit
-  country: Michigan
-  abstract_deadline: '2024-10-09 23:59:59'
-  start: '2025-05-19'
-  end: '2025-05-23'
   rankings: 'CCF: B, CORE: A*, THCPL: B'
-  note: Mandatory abstract deadline on Oct 09, 2024. More info <a href='https://aamas2025.org/'>here</a>.
+  era_rating: a
 
 - title: AAMAS
   year: 2026
