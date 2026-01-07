@@ -22,11 +22,11 @@ The benefit of [hf.co/papers](https://hf.co/papers) is that it allows people to 
 
 This project is entirely based on the awesome https://github.com/paperswithcode/ai-deadlines. As that repository is no longer maintained, we decided to make an up-to-date version along with a new UI. It was bootstrapped using [Lovable](https://lovable.dev/) and [Cursor](https://www.cursor.com/).
 
-New data is fetched from https://github.com/ccfddl/ccf-deadlines/tree/main/conference/AI thanks to [this comment](https://github.com/paperswithcode/ai-deadlines/issues/723#issuecomment-2603420945). 
+It is hosted at https://huggingface.co/spaces/huggingface/ai-deadlines.
 
-A CRON job (set up as a [Github action](.github/workflows/update-conferences.yml)) automatically updates the conference data in individual YAML files located in src/data/conferences/.
+New data is automatically fetched by AI Agents, which regularly open pull requests. See the [agents](agents) folder for details.
 
-**URL**: https://huggingface.co/spaces/huggingface/ai-deadlines
+Before that, we used to fetch data from https://github.com/ccfddl/ccf-deadlines/tree/main/conference/AI. 
 
 ## Contribute
 

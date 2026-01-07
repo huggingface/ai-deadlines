@@ -24,7 +24,7 @@ Next, the agent can be run like so on a conference of choice:
 uv run --env-file keys.env -m agents.agent --conference_name neurips
 ```
 
-The agent will automatically fetch relevant information from the web using the [Exa MCP server](https://docs.exa.ai/reference/exa-mcp) to populate the data at `src/data/conferences`.
+The agent will automatically fetch relevant information from the web using the [Exa MCP server](https://docs.exa.ai/reference/exa-mcp) to populate the data at `src/data/conferences` and open a pull request.
 
 ## Modal deployment
 
