@@ -35,6 +35,8 @@ Below, we list some details about how the data of each conference is maintained.
 The "date" field is always defined by the format "Month x - y, year", e.g. July 3 - 6, 2026.
 Besides, each conference has a "start" and an "end" field which define the start and end date of the conference respectively. These follow the format 'YYYY-MM-DD'.
 
+Do include all dates of a given conference, not just the dates of the main conference but also the dates of workshops/tutorials.
+
 ### Deadlines
 
 For deadlines, each deadline is defined by 4 fields:
@@ -90,7 +92,8 @@ If a conference still uses the legacy "deadline:" and "abstract_deadline" format
 
 ## Use of git
 
-After making changes, create a branch called "feature/update_{conference_name}", push it to Github, and open a pull request to the upstream repository.
+In case you made any necessary changes, create a branch called "feature/update_{conference_name}", push it to Github, and open a pull request to the upstream repository.
+Do note that opening a pull request is optional, if no changes are required, there is no need to open one.
 
 **IMPORTANT**: The repository is cloned from `nielsrogge/ai-deadlines` (origin) and synced with `huggingface/ai-deadlines` (upstream). Push your changes to origin and then create a PR to upstream:
 
