@@ -90,23 +90,16 @@ If a conference still uses the legacy "deadline:" and "abstract_deadline" format
 
 ## Use of git
 
-After making changes, create a branch called "feature/update_{conference_name}" and push it to Github.
+After making changes, create a branch called "feature/update_{conference_name}", push it to Github, and open a pull request to the upstream repository.
 
-**IMPORTANT**: The repository is cloned from `nielsrogge/ai-deadlines` (origin) and synced with `huggingface/ai-deadlines` (upstream). Push your changes to origin:
+**IMPORTANT**: The repository is cloned from `nielsrogge/ai-deadlines` (origin) and synced with `huggingface/ai-deadlines` (upstream). Push your changes to origin and then create a PR to upstream:
 
 ```bash
 git checkout -b feature/update_{conference_name}
 git add .
 git commit -m "your-message"
 git push origin feature/update_{conference_name}
+gh pr create --repo huggingface/ai-deadlines --head nielsrogge:feature/update_{conference_name} --title "Update {conference_name} deadlines" --body "Updated conference data for {conference_name}."
 ```
 
-**DO NOT use the GitHub CLI (`gh pr create`) to create pull requests.** The huggingface organization does not allow PR creation via personal access tokens.
-
-Instead, after pushing the branch, provide the user with a link to create the PR manually:
-
-```
-https://github.com/nielsrogge/ai-deadlines/pull/new/feature/update_{conference_name}
-```
-
-Only use the bash tool for git operations (not for creating pull requests).
+The `gh` CLI will authenticate using the `GH_TOKEN` environment variable which is set automatically.
