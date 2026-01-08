@@ -19,6 +19,7 @@
   start: 2026-07-20
   end: 2026-07-24
   hindex: 123.0
+  era_rating: a
   tags:
     - information-retrieval
     - natural-language-processing
