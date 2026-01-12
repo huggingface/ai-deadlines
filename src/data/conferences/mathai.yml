@@ -1,4 +1,4 @@
-- title: MathAI 2025
+- title: MathAI
   year: 2025
   id: mathai25
   full_name: The International Conference dedicated to mathematics in artificial intelligence
@@ -28,7 +28,7 @@
   tags:
   - machine-learning
   - mathematics
-- title: MathAI 2026
+- title: MathAI
   year: 2026
   id: mathai26
   full_name: The International Conference dedicated to mathematics in artificial intelligence
@@ -52,6 +52,7 @@
   date: March, 30 - April 3, 2026
   start: 2026-03-30
   end: 2026-04-03
+  era_rating: a
   paperslink: https://openreview.net/group?id=mathai.club/MathAI/2026/Conference
   pwclink: https://openreview.net/group?id=mathai.club/MathAI/2026/Conference
   hindex: 100.0
