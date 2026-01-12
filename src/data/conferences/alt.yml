@@ -3,15 +3,22 @@
   id: alt2025
   full_name: International Conference on Algorithmic Learning Theory
   link: https://algorithmiclearningtheory.org/alt2025/
-  deadline: '2024-10-01 09:59:59'
-  timezone: UTC+0
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2024-10-01 09:59:59'
+      timezone: UTC+0
+  timezone: Europe/Rome
   date: February 24-27, 2025
+  start: 2025-02-24
+  end: 2025-02-27
   tags:
   - machine-learning
   city: Milan
   country: Italy
   rankings: 'CCF: C, CORE: B, THCPL: B'
   venue: Politecnico di Milano, Milan, Italy
+  era_rating: a
 - title: ALT
   year: 2026
   id: alt2026
