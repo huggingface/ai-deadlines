@@ -30,6 +30,23 @@ from claude_agent_sdk.types import McpHttpServerConfig
 # Script directory for resolving relative paths
 SCRIPT_DIR = Path(__file__).parent
 
+# Structured output schema for PR reporting
+# See: https://platform.claude.com/docs/en/agent-sdk/structured-outputs
+PR_RESULT_SCHEMA = {
+    "type": "object",
+    "properties": {
+        "created_pr": {
+            "type": "boolean",
+            "description": "Whether a PR was created",
+        },
+        "pr_url": {
+            "type": "string",
+            "description": "URL of the created PR (if any)",
+        },
+    },
+    "required": ["created_pr"],
+}
+
 # Project root directory - use current working directory if set (for Modal),
 # otherwise use parent of agents/ directory (for local development)
 # This allows Modal to clone the repo and chdir to it before importing this module
@@ -94,11 +111,14 @@ def format_user_prompt(
     )
 
 
-async def find_conference_deadlines(conference_name: str) -> None:
+async def find_conference_deadlines(conference_name: str) -> dict:
     """Find the deadlines of a given conference using the Claude Agent SDK.
 
     Args:
         conference_name: The name of the conference to find the deadlines of.
+
+    Returns:
+        A dict with 'created_pr' (bool) and optionally 'pr_url' (str).
     """
     print(f"Processing conference: {conference_name}")
 
@@ -176,6 +196,10 @@ async def find_conference_deadlines(conference_name: str) -> None:
         "permission_mode": "bypassPermissions",
         "settings": settings_path,
         "stderr": on_stderr,  # Capture stderr to see what Claude Code is doing
+        "output_format": {
+            "type": "json_schema",
+            "schema": PR_RESULT_SCHEMA,
+        },
     }
     if mcp_servers:
         options_kwargs["mcp_servers"] = mcp_servers
@@ -196,6 +220,7 @@ async def find_conference_deadlines(conference_name: str) -> None:
     print(f"Settings path exists: {Path(settings_path).exists()}")
 
     message_count = 0
+    result: dict = {"created_pr": False, "pr_url": None}
     try:
         async for message in query(
             prompt=user_prompt,
@@ -248,13 +273,19 @@ async def find_conference_deadlines(conference_name: str) -> None:
                     print(f"[result] ERROR: {message.error}")
                 if message.total_cost_usd and message.total_cost_usd > 0:
                     print(f"\nCost: ${message.total_cost_usd:.4f}")
+                # Extract structured output for PR reporting
+                if hasattr(message, "structured_output") and message.structured_output:
+                    result = message.structured_output
+                    print(f"[structured_output] {result}")
     except Exception as e:
         print(f"Error during agent query: {type(e).__name__}: {e}")
         import traceback
 
         traceback.print_exc()
+        result["error"] = str(e)
 
     print(f"\nAgent query completed. Total messages received: {message_count}")
+    return result
 
 
 if __name__ == "__main__":
@@ -270,4 +301,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     conference_name = args.conference_name
 
-    asyncio.run(find_conference_deadlines(conference_name))
+    result = asyncio.run(find_conference_deadlines(conference_name))
+    print(f"\nResult: {result}")
