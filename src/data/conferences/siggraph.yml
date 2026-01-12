@@ -32,6 +32,10 @@
       date: '2026-01-13 22:00:00'
       timezone: UTC
     - type: submission
+      label: Student Volunteers Team Leader Applications deadline
+      date: '2026-01-13 22:00:00'
+      timezone: UTC
+    - type: submission
       label: Technical Papers submission form deadline
       date: '2026-01-15 22:00:00'
       timezone: UTC
@@ -44,16 +48,44 @@
       date: '2026-01-23 22:00:00'
       timezone: UTC
     - type: submission
+      label: Art Gallery deadline
+      date: '2026-01-27 22:00:00'
+      timezone: UTC
+    - type: submission
       label: Technical Workshops deadline
       date: '2026-01-27 22:00:00'
       timezone: UTC
     - type: submission
-      label: Talks, Production Sessions, Panels, Courses, Educator's Forum deadline
+      label: Talks, Production Sessions, Panels, Courses, Educator's Forum, Spatial Storytelling, Immersive Pavilion, Emerging Technologies deadline
       date: '2026-02-10 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Student Volunteers Applications deadline
+      date: '2026-02-10 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Computer Animation Festival deadline
+      date: '2026-03-17 22:00:00'
       timezone: UTC
     - type: submission
       label: Frontiers deadline
       date: '2026-04-07 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Real-Time Live! deadline
+      date: '2026-04-07 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Posters deadline
+      date: '2026-04-21 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Appy Hour deadline
+      date: '2026-04-21 22:00:00'
+      timezone: UTC
+    - type: submission
+      label: Student Research Competition deadline
+      date: '2026-04-21 22:00:00'
       timezone: UTC
   city: Los Angeles
   country: United States
