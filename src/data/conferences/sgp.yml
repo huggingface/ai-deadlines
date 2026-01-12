@@ -5,18 +5,46 @@
   link: https://sgp2025.my.canva.site/
   deadlines:
     - type: abstract
-      label: Abstract submission
-      date: '2025-02-04 23:59:59'
-      timezone: UTC-12
+      label: Abstract submission (Round 1)
+      date: '2025-02-04 23:59:00'
+      timezone: UTC
     - type: paper
-      label: Paper submission
-      date: '2025-02-07 23:59:59'
-      timezone: UTC-12
+      label: Paper submission (Round 1)
+      date: '2025-02-07 23:59:00'
+      timezone: UTC
     - type: notification
-      label: Notification of acceptance
-      date: '2025-03-15 23:59:59'
-      timezone: UTC-12
-  timezone: UTC-12
+      label: Notification of acceptance (Round 1)
+      date: '2025-03-15 23:59:00'
+      timezone: UTC
+    - type: camera_ready
+      label: Revised version due (Round 1)
+      date: '2025-03-29 23:59:00'
+      timezone: UTC
+    - type: camera_ready
+      label: Camera ready due (Round 1)
+      date: '2025-04-05 23:59:00'
+      timezone: UTC
+    - type: abstract
+      label: Abstract submission (Round 2)
+      date: '2025-04-08 23:59:00'
+      timezone: UTC
+    - type: paper
+      label: Paper submission (Round 2)
+      date: '2025-04-11 23:59:00'
+      timezone: UTC
+    - type: notification
+      label: Notification of acceptance (Round 2)
+      date: '2025-05-16 23:59:00'
+      timezone: UTC
+    - type: camera_ready
+      label: Revised version due (Round 2)
+      date: '2025-05-30 23:59:00'
+      timezone: UTC
+    - type: camera_ready
+      label: Camera ready due (Round 2)
+      date: '2025-06-06 23:59:00'
+      timezone: UTC
+  timezone: UTC
   city: Bilbao
   country: Spain
   date: June 30-July 4, 2025
