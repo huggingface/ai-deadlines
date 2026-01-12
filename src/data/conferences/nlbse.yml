@@ -6,9 +6,17 @@
   deadlines:
     - type: submission
       label: Paper submission deadline
-      date: '2025-11-04 11:59:59'
-      timezone: UTC–12:00
-  timezone: UTC-12
+      date: '2025-11-03 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2025-12-01 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-01-26 23:59:59'
+      timezone: AoE
+  timezone: AoE
   city: Rio de Janeiro
   country: Brazil
   venue: Windsor Convention Center and Hotels
