@@ -4,8 +4,11 @@
   full_name: The annual Conference on Empirical Methods in Natural Language Processing
     (System Demonstrations Track)
   link: https://2025.emnlp.org/
-  deadline: '2025-07-04 23:59:59'
-  timezone: UTC-12
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-07-04 23:59:59'
+      timezone: AoE
   date: November 5-9, 2025
   tags:
   - natural-language-processing
@@ -15,3 +18,18 @@
   venue: Suzhou, China
   start: '2025-11-05'
   end: '2025-11-09'
+- title: EMNLP (System Demonstrations Track)
+  year: 2026
+  id: emnlp26sys
+  full_name: The annual Conference on Empirical Methods in Natural Language Processing
+    (System Demonstrations Track)
+  link: https://2026.emnlp.org/
+  date: October 24-29, 2026
+  tags:
+  - natural-language-processing
+  city: Budapest
+  country: Hungary
+  rankings: 'CCF: B, CORE: A*, THCPL: A'
+  venue: Budapest, Hungary
+  start: '2026-10-24'
+  end: '2026-10-29'
