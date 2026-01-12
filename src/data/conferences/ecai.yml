@@ -41,3 +41,49 @@
   rankings: 'CCF: B, CORE: A, THCPL: N'
   venue: Bologna Congress Center and The Engineering School (University of Bologna)
   note: All important dates can be found <a href='https://ecai2025.org/call-for-papers/'>here</a>.
+
+- title: ECAI
+  year: 2026
+  id: ecai26
+  full_name: European Conference on Artificial Intelligence
+  link: https://2026.ijcai.org/
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2026-01-12 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Full paper submission deadline
+      date: '2026-01-19 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Summary rejection notification
+      date: '2026-03-04 23:59:59'
+      timezone: UTC-12
+    - type: rebuttal_start
+      label: Author response period start
+      date: '2026-04-07 23:59:59'
+      timezone: UTC-12
+    - type: rebuttal_end
+      label: Author response period end
+      date: '2026-04-10 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Paper notification
+      date: '2026-04-29 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-05-15 23:59:59'
+      timezone: UTC-12
+  timezone: UTC-12
+  date: August 15-21, 2026
+  start: 2026-08-15
+  end: 2026-08-21
+  tags:
+  - machine-learning
+  city: Bremen
+  country: Germany
+  rankings: 'CCF: B, CORE: A, THCPL: N'
+  venue: University of Bremen and Bremen Exhibition Center
+  note: Joint conference with IJCAI 2026 (IJCAI-ECAI 2026). All important dates can be found <a href='https://2026.ijcai.org/important-dates/'>here</a>.
