@@ -10,11 +10,15 @@
       timezone: UTC-12
     - type: commitment_deadline
       label: ARR commitment deadline
-      date: '2025-04-10 23:59:59'
+      date: '2025-04-20 23:59:59'
       timezone: UTC-12
     - type: notification
       label: Author notification date
       date: '2025-05-15 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2025-05-30 23:59:59'
       timezone: UTC-12
   timezone: UTC-12
   date: July 27 - August 1, 2025
@@ -24,7 +28,7 @@
   city: Vienna
   country: Austria
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  note: ARR commitment deadline on April 10th, 2025.
+  note: ARR commitment deadline on April 20th, 2025.
 
 - title: ACL
   year: 2026
@@ -43,6 +47,10 @@
     - type: notification
       label: Author notification date
       date: '2026-04-04 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-04-19 23:59:59'
       timezone: UTC-12
   timezone: UTC-12
   date: July 2-7, 2026
