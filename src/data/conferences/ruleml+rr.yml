@@ -13,6 +13,10 @@
       label: Paper Submission (AoE)
       date: '2026-05-15 23:59:59'
       timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2026-06-26 23:59:59'
+      timezone: AoE
   timezone: AoE
   city: Vilnius
   country: Lithuania
