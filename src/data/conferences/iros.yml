@@ -29,7 +29,24 @@
   year: 2026
   id: iros26
   full_name: IEEE\RSJ International Conference on Intelligent Robots and Systems
-  link: https://www.ieee-ras.org/
+  link: https://2026.ieee-iros.org/
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-03-02 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper video submission deadline
+      date: '2026-03-05 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Paper acceptance notification
+      date: '2026-06-16 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Final paper submission deadline
+      date: '2026-07-10 23:59:59'
+      timezone: AoE
   date: September 27 - October 1, 2026
   start: 2026-09-27
   end: 2026-10-01
