@@ -3,16 +3,26 @@
   id: rss25
   full_name: Robotics Science and Systems
   link: https://roboticsconference.org
-  deadline: '2025-01-24 23:59:00'
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2025-01-17 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Paper Submission
+    date: '2025-01-24 23:59:59'
+    timezone: AoE
   timezone: AoE
   date: June 21-25, 2025
+  start: 2025-06-21
+  end: 2025-06-25
+  venue: University of Southern California
   era_rating: a
   tags:
   - robotics
   - machine-learning
   city: Los Angeles
   country: USA
-  abstract_deadline: '2025-01-17 23:59:00'
   rankings: 'CCF: N, CORE: A*, THCPL: A'
 
 - title: RSS
@@ -52,6 +62,8 @@
     timezone: UTC-12
   timezone: UTC-12
   date: July 13-17, 2026
+  start: 2026-07-13
+  end: 2026-07-17
   tags:
   - robotics
   - machine-learning

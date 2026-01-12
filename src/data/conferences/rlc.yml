@@ -32,7 +32,19 @@
   id: rlc26
   full_name: Reinforcement Learning Conference
   link: https://rl-conference.cc/
-  deadlines: []
+  deadlines:
+    - type: abstract
+      label: Abstract registration
+      date: '2026-03-02 12:00:00'
+      timezone: UTC
+    - type: paper
+      label: Paper submission
+      date: '2026-03-06 12:00:00'
+      timezone: UTC
+    - type: notification
+      label: Author notification
+      date: '2026-05-08 23:59:59'
+      timezone: AoE
   timezone: America/Montreal
   city: Montreal
   country: Canada
@@ -42,3 +54,4 @@
   tags:
   - machine-learning
   - reinforcement-learning
+  note: Mandatory abstract registration on Mar 2, 2026.

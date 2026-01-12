@@ -21,8 +21,18 @@
       label: Paper submission deadline
       date: '2026-01-31 23:59:59'
       timezone: UTC-12
+    - type: notification
+      label: Paper acceptance notification
+      date: '2026-03-15 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready papers deadline
+      date: '2026-04-15 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: June 21-26, 2026
+  start: 2026-06-21
+  end: 2026-06-26
   tags:
   - machine-learning
   city: Maastricht

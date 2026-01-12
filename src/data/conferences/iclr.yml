@@ -3,23 +3,32 @@
   id: iclr25
   full_name: International Conference on Learning Representations
   link: https://iclr.cc/Conferences/2025
-  deadline: '2024-10-01 23:59:59'
-  timezone: UTC-12
-  date: April 24-28, 2025
   era_rating: a
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2024-09-27 23:59:59'
+    timezone: UTC-12
+  - type: submission
+    label: Paper Submission
+    date: '2024-10-01 23:59:59'
+    timezone: UTC-12
+  timezone: UTC-12
+  city: Singapore
+  country: Singapore
+  venue: Singapore EXPO - 1 Expo Drive, Singapore
+  date: April 24-28, 2025
+  start: 2025-04-24
+  end: 2025-04-28
+  hindex: 304
   tags:
   - machine-learning
   - computer-vision
   - natural-language-processing
   - signal-processing
   - representation-learning
-  country: Singapore
-  abstract_deadline: '2024-09-27 23:59:59'
   rankings: 'CCF: N, CORE: A*, THCPL: A'
-  venue: Singapore EXPO - 1 Expo Drive, Singapore
-  hindex: 304
   note: Mandatory abstract deadline on September 27, 2024. More info <a href='https://iclr.cc/Conferences/2025/CallForPapers'>here</a>.
-  city: Singapore
 
 - title: ICLR
   year: 2026
@@ -42,6 +51,10 @@
     label: Reviews Released
     date: '2025-11-11 23:59:59'
     timezone: UTC-12
+  - type: rebuttal_end
+    label: Discussion Period End
+    date: '2025-12-03 23:59:59'
+    timezone: UTC-12
   - type: notification
     label: Notification
     date: '2026-01-22 23:59:59'
@@ -49,7 +62,7 @@
   timezone: UTC-12
   city: Rio de Janeiro
   country: Brazil
-  venue: To be announced
+  venue: Riocentro Convention and Event Center
   date: April 23-27, 2026
   start: 2026-04-23
   end: 2026-04-27
