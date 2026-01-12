@@ -29,16 +29,28 @@
   link: https://wsdm-conference.org/2026/
   deadlines:
     - type: abstract
-      label: Abstract submission
+      label: Abstract submission (full papers)
       date: '2025-08-07 23:59:00'
       timezone: AoE
     - type: paper
-      label: Paper submission
+      label: Paper submission (full papers)
       date: '2025-08-14 23:59:00'
       timezone: AoE
+    - type: abstract
+      label: Abstract submission (short papers)
+      date: '2025-09-18 23:59:00'
+      timezone: AoE
+    - type: paper
+      label: Paper submission (short papers)
+      date: '2025-09-25 23:59:00'
+      timezone: AoE
     - type: notification
-      label: Author notification
+      label: Author notification (full papers)
       date: '2025-10-23 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification (short papers)
+      date: '2025-11-27 23:59:59'
       timezone: AoE
   city: Boise
   country: United States
