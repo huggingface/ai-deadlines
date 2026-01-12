@@ -3,7 +3,19 @@
   id: conll25
   full_name: The SIGNLL Conference on Computational Natural Language Learning
   link: https://conll.org/
-  deadline: 2025-03-15 12:00
+  deadlines:
+  - type: paper
+    label: Paper submission deadline
+    date: '2025-03-14 23:59:59'
+    timezone: UTC-12
+  - type: notification
+    label: Notification of acceptance
+    date: '2025-05-23 23:59:59'
+    timezone: UTC-12
+  - type: camera_ready
+    label: Camera-ready papers due
+    date: '2025-06-17 23:59:59'
+    timezone: UTC-12
   timezone: UTC-12
   city: Vienna
   country: Austria
@@ -14,6 +26,7 @@
   - natural-language-processing
   rankings: 'CCF: B, CORE: A, THCPL: B'
   venue: Vienna, Austria
+  era_rating: a
 
 - title: CoNLL
   year: 2026
