@@ -4,16 +4,32 @@
   full_name: ACM Conference on Intelligent User Interfaces
   link: https://iui.acm.org/2026/
   deadlines:
-  - type: submission
-    label: Abstract deadline on 2025-10-03 23:59:59 UTC-12!
-    date: '2025-10-11 13:59:59'
-    timezone: GMT+02
-  timezone: GMT+02
+  - type: abstract
+    label: Abstract submission
+    date: '2025-10-03 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Full paper submission
+    date: '2025-10-10 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Decision notification
+    date: '2025-12-12 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera-ready submission
+    date: '2026-01-23 23:59:59'
+    timezone: AoE
+  - type: registration
+    label: Author registration deadline
+    date: '2026-01-23 23:59:59'
+    timezone: AoE
+  timezone: AoE
   date: March 23-26, 2026
   city: Paphos
   country: Cyprus
+  venue: Coral Beach Hotel & Resort
   start: 2026-03-23
   end: 2026-03-26
   tags:
   - human-computer-interaction
-  note: Abstract deadline on 2025-10-03 23:59:59 UTC-12!
