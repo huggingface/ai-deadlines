@@ -2,7 +2,8 @@
 
 This module wraps the existing agent functionality to run on Modal's
 serverless infrastructure, processing all conferences in parallel.
-Each conference gets its own branch and PR pushed directly to huggingface/ai-deadlines.
+The agent handles all git operations (branch creation, commits, PRs) via
+its system prompt. This wrapper provides infrastructure and aggregates results.
 
 Usage:
 
@@ -110,14 +111,11 @@ app = modal.App(
 )
 
 
-def setup_git_and_clone(conference_name: str) -> str:
-    """Configure git, clone the repository, and create a branch for the conference.
+def setup_git_and_clone() -> None:
+    """Configure git and clone the repository.
 
-    Args:
-        conference_name: The name of the conference (used for branch naming).
-
-    Returns:
-        The name of the created branch.
+    The agent handles branch creation and PR management via its system prompt,
+    so we only need to clone the repo and set up credentials here.
     """
     import subprocess
 
@@ -173,172 +171,14 @@ def setup_git_and_clone(conference_name: str) -> str:
         )
         print("Updated repository to latest main")
 
-    # Create a unique branch for this conference
-    branch_name = f"update/{conference_name}"
-
-    # Check if branch already exists remotely
-    result = subprocess.run(
-        ["git", "ls-remote", "--heads", "origin", branch_name],
-        cwd=REPO_DIR,
-        capture_output=True,
-        text=True,
-    )
-
-    if result.stdout.strip():
-        # Branch exists remotely, check it out and update
-        print(f"Branch {branch_name} exists remotely, checking out and updating...")
-        subprocess.run(
-            ["git", "checkout", "-B", branch_name, f"origin/{branch_name}"],
-            cwd=REPO_DIR,
-            check=True,
-        )
-        # Rebase on main to get latest changes
-        subprocess.run(
-            ["git", "rebase", "main"],
-            cwd=REPO_DIR,
-            check=True,
-        )
-    else:
-        # Create new branch from main
-        subprocess.run(
-            ["git", "checkout", "-b", branch_name],
-            cwd=REPO_DIR,
-            check=True,
-        )
-        print(f"Created new branch: {branch_name}")
-
-    return branch_name
-
-
-def push_and_create_pr(conference_name: str, branch_name: str) -> dict:
-    """Push the branch and create a PR if there are changes.
-
-    Args:
-        conference_name: The name of the conference.
-        branch_name: The name of the branch to push.
-
-    Returns:
-        A dictionary with PR creation result.
-    """
-    import subprocess
-
-    # Check if there are any changes to commit
-    result = subprocess.run(
-        ["git", "status", "--porcelain"],
-        cwd=REPO_DIR,
-        capture_output=True,
-        text=True,
-    )
-
-    if not result.stdout.strip():
-        # Also check if there are unpushed commits
-        diff_result = subprocess.run(
-            ["git", "log", f"origin/main..{branch_name}", "--oneline"],
-            cwd=REPO_DIR,
-            capture_output=True,
-            text=True,
-        )
-        if not diff_result.stdout.strip():
-            print(f"No changes for {conference_name}, skipping PR creation")
-            return {
-                "conference": conference_name,
-                "status": "no_changes",
-                "branch": branch_name,
-            }
-
-    # Push the branch
-    print(f"Pushing branch {branch_name}...")
-    subprocess.run(
-        ["git", "push", "-u", "origin", branch_name, "--force-with-lease"],
-        cwd=REPO_DIR,
-        check=True,
-    )
-
-    # Check if PR already exists for this branch
-    github_token = os.environ.get("GH_TOKEN", "")
-    env = os.environ.copy()
-    env["GH_TOKEN"] = github_token
-
-    pr_list_result = subprocess.run(
-        ["gh", "pr", "list", "--head", branch_name, "--json", "number,url"],
-        cwd=REPO_DIR,
-        capture_output=True,
-        text=True,
-        env=env,
-    )
-
-    import json
-
-    existing_prs = json.loads(pr_list_result.stdout) if pr_list_result.stdout else []
-
-    if existing_prs:
-        # PR already exists, just update it (push was already done)
-        pr_url = existing_prs[0]["url"]
-        print(f"PR already exists for {conference_name}: {pr_url}")
-        return {
-            "conference": conference_name,
-            "status": "pr_updated",
-            "branch": branch_name,
-            "pr_url": pr_url,
-        }
-
-    # Create a new PR
-    pr_title = f"Update {conference_name.upper()} conference deadlines"
-    pr_body = f"""This PR updates the deadline information for the {conference_name.upper()} conference.
-
-Updated automatically by the Modal Conference Agent.
-
----
-*This PR was created automatically. Please review the changes before merging.*
-"""
-
-    print(f"Creating PR for {conference_name}...")
-    pr_result = subprocess.run(
-        [
-            "gh",
-            "pr",
-            "create",
-            "--title",
-            pr_title,
-            "--body",
-            pr_body,
-            "--base",
-            "main",
-            "--head",
-            branch_name,
-        ],
-        cwd=REPO_DIR,
-        capture_output=True,
-        text=True,
-        env=env,
-    )
-
-    if pr_result.returncode != 0:
-        print(f"Failed to create PR: {pr_result.stderr}")
-        return {
-            "conference": conference_name,
-            "status": "pr_creation_failed",
-            "branch": branch_name,
-            "error": pr_result.stderr,
-        }
-
-    pr_url = pr_result.stdout.strip()
-    print(f"Created PR for {conference_name}: {pr_url}")
-
-    return {
-        "conference": conference_name,
-        "status": "pr_created",
-        "branch": branch_name,
-        "pr_url": pr_url,
-    }
-
 
 @app.function(timeout=600)
 def process_single_conference(conference_name: str) -> dict:
     """Process a single conference using the Claude Agent SDK.
 
-    The agent will update the conference data. After the agent completes,
-    this function pushes the branch and creates a PR.
+    The agent handles all git operations (branch creation, commits, PRs) via
+    its system prompt. This function just sets up the environment and returns
+    the agent's structured output for accurate reporting.
 
     Args:
         conference_name: The name of the conference to process.
@@ -366,8 +206,8 @@ def process_single_conference(conference_name: str) -> dict:
     # See MODAL_DEBUGGING.md for details
     os.environ["DISABLE_EXA_MCP"] = "1"
 
-    # Setup git, clone repo, and create branch for this conference
-    branch_name = setup_git_and_clone(conference_name)
+    # Setup git and clone repo (agent handles branch creation and PRs)
+    setup_git_and_clone()
 
     # Add REPO_DIR first, then app directory (last insert is at position 0, so app takes priority)
     # This ensures local mounted code is used instead of cloned repo code
@@ -386,17 +226,21 @@ def process_single_conference(conference_name: str) -> dict:
 
     async def _process():
         try:
-            await find_conference_deadlines(conference_name)
+            # Agent returns structured output with created_pr and pr_url
+            agent_result = await find_conference_deadlines(conference_name)
 
-            # After agent completes, push branch and create PR
-            pr_result = push_and_create_pr(conference_name, branch_name)
-            return pr_result
+            # Map agent result to our reporting format
+            return {
+                "conference": conference_name,
+                "status": "pr_created" if agent_result.get("created_pr") else "no_changes",
+                "pr_url": agent_result.get("pr_url"),
+                "error": agent_result.get("error"),
+            }
 
         except Exception as e:
             return {
                 "conference": conference_name,
                 "status": "error",
-                "branch": branch_name,
                 "error": str(e),
             }
 
