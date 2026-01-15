@@ -5,8 +5,8 @@
   link: https://bisconf.org/2026
   deadlines:
     - type: submission
-      label: Paper submission deadline
-      date: '2026-01-15 23:59:59'
+      label: Paper submission deadline (extended)
+      date: '2026-01-25 23:59:59'
       timezone: UTC-12
     - type: notification
       label: Author notification
