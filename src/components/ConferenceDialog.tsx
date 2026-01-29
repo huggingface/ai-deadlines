@@ -218,7 +218,7 @@ END:VCALENDAR`;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent 
-        className="max-w-md w-full"
+        className="max-w-lg w-full"
       >
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-blue-600">
