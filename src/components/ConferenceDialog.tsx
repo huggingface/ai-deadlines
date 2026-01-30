@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState, useEffect } from "react";
 import { getDeadlineInLocalTime } from '@/utils/dateUtils';
-import { getAllDeadlines, getNextUpcomingDeadline, getUpcomingDeadlines } from '@/utils/deadlineUtils';
+import { getAllDeadlines, getNextUpcomingDeadline, getUpcomingDeadlines, getDaysRemaining, getCountdownColorClass } from '@/utils/deadlineUtils';
 
 interface ConferenceDialogProps {
   conference: Conference;
@@ -218,7 +218,7 @@ END:VCALENDAR`;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent 
-        className="max-w-md w-full"
+        className="max-w-lg w-full"
       >
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-blue-600">
@@ -257,15 +257,24 @@ END:VCALENDAR`;
                   {upcomingDeadlines.length > 0 ? (
                     upcomingDeadlines.map((deadline, index) => {
                       const isNext = nextDeadline && deadline.date === nextDeadline.date && deadline.type === nextDeadline.type;
+                      const daysRemaining = getDaysRemaining(deadline, conference.timezone);
+                      const daysColorClass = getCountdownColorClass(daysRemaining);
                       return (
                         <div 
                           key={`${deadline.type}-${index}`} 
                           className={`rounded-md p-2 ${isNext ? 'bg-blue-100 border border-blue-200' : 'bg-gray-100'}`}
                         >
-                          <p className={isNext ? 'font-medium text-blue-800' : ''}>
-                            {deadline.label}: {formatDeadlineDate(deadline.date)}
-                            {isNext && <span className="ml-2 text-xs">(Next)</span>}
-                          </p>
+                          <div className="flex items-center justify-between gap-2">
+                            <p className={`flex-1 ${isNext ? 'font-medium text-blue-800' : ''}`}>
+                              {deadline.label}: {formatDeadlineDate(deadline.date)}
+                              {isNext && <span className="ml-2 text-xs">(Next)</span>}
+                            </p>
+                            {daysRemaining !== null && daysRemaining > 0 && (
+                              <span className={`text-xs font-medium whitespace-nowrap ${daysColorClass}`}>
+                                {daysRemaining} {daysRemaining === 1 ? 'day' : 'days'}
+                              </span>
+                            )}
+                          </div>
                         </div>
                       );
                     })
