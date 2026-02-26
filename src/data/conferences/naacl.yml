@@ -1,16 +1,22 @@
 - title: NAACL
   year: 2025
   id: naacl25
-  full_name: The Annual Conference of the North American Chapter of the Association
+  full_name: The Annual Conference of the Nations of the Americas Chapter of the Association
     for Computational Linguistics
   link: https://2025.naacl.org/
-  deadline: '2024-10-15 23:59:59'
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2024-10-15 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
-  date: April 29-May 4, 2025
+  date: April 29 - May 4, 2025
+  start: 2025-04-29
+  end: 2025-05-04
   tags:
   - natural-language-processing
   city: Albuquerque
-  country: New Mexico
+  country: USA
   rankings: 'CCF: B, CORE: A, THCPL: B'
   hindex: 132
   note: All submissions must be done through ARR. More info <a href='https://2025.naacl.org/calls/papers/'>here</a>.
