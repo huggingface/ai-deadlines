@@ -50,7 +50,7 @@
     timezone: AoE
   - type: camera_ready
     label: Camera-ready deadline
-    date: '2026-01-31 23:59:59'
+    date: '2026-03-31 23:59:59'
     timezone: AoE
   timezone: AoE
   date: May 2-5, 2026
