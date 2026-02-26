@@ -34,6 +34,8 @@
       timezone: UTC-12
   timezone: UTC-12
   date: October 25-30, 2025
+  start: 2025-10-25
+  end: 2025-10-30
   tags:
   - machine-learning
   city: Bologna
@@ -41,6 +43,7 @@
   rankings: 'CCF: B, CORE: A, THCPL: N'
   venue: Bologna Congress Center and The Engineering School (University of Bologna)
   note: All important dates can be found <a href='https://ecai2025.org/call-for-papers/'>here</a>.
+  era_rating: a
 
 - title: ECAI
   year: 2026
