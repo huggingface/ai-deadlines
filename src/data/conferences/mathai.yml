@@ -36,15 +36,15 @@
   deadlines:
     - type: abstract
       label: Abstract submission deadline
-      date: '2026-02-01 23:59:59'
+      date: '2026-02-17 23:59:59'
       timezone: Europe/London
     - type: paper
       label: Full paper submission deadline
-      date: '2026-02-19 23:59:59'
+      date: '2026-03-01 23:59:59'
       timezone: Europe/London
     - type: notification
       label: Decision notification
-      date: '2026-03-10 23:59:59'
+      date: '2026-03-12 23:59:59'
       timezone: AoE
   city: Sochi
   country: Russia
