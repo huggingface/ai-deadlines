@@ -5,6 +5,7 @@
   link: https://eccv.ecva.net/Conferences/2026
   city: Malmö
   country: Sweden
+  venue: Malmö Arena and Malmömässan
   date: September 8-13, 2026
   start: 2026-09-08
   end: 2026-09-13
@@ -12,35 +13,43 @@
   tags:
   - computer-vision
   deadlines:
+  - type: submission
+    label: Tutorial Proposal Submission
+    date: '2026-02-15 23:59:59'
+    timezone: AoE
   - type: registration
     label: Paper Registration
-    date: '2026-02-26 23:59:59'
-    timezone: CET
+    date: '2026-02-26 22:00:00'
+    timezone: UTC
+  - type: submission
+    label: Workshop Proposal Submission
+    date: '2026-02-27 23:59:59'
+    timezone: AoE
   - type: paper
     label: Paper Submission
-    date: '2026-03-05 23:59:59'
-    timezone: CET
+    date: '2026-03-05 22:00:00'
+    timezone: UTC
   - type: supplementary
     label: Supplemental Materials
-    date: '2026-03-12 23:59:59'
-    timezone: CET
+    date: '2026-03-12 22:00:00'
+    timezone: UTC
+  - type: notification
+    label: Tutorial/Workshop Decisions
+    date: '2026-04-12 20:00:00'
+    timezone: UTC
   - type: review_release
     label: Reviews Released to Authors
     date: '2026-05-02 23:59:59'
-    timezone: CET
+    timezone: UTC
   - type: rebuttal_end
     label: Rebuttal Deadline
-    date: '2026-05-11 23:59:59'
-    timezone: CET
+    date: '2026-05-11 21:00:00'
+    timezone: UTC
   - type: notification
     label: Final Decisions
     date: '2026-06-17 23:59:59'
-    timezone: CET
+    timezone: UTC
   - type: camera_ready
     label: Camera Ready Deadline
-    date: '2026-06-27 23:59:59'
-    timezone: CET
-  - type: submission
-    label: Workshop/Tutorial Proposal Submission
-    date: '2026-02-14 23:59:59'
+    date: '2026-06-26 23:59:59'
     timezone: AoE
