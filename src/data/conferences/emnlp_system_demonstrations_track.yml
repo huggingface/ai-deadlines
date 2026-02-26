@@ -24,6 +24,11 @@
   full_name: The annual Conference on Empirical Methods in Natural Language Processing
     (System Demonstrations Track)
   link: https://2026.emnlp.org/
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-07-04 23:59:59'
+      timezone: AoE
   date: October 24-29, 2026
   tags:
   - natural-language-processing
