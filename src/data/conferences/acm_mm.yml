@@ -38,14 +38,38 @@
   id: acm26
   full_name: ACM Multimedia
   link: https://2026.acmmm.org/
-  deadlines: []
+  deadlines:
+    - type: abstract
+      label: Contribution registration
+      date: '2026-03-25 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Contribution submission
+      date: '2026-04-01 23:59:59'
+      timezone: AoE
+    - type: supplementary
+      label: Supplementary material submission
+      date: '2026-04-08 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Rebuttal period start
+      date: '2026-06-04 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2026-07-09 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready submission
+      date: '2026-08-06 23:59:59'
+      timezone: AoE
   timezone: AoE
   city: Rio de Janeiro
   country: Brazil
   date: November 10-14, 2026
   start: '2026-11-10'
   end: '2026-11-14'
-  note: Deadlines not yet announced. Check the <a href='https://2026.acmmm.org/'>official website</a> for updates.
+  note: All important dates can be found <a href='https://2026.acmmm.org/site/important-dates.html'>here</a>. The time for all dates is 23:59 AoE (Anywhere-on-Earth).
   tags:
   - computer-vision
   - machine-learning
