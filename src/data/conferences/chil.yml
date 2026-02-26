@@ -3,18 +3,20 @@
   id: chil26
   full_name: AHLI Conference on Health, Inference, and Learning
   link: https://chil.ahli.cc/submit/call-for-papers/
-  deadline: '2026-02-04 23:59:59'
+  deadline: '2026-02-06 23:59:59'
   timezone: UTC-12
   date: June 28-30, 2026
+  start: 2026-06-28
+  end: 2026-06-30
   tags:
   - machine-learning
   deadlines:
   - type: paper
     label: Paper Submission
-    date: '2026-02-04 23:59:59'
+    date: '2026-02-06 23:59:59'
     timezone: UTC-12
   - type: review_release
-    label: Early Acceptance & Reviews Released
+    label: Reviews Released
     date: '2026-03-10 23:59:59'
     timezone: UTC-12
   - type: rebuttal_end
@@ -25,9 +27,9 @@
     label: Final Decisions
     date: '2026-04-09 23:59:59'
     timezone: UTC-12
-  city: SEATTLE
+  city: Seattle
   country: USA
-  abstract_deadline: '2026-02-04 23:59:59'
+  abstract_deadline: '2026-02-06 23:59:59'
   rankings: 'CCF: , CORE: , THCPL: '
   venue: Seattle Children's Research Institute
   hindex: 30
