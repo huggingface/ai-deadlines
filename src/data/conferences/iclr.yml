@@ -35,8 +35,6 @@
   id: iclr26
   full_name: The Fourteenth International Conference on Learning Representations
   link: https://iclr.cc/Conferences/2026
-  deadline: '2025-09-24 23:59:59'
-  abstract_deadline: '2025-09-19 23:59:59'
   era_rating: a
   deadlines:
   - type: abstract
@@ -49,15 +47,15 @@
     timezone: UTC-12
   - type: review_release
     label: Reviews Released
-    date: '2025-11-11 23:59:59'
-    timezone: UTC-12
+    date: '2025-11-11 21:00:00'
+    timezone: UTC
   - type: rebuttal_end
     label: Discussion Period End
-    date: '2025-12-03 23:59:59'
-    timezone: UTC-12
+    date: '2025-12-03 21:00:00'
+    timezone: UTC
   - type: notification
     label: Notification
-    date: '2026-01-22 23:59:59'
+    date: '2026-01-25 23:59:59'
     timezone: UTC-12
   timezone: UTC-12
   city: Rio de Janeiro
