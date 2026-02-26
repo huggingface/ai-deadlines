@@ -3,9 +3,15 @@
   id: cec2025
   full_name: IEEE Congress on Evolutionary Computation
   link: https://www.cec2025.org/
-  deadline: '2025-01-15 23:59:59'
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-01-15 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: June 8-12, 2025
+  start: 2025-06-08
+  end: 2025-06-12
   tags:
   - machine-learning
   city: Hangzhou
@@ -29,10 +35,15 @@
       label: Camera-ready papers deadline
       date: '2026-04-15 23:59:59'
       timezone: UTC-12
+    - type: registration
+      label: Early bird registration deadline
+      date: '2026-05-01 23:59:59'
+      timezone: UTC-12
   timezone: UTC-12
   date: June 21-26, 2026
   start: 2026-06-21
   end: 2026-06-26
+  venue: Maastricht Exhibition & Congress Centre (MECC)
   tags:
   - machine-learning
   city: Maastricht
