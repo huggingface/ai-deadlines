@@ -22,6 +22,9 @@
       timezone: UTC-12
   timezone: UTC-12
   date: July 27 - August 1, 2025
+  start: 2025-07-27
+  end: 2025-08-01
+  venue: Austria Center Vienna, Bruno-Kreisky-Platz 1, 1220 Wien, Austria
   era_rating: a
   tags:
   - natural-language-processing
@@ -53,7 +56,10 @@
       date: '2026-04-19 23:59:59'
       timezone: UTC-12
   timezone: UTC-12
-  date: July 2-7, 2026
+  date: July 2 - 7, 2026
+  start: 2026-07-02
+  end: 2026-07-07
+  venue: Grand Hyatt Manchester San Diego, 1 Market Place, San Diego, CA 92101
   era_rating: a
   tags:
   - natural-language-processing
