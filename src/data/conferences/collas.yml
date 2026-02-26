@@ -22,3 +22,26 @@
   - machine-learning
   - lifelong-learning
   note: This conference has already taken place. More info <a href='https://lifelong-ml.cc/Conferences/2025/call'>here</a>
+- title: CoLLAs
+  year: 2026
+  id: collas26
+  full_name: Fifth Conference on Lifelong Learning Agents
+  link: https://lifelong-ml.cc
+  deadlines:
+    - type: abstract
+      label: Abstract registration deadline
+      date: '2026-04-11 11:59:00'
+      timezone: UTC
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-04-16 11:59:00'
+      timezone: UTC
+  timezone: UTC
+  city: Bucharest
+  country: Romania
+  date: September 14-18, 2026
+  start: 2026-09-14
+  end: 2026-09-18
+  tags:
+  - machine-learning
+  - lifelong-learning
