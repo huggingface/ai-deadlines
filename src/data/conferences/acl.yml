@@ -53,10 +53,14 @@
       date: '2026-04-19 23:59:59'
       timezone: UTC-12
   timezone: UTC-12
-  date: July 2-7, 2026
+  date: July 2 - 7, 2026
+  start: 2026-07-02
+  end: 2026-07-07
+  venue: Grand Hyatt Manchester, San Diego
   era_rating: a
   tags:
   - natural-language-processing
   city: San Diego
   country: USA
   rankings: 'CCF: A, CORE: A*, THCPL: A'
+  note: ARR commitment deadline on March 14th, 2026.
