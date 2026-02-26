@@ -3,9 +3,20 @@
   id: emnlp25ind
   full_name: The annual Conference on Empirical Methods in Natural Language Processing
     (Industry Track)
-  link: https://2025.emnlp.org/
-  deadline: '2025-07-04 23:59:59'
-  timezone: UTC-12
+  link: https://2025.emnlp.org/calls/industry_track/
+  deadlines:
+    - type: paper
+      label: Paper submission
+      date: '2025-07-04 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Notification of acceptance
+      date: '2025-09-24 23:59:59'
+      timezone: UTC-12
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2025-10-08 23:59:59'
+      timezone: UTC-12
   date: November 5 - 9, 2025
   tags:
   - natural-language-processing
