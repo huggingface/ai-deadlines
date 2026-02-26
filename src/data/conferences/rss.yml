@@ -35,35 +35,36 @@
   - type: abstract
     label: Abstract Submission
     date: '2026-01-23 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: paper
     label: Paper Submission
     date: '2026-01-30 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: supplementary
     label: Supplementary Materials
     date: '2026-02-06 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: review_release
     label: Reviews Released
     date: '2026-03-27 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_start
     label: Rebuttal Period Starts
     date: '2026-03-27 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_end
     label: Rebuttal Period Ends
     date: '2026-04-03 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Final Decisions
     date: '2026-04-27 23:59:59'
-    timezone: UTC-12
-  timezone: UTC-12
+    timezone: AoE
+  timezone: AoE
   date: July 13-17, 2026
   start: 2026-07-13
   end: 2026-07-17
+  venue: University of Technology Sydney
   tags:
   - robotics
   - machine-learning
