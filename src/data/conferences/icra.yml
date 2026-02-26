@@ -3,34 +3,45 @@
   id: icra25
   full_name: IEEE International Conference on Robotics and Automation
   link: https://2025.ieee-icra.org
-  deadline: '2024-07-15 12:00:00'
-  timezone: UTC-4
-  date: May 19-23, 2025
+  deadlines:
+  - type: submission
+    label: Paper Submission
+    date: '2024-09-15 23:59:59'
+    timezone: PST
+  date: May 19 - 23, 2025
   era_rating: a
   tags:
-  - machine-learning
   - robotics
+  - computer-vision
+  - machine-learning
   city: Atlanta
   country: USA
-  start: '2026-06-01'
-  end: '2026-06-05'
+  start: '2025-05-19'
+  end: '2025-05-23'
   rankings: 'CCF: B, CORE: A*, THCPL: A'
   venue: Georgia World Congress Center, Atlanta, USA
 - title: ICRA
   year: 2026
   id: icra26
-  full_name: International Conference on Robotics and Automation
+  full_name: IEEE International Conference on Robotics and Automation
   link: https://2026.ieee-icra.org/
   era_rating: a
   deadlines:
   - type: submission
     label: Paper Submission
     date: '2025-09-15 23:59:59'
-    timezone: GMT-08
-  timezone: PST
+    timezone: PST
+  - type: notification
+    label: Notification of Acceptance
+    date: '2026-01-31 23:59:59'
+    timezone: PST
+  - type: camera_ready
+    label: Camera-Ready Submission
+    date: '2026-03-06 23:59:59'
+    timezone: PST
   city: Vienna
   country: Austria
-  venue: To be anounced
+  venue: Messe Wien Exhibition & Congress Center, Vienna, Austria
   date: June 1 - June 5, 2026
   start: 2026-06-01
   end: 2026-06-05
