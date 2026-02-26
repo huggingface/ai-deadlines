@@ -23,3 +23,32 @@
   - data-mining
   note: More info <a href='https://ecir2025.eu/'>here</a>.
   era_rating: b
+- title: ECIR
+  year: 2026
+  id: ecir26
+  full_name: European Conference on Information Retrieval
+  link: https://ecir2026.eu/
+  deadlines:
+    - type: abstract
+      label: Abstract deadline
+      date: '2025-09-25 23:59:59'
+      timezone: UTC-12
+    - type: paper
+      label: Paper submission deadline
+      date: '2025-10-02 23:59:59'
+      timezone: UTC-12
+    - type: notification
+      label: Notification of acceptance
+      date: '2025-12-16 23:59:59'
+      timezone: UTC-12
+  timezone: UTC-12
+  city: Delft
+  country: The Netherlands
+  venue: Lijm & Cultuur, Delft, The Netherlands
+  date: March 29 - April 2, 2026
+  start: '2026-03-29'
+  end: '2026-04-02'
+  tags:
+  - data-mining
+  note: More info <a href='https://ecir2026.eu/'>here</a>.
+  era_rating: b
