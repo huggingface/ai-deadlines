@@ -34,3 +34,22 @@
   - machine-learning
   hindex: 91.0
   era_rating: a
+
+- title: CIKM
+  year: 2026
+  id: cikm26
+  full_name: Conference on Information and Knowledge Management
+  link: https://cikm2026.org/
+  deadlines: []
+  timezone: AoE
+  city: Rome
+  country: Italy
+  date: October 26-30, 2026
+  start: 2026-10-26
+  end: 2026-10-30
+  tags:
+  - web-search
+  - data-mining
+  - machine-learning
+  hindex: 91.0
+  era_rating: a
