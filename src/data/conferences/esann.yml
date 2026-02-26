@@ -27,11 +27,19 @@
   deadlines:
     - type: paper
       label: Paper submission deadline
-      date: '2025-11-19 23:59:59'
+      date: '2025-11-26 23:59:59'
       timezone: AoE
     - type: notification
       label: Author notification
       date: '2026-01-23 23:59:59'
+      timezone: AoE
+    - type: registration
+      label: Early registration deadline
+      date: '2026-02-13 23:59:59'
+      timezone: AoE
+    - type: registration
+      label: Final registration deadline
+      date: '2026-04-10 23:59:59'
       timezone: AoE
   date: April 22 - 24, 2026
   start: 2026-04-22
