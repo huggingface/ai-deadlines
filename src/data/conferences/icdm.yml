@@ -48,7 +48,7 @@
     timezone: AoE
   - type: notification
     label: Author Notification
-    date: '2026-08-25 23:59:59'
+    date: '2026-08-16 23:59:59'
     timezone: AoE
   - type: camera_ready
     label: Camera Ready Deadline
