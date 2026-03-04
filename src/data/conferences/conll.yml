@@ -50,7 +50,10 @@
   city: San Diego
   country: USA
   date: July 3-4, 2026
+  start: '2026-07-03'
+  end: '2026-07-04'
   tags:
   - natural-language-processing
   rankings: 'CCF: B, CORE: A, THCPL: B'
+  venue: San Diego, California, USA
   era_rating: a
