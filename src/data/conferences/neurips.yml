@@ -39,6 +39,16 @@
   id: neurips26
   full_name: Conference on Neural Information Processing Systems
   link: https://neurips.cc/
+  deadlines:
+    - type: abstract
+      label: Abstract registration deadline
+      date: '2026-05-04 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-05-06 23:59:59'
+      timezone: AoE
+  timezone: AoE
   date: December 6-12, 2026
   start: '2026-12-06'
   end: '2026-12-12'
