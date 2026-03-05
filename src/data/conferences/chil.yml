@@ -4,7 +4,7 @@
   full_name: AHLI Conference on Health, Inference, and Learning
   link: https://chil.ahli.cc/submit/call-for-papers/
   deadline: '2026-02-04 23:59:59'
-  timezone: UTC-12
+  timezone: AoE
   date: June 28-30, 2026
   tags:
   - machine-learning
@@ -12,19 +12,19 @@
   - type: paper
     label: Paper Submission
     date: '2026-02-04 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: review_release
     label: Early Acceptance & Reviews Released
     date: '2026-03-10 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_end
     label: Rebuttal Period Ends
     date: '2026-03-24 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Final Decisions
     date: '2026-04-09 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   city: SEATTLE
   country: USA
   abstract_deadline: '2026-02-04 23:59:59'

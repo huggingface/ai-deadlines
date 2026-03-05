@@ -7,7 +7,7 @@
     - type: paper
       label: Paper submission deadline
       date: '2026-05-19 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
   date: October 24 - 29, 2026
   tags:
   - natural-language-processing
