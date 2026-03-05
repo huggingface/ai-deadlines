@@ -7,16 +7,16 @@
     - type: submission
       label: Paper submission deadline (extended)
       date: '2026-01-25 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: notification
       label: Author notification
       date: '2026-03-04 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: camera_ready
       label: Final paper submission
       date: '2026-03-25 23:59:59'
-      timezone: UTC-12
-  timezone: UTC-12
+      timezone: AoE
+  timezone: AoE
   city: Prague
   country: Czech Republic
   date: June 10-12, 2026

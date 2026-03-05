@@ -56,7 +56,7 @@
       timezone: AoE
     - type: rebuttal_end
       label: Rebuttal period end
-      date: '2026-04-18 23:59:59'
+      date: '2026-04-17 23:59:59'
       timezone: AoE
     - type: notification
       label: Notification
