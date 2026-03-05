@@ -7,8 +7,8 @@
     - type: paper
       label: Paper submission deadline
       date: '2025-01-15 23:59:59'
-      timezone: UTC-12
-  timezone: UTC-12
+      deadline: '2025-01-15 23:59:59'
+      timezone: AoE
   date: June 8-12, 2025
   start: 2025-06-08
   end: 2025-06-12
@@ -26,20 +26,19 @@
     - type: paper
       label: Paper submission deadline
       date: '2026-01-31 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: notification
       label: Paper acceptance notification
       date: '2026-03-15 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: camera_ready
       label: Camera-ready papers deadline
       date: '2026-04-15 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: registration
       label: Early bird registration deadline
       date: '2026-05-01 23:59:59'
-      timezone: UTC-12
-  timezone: UTC-12
+      timezone: AoE
   date: June 21-26, 2026
   start: 2026-06-21
   end: 2026-06-26

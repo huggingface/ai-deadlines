@@ -29,6 +29,23 @@
   full_name: European Conference on Machine Learning and Principles and Practice of
     Knowledge Discovery in Databases
   link: https://ecmlpkdd.org/2026/
+  deadlines:
+    - type: abstract
+      label: Abstract submission (Research Track)
+      date: '2026-03-05 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission (Research Track)
+      date: '2026-03-12 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2026-05-27 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera ready submission
+      date: '2026-06-18 23:59:59'
+      timezone: AoE
   timezone: AoE
   city: Naples
   country: Italy
