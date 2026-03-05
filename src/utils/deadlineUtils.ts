@@ -193,3 +193,27 @@ export function getUpcomingDeadlines(conference: Conference): Deadline[] {
   
   return upcomingDeadlines;
 }
+
+/**
+ * Get the number of days remaining until a deadline
+ * Returns null if the deadline date is invalid
+ */
+export function getDaysRemaining(deadline: Deadline, fallbackTimezone?: string): number | null {
+  const deadlineDate = getDeadlineInLocalTime(deadline.date, deadline.timezone || fallbackTimezone);
+  if (!deadlineDate || !isValid(deadlineDate)) return null;
+  
+  const now = new Date();
+  const diff = deadlineDate.getTime() - now.getTime();
+  return Math.ceil(diff / (1000 * 60 * 60 * 24));
+}
+
+/**
+ * Get the color class for a countdown based on days remaining
+ */
+export function getCountdownColorClass(daysRemaining: number | null): string {
+  if (daysRemaining === null) return "text-neutral-600";
+  if (daysRemaining <= 0) return "text-neutral-600";
+  if (daysRemaining <= 7) return "text-red-600";
+  if (daysRemaining <= 30) return "text-orange-600";
+  return "text-green-600";
+}

@@ -28,8 +28,52 @@ The agent will automatically fetch relevant information from the web using the [
 
 ## Modal deployment
 
-To automatically let the AI agents populate deadlines data, we leverage [Modal](https://modal.com/)'s serverless infrastructure. To run an agent on Modal, use the following command:
+To automatically let the AI agents populate deadlines data, we leverage [Modal](https://modal.com/)'s serverless infrastructure.
+
+### Setup
+
+1. Install Modal: `uv add modal`
+2. Authenticate: `uv run modal setup`
+3. Create the required secrets:
 
 ```bash
-uv run --env-file keys.env -m agents.modal_agent --conference_name neurips
+uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-api-key>
+uv run modal secret create github-token GH_TOKEN=<token-with-repo-and-pr-scope>
+uv run modal secret create exa EXA_API_KEY=<your-key>
+```
+
+> **Note:** The `GH_TOKEN` needs the `repo` scope (for cloning, pushing, and creating pull requests).
+
+### Running a single conference
+
+```bash
+uv run modal run agents/modal_agent.py --conference-name neurips
+```
+
+### Running all conferences in parallel
+
+By default (no flags), the script processes **all** conferences in parallel — each in its own Modal container:
+
+```bash
+uv run modal run agents/modal_agent.py
+```
+
+You can also be explicit:
+
+```bash
+uv run modal run agents/modal_agent.py --all-conferences
+```
+
+To test with a limited number of conferences, use the `--limit` flag:
+
+```bash
+uv run modal run agents/modal_agent.py --limit 3
+```
+
+### Deploying for scheduled runs
+
+To deploy the agent so it runs automatically every week (Sunday at midnight UTC):
+
+```bash
+uv run modal deploy agents/modal_agent.py
 ```

@@ -85,6 +85,7 @@ If only a conference of the given year is defined, it makes sense to search for 
 Do not overwrite data of a year, only append in case you add data of a new year. 
 Only add deadlines which are upcoming.
 When no timezone information is given, use the Anywhere on Earth (AoE) timezone (UTC+12).
+The year of a conference should never be included in the "title" field of a .yml file.
 
 ## Refactoring
 

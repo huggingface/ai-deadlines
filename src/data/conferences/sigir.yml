@@ -12,9 +12,22 @@
       label: Full research paper submission deadline
       date: "2026-01-22 23:59:59"
       timezone: AoE
+    - type: notification
+      label: Notification deadline
+      date: "2026-04-02 23:59:59"
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: "2026-04-29 23:59:59"
+      timezone: AoE
+    - type: registration
+      label: Author registration deadline
+      date: "2026-04-29 23:59:59"
+      timezone: AoE
   timezone: AoE
   city: Melbourne
   country: Australia
+  venue: Melbourne Convention and Exhibition Centre (MCEC)
   date: July 20-24, 2026
   start: 2026-07-20
   end: 2026-07-24

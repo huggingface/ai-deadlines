@@ -12,8 +12,26 @@
     label: Paper Submission
     date: '2026-01-13 23:59:59'
     timezone: AoE
+  - type: rebuttal_start
+    label: Rebuttal Submission
+    date: '2026-02-24 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Initial Notification
+    date: '2026-03-02 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Final Notification
+    date: '2026-04-08 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera-Ready Deadline
+    date: '2026-05-11 23:59:59'
+    timezone: AoE
   timezone: AoE
-  date: June 27 - June 30, 2026
+  date: June 25 - June 28, 2026
+  start: 2026-06-25
+  end: 2026-06-28
   tags:
   - fairness
   - machine-learning
@@ -22,6 +40,6 @@
   city: Montreal
   country: Canada
   rankings: 'CCF: , CORE: , THCPL: '
-  venue: Hotel Bonaventure, Montreal, QC, Canada
+  venue: Le Centre Sheraton Montréal, Montreal, QC, Canada
   hindex: 103
   note: ACM FAccT is an interdisciplinary conference dedicated to bringing together a diverse community of scholars from computer science, law, social sciences, and humanities to investigate and tackle issues in this emerging area. Research challenges are not limited to technological solutions regarding potential bias, but include the question of whether decisions should be outsourced to data- and code-driven computing systems. We particularly seek to evaluate technical solutions with respect to existing problems, reflecting upon their benefits and risks; to address pivotal questions about economic incentive structures, perverse implications, distribution of power, and redistribution of welfare; and to ground research on fairness, accountability, and transparency in existing legal requirements.
