@@ -5,7 +5,7 @@
     for Computational Linguistics
   link: https://2025.naacl.org/
   deadline: '2024-10-15 23:59:59'
-  timezone: UTC-12
+  timezone: AoE
   date: April 29-May 4, 2025
   tags:
   - natural-language-processing
@@ -14,3 +14,4 @@
   rankings: 'CCF: B, CORE: A, THCPL: B'
   hindex: 132
   note: All submissions must be done through ARR. More info <a href='https://2025.naacl.org/calls/papers/'>here</a>.
+  era_rating: a

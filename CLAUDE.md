@@ -70,6 +70,10 @@ Conference data is automatically updated via GitHub Actions workflow (`.github/w
 ### Path Aliases
 - `@/*` maps to `src/*` for cleaner imports
 
+## Data Conventions
+- **Timezone for deadlines**: Always use `AoE` (Anywhere on Earth, equivalent to UTC-12) for conference deadline timezones. Never use `UTC-12` — use `AoE` for consistency and clarity.
+- Supported timezone formats in YAML: `AoE`, IANA names (e.g. `Asia/Seoul`), `UTC±X`, `GMT±X`
+
 ## Development Notes
 - The app uses a YAML plugin to import conference data directly in components
 - All UI components follow shadcn-ui patterns and conventions

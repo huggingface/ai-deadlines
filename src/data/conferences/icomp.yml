@@ -3,12 +3,40 @@
   id: icomp25
   full_name: International Conference on Computational Optimization
   link: https://icomp.cc/
-  deadline: 2025-08-15 23:59
-  abstract_deadline: 2025-08-01 23:59
-  timezone: UTC-12
-  city: Abu Dhabi
-  country: UAE
-  date: October, 2025
+  deadlines:
+    - type: abstract
+      label: Abstract submission
+      date: '2025-04-05 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission
+      date: '2025-04-15 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Paper decision notification
+      date: '2025-07-10 23:59:59'
+      timezone: AoE
+  city: Yerevan
+  country: Armenia
+  date: September 11-13, 2025
+  start: 2025-09-11
+  end: 2025-09-13
   tags:
   - machine-learning
   - optimization-methods
+  era_rating: b
+- title: ICOMP
+  year: 2026
+  id: icomp26
+  full_name: International Conference on Computational Optimization
+  link: https://icomp.cc/
+  deadlines: []
+  city: Yerevan
+  country: Armenia
+  date: September 11-13, 2026
+  start: 2026-09-11
+  end: 2026-09-13
+  tags:
+  - machine-learning
+  - optimization-methods
+  era_rating: b

@@ -35,6 +35,8 @@ Below, we list some details about how the data of each conference is maintained.
 The "date" field is always defined by the format "Month x - y, year", e.g. July 3 - 6, 2026.
 Besides, each conference has a "start" and an "end" field which define the start and end date of the conference respectively. These follow the format 'YYYY-MM-DD'.
 
+Do include all dates of a given conference, not just the dates of the main conference but also the dates of workshops/tutorials.
+
 ### Deadlines
 
 For deadlines, each deadline is defined by 4 fields:
@@ -59,9 +61,21 @@ notification	        Author notification date
 camera_ready	        Camera-ready deadline
 registration	        Paper registration deadline
 
+## Tools
+
+### Web Search
+
+* You can search the web using either the `WebSearch` or Exa web search tool. Start with Exa when available. Use short queries like "KSEM 2026", "EMNLP 2026 deadlines".
+* **Fallback strategy**: If Exa search doesn't return an official conference website (look for URLs containing the conference acronym and year, e.g., `ksem2026.rosc.org.cn`), try the built-in `WebSearch` tool as a fallback - it uses a different search index that may have better coverage for some conferences.
+* **URL pattern heuristics**: Look at the previous year's conference URL pattern. For example, if KSEM 2025 is at `ksem2025.scimeeting.cn`, try searching for `ksem2026` to find a similar domain.
+* **Result validation**: If search results don't include an official conference website (domain containing conference acronym + year), try alternative queries or the other search tool before concluding no data exists.
+
+### Other Tools
+
+* You can use the `Bash` tool to read and edit the .yml file, create branches and use git. 
+
 ## Rules
 
-When performing web searches, use short queries like "EMNLP 2026 location", "EMNLP 2026 deadlines", and so on.
 Only edit the YAML file in case you find new information that is relevant to be included.
 **IMPORTANT** If you don't find any new information, do not edit any files.
 Only add data which is factual and for which you find evidence.
@@ -71,6 +85,7 @@ If only a conference of the given year is defined, it makes sense to search for 
 Do not overwrite data of a year, only append in case you add data of a new year. 
 Only add deadlines which are upcoming.
 When no timezone information is given, use the Anywhere on Earth (AoE) timezone (UTC+12).
+The year of a conference should never be included in the "title" field of a .yml file.
 
 ## Refactoring
 
@@ -78,23 +93,17 @@ If a conference still uses the legacy "deadline:" and "abstract_deadline" format
 
 ## Use of git
 
-After making changes, create a branch called "feature/update_{conference_name}" and push it to Github.
+In case you made any necessary changes, create a branch called "feature/update_{conference_name}", push it to Github, and open a pull request to the upstream repository.
+Do note that opening a pull request is optional, if no changes are required, there is no need to open one.
 
-**IMPORTANT**: The repository is cloned from `nielsrogge/ai-deadlines` (origin) and synced with `huggingface/ai-deadlines` (upstream). Push your changes to origin:
+**IMPORTANT**: The repository is cloned from `nielsrogge/ai-deadlines` (origin) and synced with `huggingface/ai-deadlines` (upstream). Push your changes to origin and then create a PR to upstream:
 
 ```bash
 git checkout -b feature/update_{conference_name}
 git add .
 git commit -m "your-message"
 git push origin feature/update_{conference_name}
+gh pr create --repo huggingface/ai-deadlines --head nielsrogge:feature/update_{conference_name} --title "Update {conference_name} deadlines" --body "Updated conference data for {conference_name}."
 ```
 
-**DO NOT use the GitHub CLI (`gh pr create`) to create pull requests.** The huggingface organization does not allow PR creation via personal access tokens.
-
-Instead, after pushing the branch, provide the user with a link to create the PR manually:
-
-```
-https://github.com/nielsrogge/ai-deadlines/pull/new/feature/update_{conference_name}
-```
-
-Only use the bash tool for git operations (not for creating pull requests).
+The `gh` CLI will authenticate using the `GH_TOKEN` environment variable which is set automatically.

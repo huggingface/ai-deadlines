@@ -3,8 +3,31 @@
   id: interspeech2026
   full_name: Interspeech
   link: https://interspeech2026.org
-  deadline: '2026-03-02 23:59:59'
-  timezone: UTC-12
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2026-02-25 23:59:59'
+      timezone: AoE
+    - type: supplementary
+      label: Paper update deadline
+      date: '2026-03-04 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Rebuttal period start
+      date: '2026-04-24 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Rebuttal period end
+      date: '2026-05-01 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Paper acceptance notification
+      date: '2026-06-05 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready paper submission
+      date: '2026-06-19 23:59:59'
+      timezone: AoE
   city: Sydney
   country: Australia
   venue: International Convention Centre (ICC) Sydney

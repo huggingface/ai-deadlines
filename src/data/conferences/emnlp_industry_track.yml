@@ -5,7 +5,7 @@
     (Industry Track)
   link: https://2025.emnlp.org/
   deadline: '2025-07-04 23:59:59'
-  timezone: UTC-12
+  timezone: AoE
   date: November 5 - 9, 2025
   tags:
   - natural-language-processing
@@ -15,3 +15,4 @@
   venue: Suzhou, China
   start: '2025-11-05'
   end: '2025-11-09'
+  era_rating: a

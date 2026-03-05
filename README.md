@@ -22,11 +22,11 @@ The benefit of [hf.co/papers](https://hf.co/papers) is that it allows people to 
 
 This project is entirely based on the awesome https://github.com/paperswithcode/ai-deadlines. As that repository is no longer maintained, we decided to make an up-to-date version along with a new UI. It was bootstrapped using [Lovable](https://lovable.dev/) and [Cursor](https://www.cursor.com/).
 
-New data is fetched from https://github.com/ccfddl/ccf-deadlines/tree/main/conference/AI thanks to [this comment](https://github.com/paperswithcode/ai-deadlines/issues/723#issuecomment-2603420945). 
+It is hosted at https://huggingface.co/spaces/huggingface/ai-deadlines.
 
-A CRON job (set up as a [Github action](.github/workflows/update-conferences.yml)) automatically updates the conference data in individual YAML files located in src/data/conferences/.
+New data is automatically fetched by AI Agents, which regularly open pull requests. See the [agents](agents) folder for details.
 
-**URL**: https://huggingface.co/spaces/huggingface/ai-deadlines
+Before that, we used to fetch data from https://github.com/ccfddl/ccf-deadlines/tree/main/conference/AI. 
 
 ## Contribute
 
@@ -38,7 +38,7 @@ To add or update a deadline:
 - Fork the repository
 - Add a new block to the appropriate conference file in [src/data/conferences/](src/data/conferences/). Do not update an existing block of a previous time the conference took place but rather add a new block at the bottom of the file
 - Make sure it has the `title`, `year`, `id`, `link`, `deadlines`, `timezone`, `date`, `city`, `country`, `tags` attributes
-    + See available timezone strings [here](https://momentjs.com/timezone/).
+    + For deadlines that use "Anywhere on Earth" timing, always use `AoE` (not `UTC-12`). Other supported formats: IANA timezone names (e.g. `Asia/Seoul`), `UTC±X`, `GMT±X`. See available IANA timezone strings [here](https://momentjs.com/timezone/).
 - Optionally add a `venue`, `note` and `hindex` (this refers to the h5-index from [here](https://scholar.google.com/citations?view_op=top_venues&vq=eng)) which indicates the importance of a conference
 
 You can add any custom number of deadlines, with any custom string for the `type` and `label`. The app will simply use the first upcoming deadline to showcase a deadline counter, and display all upcoming deadlines in the conference details card.

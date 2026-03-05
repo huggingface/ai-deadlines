@@ -28,7 +28,7 @@
   full_name: IEEE/CVF Conference on Computer Vision and Pattern Recognition
   link: https://cvpr.thecvf.com/Conferences/2026/CallForPapers
   deadline: '2025-11-13 23:59:59'
-  timezone: UTC-12
+  timezone: AoE
   date: June 3-7, 2026
   era_rating: a
   tags:
@@ -40,39 +40,39 @@
   deadlines:
   - type: abstract
     label: Abstract Submission
-    date: '2025-11-06 23:59:59'
-    timezone: UTC-12
+    date: '2025-11-07 23:59:59'
+    timezone: AoE
   - type: paper
     label: Paper Submission
     date: '2025-11-13 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: supplementary
     label: Supplementary Materials
     date: '2025-11-20 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: review_release
     label: Reviews Released
     date: '2026-01-22 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_start
     label: Rebuttal Period Starts
     date: '2026-01-22 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_end
     label: Rebuttal Period Ends
     date: '2026-01-29 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Final Decisions
     date: '2026-02-20 23:59:59'
-    timezone: UTC-12
-  city: Denver, Colorado
+    timezone: AoE
+  city: Denver
   country: USA
-  abstract_deadline: '2025-11-06 23:59:59'
+  abstract_deadline: '2025-11-07 23:59:59'
   rankings: 'CCF: A, CORE: A*, THCPL: A'
   venue: Denver Convention Center, Denver, USA
   hindex: 450
   rebuttal_period_end: '2026-01-29 23:59:59'
   final_decision_date: '2026-02-20 23:59:59'
   review_release_date: '2026-01-22 23:59:59'
-  note: Abstract submission deadline on Nov 6th, paper submission deadline on Nov 13th, supplementary materials deadline on Nov 20th. Reviews released on Jan 22nd, rebuttal period Jan 22nd-29th, and final decisions on Feb 20th.
+  note: Abstract submission deadline on Nov 7th, paper submission deadline on Nov 13th, supplementary materials deadline on Nov 20th. Reviews released on Jan 22nd, rebuttal period Jan 22nd-29th, and final decisions on Feb 20th. Main conference June 5-7, workshops/tutorials June 3-4.

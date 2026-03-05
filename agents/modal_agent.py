@@ -1,13 +1,13 @@
 """Modal wrapper for conference deadlines agent.
 
 This module wraps the existing agent functionality to run on Modal's
-serverless infrastructure, processing all conferences sequentially.
-The agent itself handles git add/commit/push via its Bash tool.
+serverless infrastructure, processing all conferences in parallel.
+Each conference gets its own branch and PR pushed directly to huggingface/ai-deadlines.
 
 Usage:
 
 ```bash
-# Run all conferences once
+# Run all conferences in parallel
 uv run modal run agents/modal_agent.py
 
 # Run single conference (for testing)
@@ -35,9 +35,8 @@ from pathlib import Path
 
 import modal
 
-# Repository configuration
-ORIGIN_REPO_URL = "https://github.com/nielsrogge/ai-deadlines.git"
-UPSTREAM_REPO_URL = "https://github.com/huggingface/ai-deadlines.git"
+# Repository configuration - push directly to huggingface/ai-deadlines
+REPO_URL = "https://github.com/huggingface/ai-deadlines.git"
 REPO_DIR = "/home/agent/ai-deadlines"
 CONFERENCES_DIR = "src/data/conferences"
 
@@ -111,9 +110,15 @@ app = modal.App(
 )
 
 
-def setup_git_and_clone():
-    """Configure git, clone from origin (fork), add upstream, and sync with upstream."""
-    import os
+def setup_git_and_clone(conference_name: str) -> str:
+    """Configure git, clone the repository, and create a branch for the conference.
+
+    Args:
+        conference_name: The name of the conference (used for branch naming).
+
+    Returns:
+        The name of the created branch.
+    """
     import subprocess
 
     # Configure git user
@@ -136,57 +141,204 @@ def setup_git_and_clone():
     if not github_token:
         raise ValueError("GH_TOKEN environment variable is required")
 
-    # Store credentials
+    # Store credentials for git operations
     credentials_file = os.path.expanduser("~/.git-credentials")
     with open(credentials_file, "w") as f:
         f.write(f"https://x-access-token:{github_token}@github.com\n")
     os.chmod(credentials_file, 0o600)
 
-    # Clone from origin (nielsrogge fork) if it doesn't exist
+    # Clone the repository if it doesn't exist
     if not os.path.exists(REPO_DIR):
         subprocess.run(
-            ["git", "clone", ORIGIN_REPO_URL, REPO_DIR],
+            ["git", "clone", REPO_URL, REPO_DIR],
             check=True,
         )
-        print(f"Cloned from origin: {ORIGIN_REPO_URL}")
-    
-    # Add upstream remote (huggingface) if it doesn't exist
-    result = subprocess.run(
-        ["git", "remote", "get-url", "upstream"],
-        cwd=REPO_DIR,
-        capture_output=True,
-    )
-    if result.returncode != 0:
-        # Upstream remote doesn't exist, add it
+        print(f"Cloned repository: {REPO_URL}")
+    else:
+        # Pull latest changes if repo already exists
         subprocess.run(
-            ["git", "remote", "add", "upstream", UPSTREAM_REPO_URL],
+            ["git", "fetch", "origin"],
             cwd=REPO_DIR,
             check=True,
         )
-        print(f"Added upstream remote: {UPSTREAM_REPO_URL}")
+        subprocess.run(
+            ["git", "checkout", "main"],
+            cwd=REPO_DIR,
+            check=True,
+        )
+        subprocess.run(
+            ["git", "pull", "origin", "main"],
+            cwd=REPO_DIR,
+            check=True,
+        )
+        print("Updated repository to latest main")
+
+    # Create a unique branch for this conference
+    branch_name = f"update/{conference_name}"
+
+    # Check if branch already exists remotely
+    result = subprocess.run(
+        ["git", "ls-remote", "--heads", "origin", branch_name],
+        cwd=REPO_DIR,
+        capture_output=True,
+        text=True,
+    )
+
+    if result.stdout.strip():
+        # Branch exists remotely, check it out and update
+        print(f"Branch {branch_name} exists remotely, checking out and updating...")
+        subprocess.run(
+            ["git", "checkout", "-B", branch_name, f"origin/{branch_name}"],
+            cwd=REPO_DIR,
+            check=True,
+        )
+        # Rebase on main to get latest changes
+        subprocess.run(
+            ["git", "rebase", "main"],
+            cwd=REPO_DIR,
+            check=True,
+        )
     else:
-        print(f"Upstream remote already exists: {result.stdout.decode().strip()}")
-    
-    # Fetch and merge from upstream to sync with huggingface/ai-deadlines
-    print("Fetching from upstream...")
+        # Create new branch from main
+        subprocess.run(
+            ["git", "checkout", "-b", branch_name],
+            cwd=REPO_DIR,
+            check=True,
+        )
+        print(f"Created new branch: {branch_name}")
+
+    return branch_name
+
+
+def push_and_create_pr(conference_name: str, branch_name: str) -> dict:
+    """Push the branch and create a PR if there are changes.
+
+    Args:
+        conference_name: The name of the conference.
+        branch_name: The name of the branch to push.
+
+    Returns:
+        A dictionary with PR creation result.
+    """
+    import subprocess
+
+    # Check if there are any changes to commit
+    result = subprocess.run(
+        ["git", "status", "--porcelain"],
+        cwd=REPO_DIR,
+        capture_output=True,
+        text=True,
+    )
+
+    if not result.stdout.strip():
+        # Also check if there are unpushed commits
+        diff_result = subprocess.run(
+            ["git", "log", f"origin/main..{branch_name}", "--oneline"],
+            cwd=REPO_DIR,
+            capture_output=True,
+            text=True,
+        )
+        if not diff_result.stdout.strip():
+            print(f"No changes for {conference_name}, skipping PR creation")
+            return {
+                "conference": conference_name,
+                "status": "no_changes",
+                "branch": branch_name,
+            }
+
+    # Push the branch
+    print(f"Pushing branch {branch_name}...")
     subprocess.run(
-        ["git", "fetch", "upstream"],
+        ["git", "push", "-u", "origin", branch_name, "--force-with-lease"],
         cwd=REPO_DIR,
         check=True,
     )
-    print("Merging upstream/main...")
-    subprocess.run(
-        ["git", "merge", "upstream/main", "--no-edit"],
+
+    # Check if PR already exists for this branch
+    github_token = os.environ.get("GH_TOKEN", "")
+    env = os.environ.copy()
+    env["GH_TOKEN"] = github_token
+
+    pr_list_result = subprocess.run(
+        ["gh", "pr", "list", "--head", branch_name, "--json", "number,url"],
         cwd=REPO_DIR,
-        check=True,
+        capture_output=True,
+        text=True,
+        env=env,
     )
+
+    import json
+
+    existing_prs = json.loads(pr_list_result.stdout) if pr_list_result.stdout else []
+
+    if existing_prs:
+        # PR already exists, just update it (push was already done)
+        pr_url = existing_prs[0]["url"]
+        print(f"PR already exists for {conference_name}: {pr_url}")
+        return {
+            "conference": conference_name,
+            "status": "pr_updated",
+            "branch": branch_name,
+            "pr_url": pr_url,
+        }
+
+    # Create a new PR
+    pr_title = f"Update {conference_name.upper()} conference deadlines"
+    pr_body = f"""This PR updates the deadline information for the {conference_name.upper()} conference.
+
+Updated automatically by the Modal Conference Agent.
+
+---
+*This PR was created automatically. Please review the changes before merging.*
+"""
+
+    print(f"Creating PR for {conference_name}...")
+    pr_result = subprocess.run(
+        [
+            "gh",
+            "pr",
+            "create",
+            "--title",
+            pr_title,
+            "--body",
+            pr_body,
+            "--base",
+            "main",
+            "--head",
+            branch_name,
+        ],
+        cwd=REPO_DIR,
+        capture_output=True,
+        text=True,
+        env=env,
+    )
+
+    if pr_result.returncode != 0:
+        print(f"Failed to create PR: {pr_result.stderr}")
+        return {
+            "conference": conference_name,
+            "status": "pr_creation_failed",
+            "branch": branch_name,
+            "error": pr_result.stderr,
+        }
+
+    pr_url = pr_result.stdout.strip()
+    print(f"Created PR for {conference_name}: {pr_url}")
+
+    return {
+        "conference": conference_name,
+        "status": "pr_created",
+        "branch": branch_name,
+        "pr_url": pr_url,
+    }
 
 
 @app.function(timeout=600)
 def process_single_conference(conference_name: str) -> dict:
     """Process a single conference using the Claude Agent SDK.
 
-    The agent will update the conference data and handle git add/commit/push.
+    The agent will update the conference data. After the agent completes,
+    this function pushes the branch and creates a PR.
 
     Args:
         conference_name: The name of the conference to process.
@@ -195,7 +347,6 @@ def process_single_conference(conference_name: str) -> dict:
         A dictionary containing the processing result.
     """
     import asyncio
-    import os
     import pwd
     import sys
 
@@ -215,8 +366,8 @@ def process_single_conference(conference_name: str) -> dict:
     # See MODAL_DEBUGGING.md for details
     os.environ["DISABLE_EXA_MCP"] = "1"
 
-    # Setup git and clone/pull repo
-    setup_git_and_clone()
+    # Setup git, clone repo, and create branch for this conference
+    branch_name = setup_git_and_clone(conference_name)
 
     # Add REPO_DIR first, then app directory (last insert is at position 0, so app takes priority)
     # This ensures local mounted code is used instead of cloned repo code
@@ -236,26 +387,28 @@ def process_single_conference(conference_name: str) -> dict:
     async def _process():
         try:
             await find_conference_deadlines(conference_name)
-            return {
-                "conference": conference_name,
-                "status": "completed",
-            }
+
+            # After agent completes, push branch and create PR
+            pr_result = push_and_create_pr(conference_name, branch_name)
+            return pr_result
+
         except Exception as e:
             return {
                 "conference": conference_name,
                 "status": "error",
+                "branch": branch_name,
                 "error": str(e),
             }
 
     return asyncio.run(_process())
 
 
-@app.function(timeout=43200)  # 12 hours max for all conferences
+@app.function(timeout=600)
 def process_all_conferences() -> list[dict]:
-    """Process all conferences sequentially.
+    """Process all conferences in parallel.
 
-    Each conference is processed one at a time. The agent handles
-    git add/commit/push for each conference via its Bash tool.
+    Each conference runs in its own Modal container with its own branch.
+    After processing, each creates its own PR.
 
     Returns:
         List of results for each processed conference.
@@ -269,32 +422,45 @@ def process_all_conferences() -> list[dict]:
     os.environ["HOME"] = agent_user.pw_dir
 
     # Clone repo first to get the list of conferences
-    setup_git_and_clone()
+    # We use a dummy conference name here since we just need to clone
+    import subprocess
+
+    # Configure git (minimal setup just to clone)
+    subprocess.run(
+        ["git", "config", "--global", "user.email", "agent@modal.com"],
+        check=True,
+    )
+    subprocess.run(
+        ["git", "config", "--global", "user.name", "Modal Conference Agent"],
+        check=True,
+    )
+
+    github_token = os.environ.get("GH_TOKEN", "")
+    if github_token:
+        credentials_file = os.path.expanduser("~/.git-credentials")
+        with open(credentials_file, "w") as f:
+            f.write(f"https://x-access-token:{github_token}@github.com\n")
+        os.chmod(credentials_file, 0o600)
+        subprocess.run(
+            ["git", "config", "--global", "credential.helper", "store"],
+            check=True,
+        )
+
+    if not os.path.exists(REPO_DIR):
+        subprocess.run(
+            ["git", "clone", REPO_URL, REPO_DIR],
+            check=True,
+        )
 
     # Get conferences from yml files in the cloned repo
     conferences = get_conferences()
-    results = []
 
-    for i, conference in enumerate(conferences):
-        print(f"\n{'=' * 60}")
-        print(f"Processing conference {i + 1}/{len(conferences)}: {conference}")
-        print(f"{'=' * 60}")
+    print(f"\n{'=' * 60}")
+    print(f"Processing {len(conferences)} conferences in parallel")
+    print(f"{'=' * 60}")
 
-        try:
-            # Process the conference (agent handles git operations)
-            result = process_single_conference.remote(conference)
-            results.append(result)
-            print(f"Result: {result}")
-
-        except Exception as e:
-            print(f"Error processing {conference}: {e}")
-            results.append(
-                {
-                    "conference": conference,
-                    "status": "error",
-                    "error": str(e),
-                }
-            )
+    # Process all conferences in parallel using Modal's .map()
+    results = list(process_single_conference.map(conferences))
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conferences)} conferences")
@@ -304,21 +470,55 @@ def process_all_conferences() -> list[dict]:
 
 
 @app.function(
-    timeout=43200,
+    timeout=43200,  # 12 hours max
     schedule=modal.Cron("0 0 * * 0"),  # Run weekly on Sunday at midnight UTC
 )
 def scheduled_run():
-    """Scheduled weekly run of all conferences."""
+    """Scheduled weekly run of all conferences in parallel."""
     print("Starting scheduled weekly conference update...")
     results = process_all_conferences.remote()
 
     # Summary
-    completed = sum(1 for r in results if r.get("status") == "completed")
+    pr_created = sum(1 for r in results if r.get("status") == "pr_created")
+    pr_updated = sum(1 for r in results if r.get("status") == "pr_updated")
+    no_changes = sum(1 for r in results if r.get("status") == "no_changes")
     errors = sum(1 for r in results if r.get("status") == "error")
 
     print("\nWeekly run completed:")
-    print(f"  - Completed: {completed}")
+    print(f"  - PRs created: {pr_created}")
+    print(f"  - PRs updated: {pr_updated}")
+    print(f"  - No changes: {no_changes}")
     print(f"  - Errors: {errors}")
+
+    if errors:
+        print("\nErrors:")
+        for r in results:
+            if r.get("status") == "error":
+                print(f"  - {r['conference']}: {r.get('error', 'Unknown error')}")
+
+    return results
+
+
+@app.function(timeout=600)
+def process_conferences_subset(conference_names: list[str]) -> list[dict]:
+    """Process a subset of conferences in parallel.
+
+    Args:
+        conference_names: List of conference names to process.
+
+    Returns:
+        List of results for each processed conference.
+    """
+    print(f"\n{'=' * 60}")
+    print(f"Processing {len(conference_names)} conferences in parallel: {conference_names}")
+    print(f"{'=' * 60}")
+
+    # Process conferences in parallel using Modal's .map()
+    results = list(process_single_conference.map(conference_names))
+
+    print(f"\n{'=' * 60}")
+    print(f"Completed processing {len(conference_names)} conferences")
+    print(f"{'=' * 60}")
 
     return results
 
@@ -327,18 +527,20 @@ def scheduled_run():
 def main(
     conference_name: str = None,
     all_conferences: bool = False,
+    limit: int = None,
 ):
     """CLI entrypoint for the Modal agent.
 
     Args:
         conference_name: Single conference name to process (for testing).
-        all_conferences: If True, process all conferences sequentially.
+        all_conferences: If True, process all conferences in parallel.
+        limit: Limit number of conferences to process (for testing).
     """
     if conference_name and all_conferences:
         print("Error: Specify either --conference-name or --all-conferences, not both.")
         return
 
-    if not conference_name and not all_conferences:
+    if not conference_name and not all_conferences and not limit:
         # Default to processing all conferences
         all_conferences = True
 
@@ -348,26 +550,51 @@ def main(
         result = process_single_conference.remote(conference_name)
         print(f"\nResult: {result}")
 
+    elif limit:
+        # Process limited number of conferences (for testing)
+        local_conferences_dir = Path(__file__).parent.parent / CONFERENCES_DIR
+        if local_conferences_dir.exists():
+            conferences = sorted([f.stem for f in local_conferences_dir.glob("*.yml")])[:limit]
+        else:
+            print("Error: Cannot find local conferences directory to determine subset.")
+            return
+        print(f"Processing {len(conferences)} conferences (limited): {conferences}")
+        results = process_conferences_subset.remote(conferences)
+
     elif all_conferences:
-        # Process all conferences sequentially
+        # Process all conferences in parallel
         # Note: We read from local repo here for the count, Modal will read from cloned repo
         local_conferences_dir = Path(__file__).parent.parent / CONFERENCES_DIR
         if local_conferences_dir.exists():
             num_conferences = len(list(local_conferences_dir.glob("*.yml")))
         else:
             num_conferences = "all"
-        print(f"Processing {num_conferences} conferences sequentially...")
+        print(f"Processing {num_conferences} conferences in parallel...")
         results = process_all_conferences.remote()
 
         print(f"\n{'=' * 60}")
         print("Summary:")
         print(f"{'=' * 60}")
 
-        completed = [r for r in results if r.get("status") == "completed"]
+        pr_created = [r for r in results if r.get("status") == "pr_created"]
+        pr_updated = [r for r in results if r.get("status") == "pr_updated"]
+        no_changes = [r for r in results if r.get("status") == "no_changes"]
         errors = [r for r in results if r.get("status") == "error"]
 
-        print(f"Completed: {len(completed)}")
+        print(f"PRs created: {len(pr_created)}")
+        print(f"PRs updated: {len(pr_updated)}")
+        print(f"No changes: {len(no_changes)}")
         print(f"Errors: {len(errors)}")
+
+        if pr_created:
+            print("\nNew PRs:")
+            for r in pr_created:
+                print(f"  - {r['conference']}: {r.get('pr_url', 'N/A')}")
+
+        if pr_updated:
+            print("\nUpdated PRs:")
+            for r in pr_updated:
+                print(f"  - {r['conference']}: {r.get('pr_url', 'N/A')}")
 
         if errors:
             print("\nErrors:")

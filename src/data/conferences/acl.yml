@@ -7,16 +7,20 @@
     - type: paper
       label: Paper submission deadline
       date: '2025-02-15 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: commitment_deadline
       label: ARR commitment deadline
-      date: '2025-04-10 23:59:59'
-      timezone: UTC-12
+      date: '2025-04-20 23:59:59'
+      timezone: AoE
     - type: notification
       label: Author notification date
       date: '2025-05-15 23:59:59'
-      timezone: UTC-12
-  timezone: UTC-12
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2025-05-30 23:59:59'
+      timezone: AoE
+  timezone: AoE
   date: July 27 - August 1, 2025
   start: 2025-07-27
   end: 2025-08-01
@@ -27,31 +31,34 @@
   city: Vienna
   country: Austria
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  note: ARR commitment deadline on April 10th, 2025.
+  note: ARR commitment deadline on April 20th, 2025.
 
 - title: ACL
   year: 2026
   id: acl26
   full_name: Annual Meeting of the Association for Computational Linguistics
   link: https://2026.aclweb.org/
-  deadlines:
-    - type: paper
-      label: Paper submission deadline
-      date: '2026-01-05 23:59:59'
-      timezone: UTC-12
-    - type: commitment_deadline
-      label: ARR commitment deadline
-      date: '2026-03-14 23:59:59'
-      timezone: UTC-12
-    - type: notification
-      label: Author notification date
-      date: '2026-04-04 23:59:59'
-      timezone: UTC-12
-  timezone: UTC-12
   date: July 2 - 7, 2026
   start: 2026-07-02
   end: 2026-07-07
   venue: Grand Hyatt Manchester San Diego, 1 Market Place, San Diego, CA 92101
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-01-05 23:59:59'
+      timezone: AoE
+    - type: commitment_deadline
+      label: ARR commitment deadline
+      date: '2026-03-14 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification date
+      date: '2026-04-04 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-04-19 23:59:59'
+      timezone: AoE
   era_rating: a
   tags:
   - natural-language-processing

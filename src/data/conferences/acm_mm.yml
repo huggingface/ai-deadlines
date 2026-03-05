@@ -33,3 +33,21 @@
   - machine-learning
   - human-computer-interaction
   era_rating: a
+- title: ACM MM
+  year: 2026
+  id: acm26
+  full_name: ACM Multimedia
+  link: https://2026.acmmm.org/
+  deadlines: []
+  timezone: AoE
+  city: Rio de Janeiro
+  country: Brazil
+  date: November 10-14, 2026
+  start: '2026-11-10'
+  end: '2026-11-14'
+  note: Deadlines not yet announced. Check the <a href='https://2026.acmmm.org/'>official website</a> for updates.
+  tags:
+  - computer-vision
+  - machine-learning
+  - human-computer-interaction
+  era_rating: a
