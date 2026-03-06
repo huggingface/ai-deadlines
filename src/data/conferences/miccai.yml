@@ -3,10 +3,15 @@
   id: miccai26
   full_name: International Conference on Medical Image Computing and Computer-Assisted Intervention
   link: https://conferences.miccai.org/2026/
-  deadline: '2026-02-26 23:59:59'
-  timezone: UTC-08
   date: October 4-8, 2026
+  start: 2026-10-04
+  end: 2026-10-08
+  city: Abu Dhabi
+  country: UAE
+  venue: ADNEC Centre Abu Dhabi
   era_rating: a
+  rankings: 'CCF: A, CORE: A*, THCPL: A'
+  hindex: 98
   tags:
   - computer-vision
   deadlines:
@@ -24,7 +29,7 @@
     timezone: UTC-08
   - type: rebuttal_start
     label: Rebuttal Period Starts
-    date: '2026-05-07 23:59:59'
+    date: '2026-05-08 23:59:59'
     timezone: UTC-08
   - type: rebuttal_end
     label: Rebuttal Period Ends
@@ -32,14 +37,13 @@
     timezone: UTC-08
   - type: notification
     label: Final Decisions
+    date: '2026-06-12 23:59:59'
+    timezone: UTC-08
+  - type: camera_ready
+    label: Camera-Ready (Early Accepted Papers)
+    date: '2026-05-25 23:59:59'
+    timezone: UTC-08
+  - type: camera_ready
+    label: Camera-Ready (All Other Papers)
     date: '2026-06-26 23:59:59'
     timezone: UTC-08
-  city: Abu Dhabi
-  country: UAE
-  abstract_deadline: '2026-02-12 23:59:59'
-  rankings: 'CCF: A, CORE: A*, THCPL: A'
-  venue: ADNEC Centre Abu Dhabi
-  hindex: 98
-  rebuttal_period_end: '2026-05-14 23:59:59'
-  final_decision_date: '2026-06-26 23:59:59'
-  review_release_date: '2026-05-07 23:59:59'

@@ -34,13 +34,13 @@
   link: https://rl-conference.cc/
   deadlines:
     - type: abstract
-      label: Abstract registration
-      date: '2026-03-02 12:00:00'
-      timezone: UTC
+      label: Abstract submission
+      date: '2026-03-01 23:59:59'
+      timezone: AoE
     - type: paper
       label: Paper submission
-      date: '2026-03-06 12:00:00'
-      timezone: UTC
+      date: '2026-03-05 23:59:59'
+      timezone: AoE
     - type: notification
       label: Author notification
       date: '2026-05-08 23:59:59'
@@ -48,10 +48,10 @@
   timezone: America/Montreal
   city: Montreal
   country: Canada
-  date: August 16 - 19, 2026
-  start: 2026-08-16
-  end: 2026-08-19
+  date: August 15 - 18, 2026
+  start: 2026-08-15
+  end: 2026-08-18
   tags:
   - machine-learning
   - reinforcement-learning
-  note: Mandatory abstract registration on Mar 2, 2026.
+  note: Mandatory abstract deadline on Mar 1, 2026.

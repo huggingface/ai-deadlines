@@ -8,31 +8,31 @@
   - type: abstract
     label: Abstract Submission (Round 1)
     date: '2025-09-25 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: submission
     label: Paper Submission (Round 1) - Extended
     date: '2025-10-06 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Notifications to authors (Round 1)
     date: '2025-12-11 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: abstract
     label: Abstract Submission (Round 2)
     date: '2026-01-09 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: submission
     label: Paper Submission (Round 2)
     date: '2026-01-15 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Notifications to authors (Round 2)
     date: '2026-04-02 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: camera_ready
     label: Camera-ready (for all accepted papers)
     date: '2026-04-21 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   timezone: GMT+02
   date: May 25-29, 2026
   city: Kyoto

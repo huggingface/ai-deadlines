@@ -28,48 +28,48 @@
   - type: registration
     label: Round 1 Paper Registration
     date: '2025-07-11 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: submission
     label: Round 1 Paper Submission
     date: '2025-07-18 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: supplementary
     label: Round 1 Supplementary Material Submission
     date: '2025-07-18 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: review_release
     label: Round 1 Reviews Released
     date: '2025-09-05 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_and_revision
     label: Round 1 Rebuttal and Revision Submission
     date: '2025-09-19 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Round 1 Final Decisions Released to Authors
     date: '2025-11-06 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: registration
     label: Round 2 New Paper Registration
     date: '2025-09-12 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: submission
     label: Round 2 Paper Submission
     date: '2025-09-19 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: supplementary
     label: Round 2 Supplementary Material Submission
     date: '2025-09-19 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Round 2 Reviews and Final Decisions to Authors
     date: '2025-11-06 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: camera_ready
     label: Camera-Ready Deadline
     date: '2026-01-10 23:59:59'
-    timezone: UTC-12
-  timezone: UTC-12
+    timezone: AoE
+  timezone: AoE
   date: March 6 - March 10, 2026
   start: 2026-03-06
   end: 2026-03-10
