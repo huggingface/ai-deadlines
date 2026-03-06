@@ -24,13 +24,17 @@ const Index = () => {
   const [showPastConferences, setShowPastConferences] = useState(false);
   const [showTopTierOnly, setShowTopTierOnly] = useState(true);
 
-  // Dynamically generate category buttons from conference data
   const categoryButtons = useMemo(() => {
     if (!Array.isArray(conferencesData)) return [];
     
-    // Count occurrences of each tag
+    const relevantConferences = conferencesData.filter((conf: Conference) => {
+      if (!showPastConferences && !hasUpcomingDeadlines(conf)) return false;
+      if (showTopTierOnly && conf.era_rating !== 'a') return false;
+      return true;
+    });
+    
     const tagCounts = new Map<string, number>();
-    conferencesData.forEach((conf: Conference) => {
+    relevantConferences.forEach((conf: Conference) => {
       if (Array.isArray(conf.tags)) {
         conf.tags.forEach(tag => {
           tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
@@ -38,7 +42,6 @@ const Index = () => {
       }
     });
     
-    // Sort by frequency (most common first) and convert to button format
     return Array.from(tagCounts.entries())
       .sort((a, b) => b[1] - a[1])
       .map(([tag]) => ({
@@ -47,7 +50,7 @@ const Index = () => {
           word.charAt(0).toUpperCase() + word.slice(1)
         ).join(" ")
       }));
-  }, []);
+  }, [showPastConferences, showTopTierOnly]);
 
   const filteredConferences = useMemo(() => {
     if (!Array.isArray(conferencesData)) {

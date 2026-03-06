@@ -12,7 +12,6 @@
       label: Full Paper Due
       date: '2024-09-12 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Yokohama
   country: Japan
   venue: Pacifico Yokohama Conference Center, Yokohama, Japan
@@ -50,7 +49,6 @@
       label: Decisions Notification
       date: '2026-01-15 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Barcelona
   country: Spain
   venue: Centre de Convencions Internacional de Barcelona, Barcelona, Spain

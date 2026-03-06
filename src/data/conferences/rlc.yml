@@ -16,7 +16,6 @@
       label: Author notification
       date: '2025-05-09 23:59:59'
       timezone: AoE
-  timezone: America/Edmonton
   city: Edmonton
   country: Canada
   venue: Centennial Centre for Interdisciplinary Science (CCIS), University of Alberta
@@ -45,7 +44,6 @@
       label: Author notification
       date: '2026-05-08 23:59:59'
       timezone: AoE
-  timezone: America/Montreal
   city: Montreal
   country: Canada
   date: August 15 - 18, 2026

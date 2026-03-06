@@ -13,7 +13,6 @@
     label: Paper Submission
     date: '2024-10-01 23:59:59'
     timezone: AoE
-  timezone: AoE
   city: Singapore
   country: Singapore
   venue: Singapore EXPO - 1 Expo Drive, Singapore
@@ -57,7 +56,6 @@
     label: Notification
     date: '2026-01-25 23:59:59'
     timezone: AoE
-  timezone: AoE
   city: Rio de Janeiro
   country: Brazil
   venue: Riocentro Convention and Event Center

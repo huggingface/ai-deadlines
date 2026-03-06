@@ -19,7 +19,6 @@
   date: August 16-22, 2025
   start: 2025-08-16
   end: 2025-08-22
-  timezone: America/Montreal
   city: Montreal
   country: Canada
   venue: Palais des congrès, Montreal
@@ -63,7 +62,6 @@
   date: August 15-21, 2026
   start: 2026-08-15
   end: 2026-08-21
-  timezone: Europe/Berlin
   city: Bremen
   country: Germany
   venue: Bremen Conference Centre, Bremen

@@ -20,7 +20,6 @@
       label: Camera-ready deadline
       date: '2024-12-19 23:59:59'
       timezone: AoE
-  timezone: AoE
   date: February 25 - March 4, 2025
   start: 2025-02-25
   end: 2025-03-04
@@ -74,7 +73,6 @@
       label: Camera-ready deadline
       date: '2025-11-13 23:59:59'
       timezone: AoE
-  timezone: AoE
   date: January 20 - 27, 2026
   start: 2026-01-20
   end: 2026-01-27

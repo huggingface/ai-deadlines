@@ -12,7 +12,6 @@
     label: Full paper submission deadline
     date: '2024-10-10 23:59:59'
     timezone: AoE
-  timezone: AoE
   date: May 3-5, 2025
   tags:
   - machine-learning
@@ -52,7 +51,6 @@
     label: Camera-ready deadline
     date: '2026-03-31 23:59:59'
     timezone: AoE
-  timezone: AoE
   date: May 2-5, 2026
   tags:
   - machine-learning

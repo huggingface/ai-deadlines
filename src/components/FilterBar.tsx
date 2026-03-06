@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import conferencesData from "@/utils/conferenceLoader";
+import { hasUpcomingDeadlines } from "@/utils/deadlineUtils";
 import { X, ChevronRight, Filter } from "lucide-react";
 import { getAllCountries } from "@/utils/countryExtractor";
 import {
@@ -27,11 +28,13 @@ const FilterBar = ({
   const uniqueTags = useMemo(() => {
     const tags = new Set<string>();
     if (Array.isArray(conferencesData)) {
-      conferencesData.forEach(conf => {
-        if (Array.isArray(conf.tags)) {
-          conf.tags.forEach(tag => tags.add(tag));
-        }
-      });
+      conferencesData
+        .filter(conf => hasUpcomingDeadlines(conf))
+        .forEach(conf => {
+          if (Array.isArray(conf.tags)) {
+            conf.tags.forEach(tag => tags.add(tag));
+          }
+        });
     }
     return Array.from(tags).map(tag => ({
       id: tag,

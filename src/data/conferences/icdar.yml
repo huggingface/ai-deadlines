@@ -24,7 +24,6 @@
       label: Camera-ready deadline
       date: '2025-06-27 23:59:59'
       timezone: PST
-  timezone: UTC+0
   date: September 17-21, 2025
   start: 2025-09-17
   end: 2025-09-21
@@ -63,7 +62,6 @@
       label: Camera-ready deadline
       date: '2026-06-15 23:59:59'
       timezone: AoE
-  timezone: UTC+0
   date: August 30 - September 4, 2026
   start: 2026-08-30
   end: 2026-09-04

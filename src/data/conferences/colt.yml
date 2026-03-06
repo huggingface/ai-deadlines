@@ -8,7 +8,6 @@
       label: Paper submission deadline
       date: '2025-02-06 16:59:59'
       timezone: UTC-5
-  timezone: UTC-5
   date: June 30 - July 4, 2025
   tags:
   - machine-learning
@@ -42,7 +41,6 @@
       label: Author notification
       date: '2026-05-04 00:00:00'
       timezone: AoE
-  timezone: AoE
   date: June 29 - July 3, 2026
   tags:
   - machine-learning

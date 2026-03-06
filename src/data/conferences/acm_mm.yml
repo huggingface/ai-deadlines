@@ -20,7 +20,6 @@
       label: Rebuttal period end
       date: '2025-06-19 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Dublin
   country: Ireland
   date: October 27-31, 2025
@@ -63,7 +62,6 @@
       label: Camera-ready submission
       date: '2026-08-06 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Rio de Janeiro
   country: Brazil
   date: November 10-14, 2026

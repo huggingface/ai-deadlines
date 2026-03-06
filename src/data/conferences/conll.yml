@@ -16,7 +16,6 @@
     label: Camera-ready papers due
     date: '2025-06-17 23:59:59'
     timezone: AoE
-  timezone: AoE
   city: Vienna
   country: Austria
   date: July 31 - August 1, 2025
@@ -46,7 +45,6 @@
     label: Camera-ready papers due
     date: '2026-05-12 23:59:59'
     timezone: AoE
-  timezone: AoE
   city: San Diego
   country: USA
   date: July 3-4, 2026

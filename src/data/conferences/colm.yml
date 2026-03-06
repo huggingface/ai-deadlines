@@ -12,7 +12,6 @@
     label: Paper Submission
     date: '2025-03-28 23:59:59'
     timezone: AoE
-  timezone: AoE
   date: October 7-10, 2025
   era_rating: a
   tags:
@@ -48,7 +47,6 @@
     label: Decision Notification
     date: '2026-07-08 23:59:59'
     timezone: AoE
-  timezone: AoE
   date: October 6-9, 2026
   start: 2026-10-06
   end: 2026-10-09
