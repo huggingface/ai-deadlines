@@ -173,7 +173,9 @@ def setup_git_and_clone() -> None:
 
 
 @app.function(timeout=600)
-def process_single_conference(conference_name: str) -> dict:
+def process_single_conference(
+    conference_name: str, num_retrieval_agents: int = 3
+) -> dict:
     """Process a single conference using the Claude Agent SDK.
 
     The agent handles all git operations (branch creation, commits, PRs) via
@@ -182,6 +184,7 @@ def process_single_conference(conference_name: str) -> dict:
 
     Args:
         conference_name: The name of the conference to process.
+        num_retrieval_agents: Number of retrieval agents to run (default 3).
 
     Returns:
         A dictionary containing the processing result.
@@ -226,8 +229,10 @@ def process_single_conference(conference_name: str) -> dict:
 
     async def _process():
         try:
-            # Agent returns structured output with created_pr and pr_url
-            agent_result = await find_conference_deadlines(conference_name)
+            agent_result = await find_conference_deadlines(
+                conference_name,
+                num_retrieval_agents=num_retrieval_agents,
+            )
 
             # Map agent result to our reporting format
             return {
@@ -303,7 +308,6 @@ def process_all_conferences() -> list[dict]:
     print(f"Processing {len(conferences)} conferences in parallel")
     print(f"{'=' * 60}")
 
-    # Process all conferences in parallel using Modal's .map()
     results = list(process_single_conference.map(conferences))
 
     print(f"\n{'=' * 60}")
@@ -357,7 +361,6 @@ def process_conferences_subset(conference_names: list[str]) -> list[dict]:
     print(f"Processing {len(conference_names)} conferences in parallel: {conference_names}")
     print(f"{'=' * 60}")
 
-    # Process conferences in parallel using Modal's .map()
     results = list(process_single_conference.map(conference_names))
 
     print(f"\n{'=' * 60}")
@@ -372,6 +375,7 @@ def main(
     conference_name: str = None,
     all_conferences: bool = False,
     limit: int = None,
+    num_retrieval_agents: int = 3,
 ):
     """CLI entrypoint for the Modal agent.
 
@@ -389,9 +393,10 @@ def main(
         all_conferences = True
 
     if conference_name:
-        # Process single conference (for testing)
         print(f"Processing single conference: {conference_name}")
-        result = process_single_conference.remote(conference_name)
+        result = process_single_conference.remote(
+            conference_name, num_retrieval_agents=num_retrieval_agents
+        )
         print(f"\nResult: {result}")
 
     elif limit:

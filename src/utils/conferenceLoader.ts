@@ -1,15 +1,23 @@
 import { Conference } from '@/types/conference';
+import { hasUpcomingDeadlines } from './deadlineUtils';
 
-// Dynamically import all YAML files from the conferences directory
 const conferenceModules = import.meta.glob('@/data/conferences/*.yml', { eager: true });
 
-// Extract and combine all conference data into a single array
 const allConferencesData: Conference[] = [];
 
 for (const path in conferenceModules) {
   const module = conferenceModules[path] as { default: Conference[] };
   if (module.default && Array.isArray(module.default)) {
     allConferencesData.push(...module.default);
+  }
+}
+
+for (const conf of allConferencesData) {
+  if (hasUpcomingDeadlines(conf) && (!Array.isArray(conf.tags) || conf.tags.length === 0)) {
+    console.error(
+      `Conference "${conf.title}" (${conf.year}) has an upcoming deadline but no tags. ` +
+      `Add at least one tag to its YAML file so it appears in filtered views.`
+    );
   }
 }
 

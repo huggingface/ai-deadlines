@@ -4,25 +4,25 @@ overview: "Refactor `agents/agent.py` from a single monolithic agent into a 3-st
 todos:
   - id: prompts
     content: "Create/rename prompt files: retrieval_system_prompt.md, retrieval_user_prompt.md, aggregation_user_prompt.md, pr_system_prompt.md, pr_user_prompt.md"
-    status: pending
+    status: completed
   - id: schemas
     content: Define RETRIEVAL_RESULT_SCHEMA and AGGREGATION_RESULT_SCHEMA in agent.py
-    status: pending
+    status: completed
   - id: helper
     content: Extract shared _run_agent() helper that wraps a single query() call with message loop, logging, and structured output extraction
-    status: pending
+    status: completed
   - id: retrieval
     content: Implement run_retrieval_agent(conference_name) and run_retrieval_agents(conference_name, n=3)
-    status: pending
+    status: completed
   - id: aggregation
     content: Implement run_aggregation_agent(conference_name, retrieval_results) -> dict for majority vote
-    status: pending
+    status: completed
   - id: pr-agent
     content: Implement run_pr_agent(conference_name, verified_yaml, changes_summary) -> dict
-    status: pending
+    status: completed
   - id: orchestrator
     content: Refactor find_conference_deadlines() to orchestrate the 3 stages with sequential retrieval, aggregation, and short-circuit logic
-    status: pending
+    status: completed
 isProject: false
 ---
 
