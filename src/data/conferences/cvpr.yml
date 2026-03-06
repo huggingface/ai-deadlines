@@ -40,31 +40,31 @@
   - type: abstract
     label: Abstract Submission
     date: '2025-11-07 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: paper
     label: Paper Submission
     date: '2025-11-13 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: supplementary
     label: Supplementary Materials
     date: '2025-11-20 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: review_release
     label: Reviews Released
     date: '2026-01-22 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_start
     label: Rebuttal Period Starts
     date: '2026-01-22 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: rebuttal_end
     label: Rebuttal Period Ends
     date: '2026-01-29 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   - type: notification
     label: Final Decisions
     date: '2026-02-20 23:59:59'
-    timezone: UTC-12
+    timezone: AoE
   city: Denver
   country: USA
   abstract_deadline: '2025-11-07 23:59:59'
