@@ -8,7 +8,6 @@
     label: Abstract and Full Paper Submission
     date: '2025-03-29 23:59:59'
     timezone: UTC-12
-  timezone: UTC-12
   city: Kaunas
   country: Lithuania
   venue: Kaunas, Lithuania
@@ -44,7 +43,6 @@
     label: Camera-ready Paper Upload and Author Registration
     date: '2026-06-29 23:59:59'
     timezone: UTC-12
-  timezone: UTC-12
   city: Padua
   country: Italy
   venue: University of Padua, Padua, Italy

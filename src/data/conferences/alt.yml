@@ -34,7 +34,6 @@
       label: Author feedback period end
       date: '2025-11-23 23:59:59'
       timezone: AoE
-  timezone: America/Toronto
   date: February 23-26, 2026
   start: 2026-02-23
   end: 2026-02-26

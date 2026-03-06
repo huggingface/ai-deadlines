@@ -32,7 +32,6 @@
       label: Early registration deadline
       date: '2025-09-03 23:59:59'
       timezone: UTC-12
-  timezone: UTC-12
   date: October 25-30, 2025
   tags:
   - machine-learning
@@ -76,7 +75,6 @@
       label: Camera-ready deadline
       date: '2026-05-15 23:59:59'
       timezone: UTC-12
-  timezone: UTC-12
   date: August 15-21, 2026
   start: 2026-08-15
   end: 2026-08-21

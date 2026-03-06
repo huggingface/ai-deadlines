@@ -8,7 +8,6 @@
       label: Paper submission deadline
       date: '2024-11-25 23:59:59'
       timezone: AoE
-  timezone: AoE
   date: March 24-27, 2025
   start: '2025-03-24'
   end: '2025-03-27'
@@ -36,7 +35,6 @@
       label: Rising Stars Award applications
       date: '2025-12-15 23:59:59'
       timezone: AoE
-  timezone: AoE
   date: March 23-26, 2026
   start: '2026-03-23'
   end: '2026-03-26'

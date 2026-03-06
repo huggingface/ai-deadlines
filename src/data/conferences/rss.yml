@@ -12,7 +12,6 @@
     label: Paper Submission
     date: '2025-01-24 23:59:59'
     timezone: AoE
-  timezone: AoE
   date: June 21-25, 2025
   start: 2025-06-21
   end: 2025-06-25
@@ -60,7 +59,6 @@
     label: Final Decisions
     date: '2026-04-27 23:59:59'
     timezone: UTC-12
-  timezone: UTC-12
   date: July 13-17, 2026
   start: 2026-07-13
   end: 2026-07-17

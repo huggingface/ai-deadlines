@@ -20,7 +20,6 @@
       label: Rebuttal period end
       date: '2025-06-19 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Dublin
   country: Ireland
   date: October 27-31, 2025
@@ -39,7 +38,6 @@
   full_name: ACM Multimedia
   link: https://2026.acmmm.org/
   deadlines: []
-  timezone: AoE
   city: Rio de Janeiro
   country: Brazil
   date: November 10-14, 2026

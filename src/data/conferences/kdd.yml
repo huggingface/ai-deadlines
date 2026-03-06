@@ -24,7 +24,6 @@
       label: Notification
       date: '2025-05-16 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Toronto
   country: Canada
   venue: Toronto Convention Centre
@@ -62,7 +61,6 @@
       label: Notification
       date: '2026-05-16 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Jeju
   country: Korea
   venue: International Convention Center Jeju

@@ -21,7 +21,6 @@
       label: Camera-ready deadline
       date: '2025-08-27 23:59:00'
       timezone: AoE
-  timezone: AoE
   city: Seoul
   country: South Korea
   venue: COEX, Seoul, South Korea
@@ -41,7 +40,6 @@
   full_name: Conference on Information and Knowledge Management
   link: https://cikm2026.org/
   deadlines: []
-  timezone: AoE
   city: Rome
   country: Italy
   date: October 26-30, 2026

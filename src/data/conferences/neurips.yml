@@ -24,7 +24,6 @@
       label: Camera-ready deadline
       date: '2025-10-23 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: San Diego
   country: USA
   venue: San Diego Convention Center, San Diego, USA
@@ -48,7 +47,6 @@
       label: Paper submission deadline
       date: '2026-05-06 23:59:59'
       timezone: AoE
-  timezone: AoE
   date: December 6-12, 2026
   start: '2026-12-06'
   end: '2026-12-12'

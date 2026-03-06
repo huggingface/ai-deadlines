@@ -12,7 +12,6 @@
     label: Paper submission
     date: '2024-10-16 23:59:59'
     timezone: UTC-12
-  timezone: UTC-12
   date: May 19-23, 2025
   city: Detroit
   country: United States
@@ -55,7 +54,6 @@
     label: Camera-ready deadline
     date: '2026-02-11 23:59:59'
     timezone: UTC-12
-  timezone: UTC-12
   date: May 25-29, 2026
   city: Paphos
   country: Cyprus

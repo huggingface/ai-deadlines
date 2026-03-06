@@ -20,7 +20,6 @@
       label: Camera-ready deadline
       date: '2025-05-30 23:59:59'
       timezone: UTC-12
-  timezone: UTC-12
   date: July 27 - August 1, 2025
   start: 2025-07-27
   end: 2025-08-01
@@ -55,7 +54,6 @@
       label: Camera-ready deadline
       date: '2026-04-19 23:59:59'
       timezone: UTC-12
-  timezone: UTC-12
   date: July 2-7, 2026
   start: 2026-07-02
   end: 2026-07-07

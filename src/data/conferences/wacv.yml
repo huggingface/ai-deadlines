@@ -8,7 +8,6 @@
     label: Paper Submission Deadline
     date: '2024-07-15 23:59:59'
     timezone: UTC-7
-  timezone: UTC-7
   date: February 28 - March 4, 2025
   start: 2025-02-28
   end: 2025-03-04
@@ -69,7 +68,6 @@
     label: Camera-Ready Deadline
     date: '2026-01-10 23:59:59'
     timezone: UTC-12
-  timezone: UTC-12
   date: March 6 - March 10, 2026
   start: 2026-03-06
   end: 2026-03-10

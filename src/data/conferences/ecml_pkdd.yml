@@ -13,7 +13,6 @@
       label: Paper submission
       date: '2025-03-14 23:59:59'
       timezone: AoE
-  timezone: AoE
   city: Porto
   country: Portugal
   venue: Alfândega Porto Congress Centre
@@ -29,7 +28,6 @@
   full_name: European Conference on Machine Learning and Principles and Practice of
     Knowledge Discovery in Databases
   link: https://ecmlpkdd.org/2026/
-  timezone: AoE
   city: Naples
   country: Italy
   date: September 7 - 11, 2026
