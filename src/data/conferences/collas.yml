@@ -40,9 +40,10 @@
   timezone: UTC
   city: Bucharest
   country: Romania
-  date: September 14-18, 2026
+  venue: National University of Science and Technology Politehnica Bucharest
+  date: September 14-17, 2026
   start: 2026-09-14
-  end: 2026-09-18
+  end: 2026-09-17
   tags:
   - machine-learning
   - lifelong-learning
