@@ -15,6 +15,7 @@
   venue: COEX Convention & Exhibition Center, Seoul, South Korea
   start: '2025-09-27'
   end: '2025-09-30'
+  era_rating: a
 
 - title: CoRL
   year: 2026
@@ -41,3 +42,4 @@
   start: '2026-11-09'
   end: '2026-11-12'
   note: Workshops on Nov 9, main conference Nov 10-12
+  era_rating: a
