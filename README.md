@@ -37,7 +37,7 @@ To keep things minimal, we mainly focus on top-tier conferences in AI.
 To add or update a deadline:
 - Fork the repository
 - Add a new block to the appropriate conference file in [src/data/conferences/](src/data/conferences/). Do not update an existing block of a previous time the conference took place but rather add a new block at the bottom of the file
-- Make sure it has the `title`, `year`, `id`, `link`, `deadlines`, `timezone`, `date`, `city`, `country`, `tags` attributes
+- Make sure it has the `title`, `year`, `id`, `link`, `deadlines`, `date`, `city`, `country`, `tags` attributes
     + For deadlines that use "Anywhere on Earth" timing, always use `AoE` (not `UTC-12`). Other supported formats: IANA timezone names (e.g. `Asia/Seoul`), `UTC±X`, `GMT±X`. See available IANA timezone strings [here](https://momentjs.com/timezone/).
 - Optionally add a `venue`, `note` and `hindex` (this refers to the h5-index from [here](https://scholar.google.com/citations?view_op=top_venues&vq=eng)) which indicates the importance of a conference
 
