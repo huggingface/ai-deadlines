@@ -77,3 +77,17 @@ To deploy the agent so it runs automatically every week (Sunday at midnight UTC)
 ```bash
 uv run modal deploy agents/modal_agent.py
 ```
+
+The structure looks as follows:
+
+```mermaid
+flowchart LR
+    A1["Retrieval Agent 1"] --> V["Aggregation Agent\n(majority vote)"]
+    A2["Retrieval Agent 2"] --> V
+    A3["Retrieval Agent 3"] --> V
+    V -->|"selected result"| B["Verification Agent"]
+    B -->|"structured output: reasoning + verdict"| C{verdict?}
+    C -->|true| D["PR Agent"]
+    C -->|false| E["Return: no PR"]
+    D -->|"structured output: PR result"| F["Return result"]
+```
