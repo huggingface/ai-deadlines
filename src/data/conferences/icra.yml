@@ -42,9 +42,25 @@
   city: Vienna
   country: Austria
   venue: Messe Wien Exhibition & Congress Center, Vienna, Austria
-  date: June 1 - June 5, 2026
-  start: 2026-06-01
-  end: 2026-06-05
+  date: June 1 - 5, 2026
+  start: '2026-06-01'
+  end: '2026-06-05'
+  hindex: 129
+  tags:
+  - robotics
+  - computer-vision
+- title: ICRA
+  year: 2027
+  id: icra27
+  full_name: IEEE International Conference on Robotics and Automation
+  link: https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/
+  era_rating: a
+  city: Seoul
+  country: South Korea
+  venue: COEX, Seoul, South Korea
+  date: May 24 - 28, 2027
+  start: '2027-05-24'
+  end: '2027-05-28'
   hindex: 129
   tags:
   - robotics
