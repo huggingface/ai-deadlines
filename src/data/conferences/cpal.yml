@@ -23,17 +23,49 @@
   full_name: The Conference on Parsimony and Learning
   link: https://cpal.cc/
   deadlines:
-    - type: submission
-      label: Paper submission deadline
-      date: '2025-12-12 23:59:59'
-      timezone: AoE
     - type: abstract
       label: Tutorial proposals deadline
       date: '2025-12-10 23:59:59'
       timezone: AoE
     - type: submission
+      label: Paper submission deadline (Proceedings Track)
+      date: '2025-12-12 23:59:59'
+      timezone: AoE
+    - type: submission
       label: Rising Stars Award applications
       date: '2025-12-15 23:59:59'
+      timezone: AoE
+    - type: review_release
+      label: Review completion
+      date: '2026-01-05 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Rebuttal period start
+      date: '2026-01-08 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Rebuttal period end
+      date: '2026-01-14 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Tutorial decisions released
+      date: '2026-01-14 23:59:59'
+      timezone: AoE
+    - type: submission
+      label: Paper submission deadline (Recent Spotlight Track)
+      date: '2026-01-15 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Final decisions notification
+      date: '2026-01-20 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Rising Stars Award decisions
+      date: '2026-01-21 23:59:59'
+      timezone: AoE
+    - type: registration
+      label: Hotel registration deadline
+      date: '2026-02-16 23:59:59'
       timezone: AoE
   date: March 23-26, 2026
   start: '2026-03-23'
