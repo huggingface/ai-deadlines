@@ -31,15 +31,15 @@
     - type: abstract
       label: Abstract deadline
       date: '2025-09-25 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: paper
       label: Paper submission deadline
       date: '2025-10-02 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
     - type: notification
       label: Notification of acceptance
       date: '2025-12-16 23:59:59'
-      timezone: UTC-12
+      timezone: AoE
   city: Delft
   country: The Netherlands
   venue: Lijm & Cultuur, Delft, The Netherlands
@@ -49,4 +49,20 @@
   tags:
   - data-mining
   note: More info <a href='https://ecir2026.eu/'>here</a>.
+  era_rating: b
+- title: ECIR
+  year: 2027
+  id: ecir27
+  full_name: European Conference on Information Retrieval
+  link: https://www.ecir2027.co.uk/
+  deadlines: []
+  city: Southampton
+  country: United Kingdom
+  venue: University of Southampton, Southampton, United Kingdom
+  date: March 21 - March 25, 2027
+  start: '2027-03-21'
+  end: '2027-03-25'
+  tags:
+  - data-mining
+  note: More info <a href='https://www.ecir2027.co.uk/'>here</a>. Submission deadlines TBA.
   era_rating: b
