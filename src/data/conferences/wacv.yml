@@ -38,16 +38,16 @@
     timezone: AoE
   - type: review_release
     label: Round 1 Reviews Released
-    date: '2025-09-05 23:59:59'
-    timezone: AoE
+    date: '2025-09-05 06:39:00'
+    timezone: UTC
   - type: rebuttal_and_revision
     label: Round 1 Rebuttal and Revision Submission
     date: '2025-09-19 23:59:59'
     timezone: AoE
   - type: notification
     label: Round 1 Final Decisions Released to Authors
-    date: '2025-11-06 23:59:59'
-    timezone: AoE
+    date: '2025-11-06 07:59:00'
+    timezone: UTC
   - type: registration
     label: Round 2 New Paper Registration
     date: '2025-09-12 23:59:59'
@@ -62,8 +62,8 @@
     timezone: AoE
   - type: notification
     label: Round 2 Reviews and Final Decisions to Authors
-    date: '2025-11-06 23:59:59'
-    timezone: AoE
+    date: '2025-11-06 07:59:00'
+    timezone: UTC
   - type: camera_ready
     label: Camera-Ready Deadline
     date: '2026-01-10 23:59:59'
