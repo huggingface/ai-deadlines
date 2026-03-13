@@ -14,7 +14,7 @@
     timezone: AoE
   - type: camera_ready
     label: Camera Ready Due
-    date: '2026-03-06 23:59:59'
+    date: '2026-03-15 23:59:59'
     timezone: AoE
   date: May 11-16, 2026
   city: Palma, Mallorca
