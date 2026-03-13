@@ -12,20 +12,32 @@
     label: Paper Submission
     date: '2026-01-13 23:59:59'
     timezone: AoE
-  - type: rebuttal_start
-    label: Rebuttal Submission
+  - type: review_release
+    label: Preliminary Reviews Released
+    date: '2026-02-20 23:59:59'
+    timezone: AoE
+  - type: rebuttal_end
+    label: Rebuttal Period Closes
     date: '2026-02-24 23:59:59'
     timezone: AoE
   - type: notification
     label: Initial Notification
     date: '2026-03-02 23:59:59'
     timezone: AoE
+  - type: submission
+    label: Revision Submission
+    date: '2026-03-25 23:59:59'
+    timezone: AoE
   - type: notification
     label: Final Notification
     date: '2026-04-08 23:59:59'
     timezone: AoE
   - type: camera_ready
-    label: Camera-Ready Deadline
+    label: Camera-Ready (Round 1)
+    date: '2026-04-17 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera-Ready (Revised Papers)
     date: '2026-05-11 23:59:59'
     timezone: AoE
   date: June 25 - June 28, 2026
