@@ -28,42 +28,6 @@
   link: https://s2026.siggraph.org/
   deadlines:
     - type: submission
-      label: Art Papers deadline
-      date: '2026-01-13 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Student Volunteers Team Leader Applications deadline
-      date: '2026-01-13 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Technical Papers submission form deadline
-      date: '2026-01-15 22:00:00'
-      timezone: UTC
-    - type: paper
-      label: Technical Papers deadline
-      date: '2026-01-22 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Upload and conflicts deadline
-      date: '2026-01-23 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Art Gallery deadline
-      date: '2026-01-27 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Technical Workshops deadline
-      date: '2026-01-27 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Talks, Production Sessions, Panels, Courses, Educator's Forum, Spatial Storytelling, Immersive Pavilion, Emerging Technologies deadline
-      date: '2026-02-10 22:00:00'
-      timezone: UTC
-    - type: submission
-      label: Student Volunteers Applications deadline
-      date: '2026-02-10 22:00:00'
-      timezone: UTC
-    - type: submission
       label: Computer Animation Festival deadline
       date: '2026-03-17 22:00:00'
       timezone: UTC
@@ -93,6 +57,21 @@
   date: July 19-23, 2026
   start: '2026-07-19'
   end: '2026-07-23'
+  era_rating: a
+  tags:
+  - computer-graphics
+- title: SIGGRAPH
+  year: 2027
+  id: siggraph27
+  full_name: Conference on Computer Graphics and Interactive Techniques
+  link: https://www.siggraph.org/
+  deadlines: []
+  city: Anaheim
+  country: United States
+  venue: Anaheim Convention Center, Anaheim, California
+  date: August 8-12, 2027
+  start: '2027-08-08'
+  end: '2027-08-12'
   era_rating: a
   tags:
   - computer-graphics
