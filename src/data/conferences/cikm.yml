@@ -38,13 +38,26 @@
   year: 2026
   id: cikm26
   full_name: Conference on Information and Knowledge Management
-  link: https://cikm2026.org/
-  deadlines: []
+  note: All deadlines are at 11:59pm AoE
+  link: https://cikm2026.diag.uniroma1.it/
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2026-05-18 23:59:00'
+      timezone: AoE
+    - type: paper
+      label: Full paper submission deadline
+      date: '2026-05-25 23:59:00'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2026-08-06 23:59:00'
+      timezone: AoE
   city: Rome
   country: Italy
-  date: October 26-30, 2026
-  start: 2026-10-26
-  end: 2026-10-30
+  date: November 7-11, 2026
+  start: 2026-11-07
+  end: 2026-11-11
   tags:
   - web-search
   - data-mining
