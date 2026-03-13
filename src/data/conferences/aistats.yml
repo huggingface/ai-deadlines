@@ -43,6 +43,10 @@
     label: Supplementary material deadline
     date: '2025-10-09 23:59:59'
     timezone: AoE
+  - type: rebuttal_start
+    label: Rebuttal period start
+    date: '2025-11-22 00:00:00'
+    timezone: UTC
   - type: notification
     label: Paper decision notifications
     date: '2026-01-22 23:59:59'
