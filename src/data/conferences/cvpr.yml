@@ -29,6 +29,8 @@
   link: https://cvpr.thecvf.com/Conferences/2026/CallForPapers
   deadline: '2025-11-13 23:59:59'
   date: June 3-7, 2026
+  start: 2026-06-03
+  end: 2026-06-07
   era_rating: a
   tags:
   - computer-vision
@@ -69,7 +71,7 @@
   country: USA
   abstract_deadline: '2025-11-07 23:59:59'
   rankings: 'CCF: A, CORE: A*, THCPL: A'
-  venue: Denver Convention Center, Denver, USA
+  venue: Colorado Convention Center, Denver, USA
   hindex: 450
   rebuttal_period_end: '2026-01-29 23:59:59'
   final_decision_date: '2026-02-20 23:59:59'
