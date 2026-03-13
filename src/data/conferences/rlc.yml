@@ -44,6 +44,10 @@
       label: Author notification
       date: '2026-05-08 23:59:59'
       timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-07-18 23:59:59'
+      timezone: AoE
   city: Montreal
   country: Canada
   date: August 15 - 18, 2026
