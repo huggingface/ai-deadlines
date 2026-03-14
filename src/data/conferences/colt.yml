@@ -34,7 +34,7 @@
       date: '2026-04-10 00:00:00'
       timezone: AoE
     - type: rebuttal_end
-      label: Discussion period
+      label: Discussion period ends
       date: '2026-04-20 23:59:59'
       timezone: AoE
     - type: notification
@@ -42,6 +42,8 @@
       date: '2026-05-04 00:00:00'
       timezone: AoE
   date: June 29 - July 3, 2026
+  start: 2026-06-29
+  end: 2026-07-03
   tags:
   - machine-learning
   city: San Diego
