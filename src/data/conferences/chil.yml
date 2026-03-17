@@ -11,15 +11,15 @@
   deadlines:
   - type: paper
     label: Paper Submission
-    date: '2026-02-04 23:59:59'
+    date: '2026-02-05 23:59:59'
     timezone: AoE
   - type: review_release
     label: Reviews Released
     date: '2026-03-10 23:59:59'
     timezone: AoE
   - type: rebuttal_end
-    label: Rebuttal Period Ends
-    date: '2026-03-24 23:59:59'
+    label: Author Rebuttal Deadline
+    date: '2026-03-17 23:59:59'
     timezone: AoE
   - type: notification
     label: Final Decisions
@@ -27,10 +27,6 @@
     timezone: AoE
   city: Seattle
   country: USA
-  abstract_deadline: '2026-02-06 23:59:59'
-  rankings: 'CCF: , CORE: , THCPL: '
-  venue: Seattle Children's Research Institute
+  venue: Seattle Children's Research Institute: B. Wayne Hughes Building
   hindex: 30
-  rebuttal_period_end: '2026-03-24 23:59:59'
-  final_decision_date: '2026-04-09 23:59:59'
-  review_release_date: '2026-03-10 23:59:59'
+  rankings: 'CCF: , CORE: , THCPL: '
