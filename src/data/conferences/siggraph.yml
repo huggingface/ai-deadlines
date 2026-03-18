@@ -21,6 +21,7 @@
   era_rating: a
   tags:
   - computer-graphics
+ 
 - title: SIGGRAPH
   year: 2026
   id: siggraph26
@@ -93,6 +94,22 @@
   date: July 19-23, 2026
   start: '2026-07-19'
   end: '2026-07-23'
+  era_rating: a
+  tags:
+  - computer-graphics
+  
+- title: SIGGRAPH
+  year: 2027
+  id: siggraph27
+  full_name: Conference on Computer Graphics and Interactive Techniques
+  link: https://www.siggraph.org/
+  deadlines: []
+  city: Anaheim
+  country: United States
+  venue: Anaheim Convention Center, Anaheim, California
+  date: August 8-12, 2027
+  start: '2027-08-08'
+  end: '2027-08-12'
   era_rating: a
   tags:
   - computer-graphics
