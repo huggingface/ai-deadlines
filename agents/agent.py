@@ -440,6 +440,7 @@ async def run_pr_agent(
     conference_name: str,
     verified_yaml: str,
     changes_summary: str,
+    source_urls: list[str],
     branch_name: str,
 ) -> tuple[dict, float]:
     """Run the PR agent to write YAML and create a pull request.
@@ -448,6 +449,7 @@ async def run_pr_agent(
         conference_name: Name of the conference.
         verified_yaml: The verified updated YAML content to write.
         changes_summary: Summary of what changed.
+        source_urls: Source URLs supporting the update.
         branch_name: Git branch name to use for the PR.
 
     Returns:
@@ -455,6 +457,11 @@ async def run_pr_agent(
     """
     current_yaml = await load_conference_data(conference_name)
     git_remotes = await _get_git_remote_info()
+    formatted_source_urls = (
+        "\n".join(f"- {url}" for url in source_urls)
+        if source_urls
+        else "- No source URLs were provided."
+    )
 
     system_template = await read_prompt("prompts/pr_system_prompt.md")
     system_prompt = system_template.format(
@@ -468,6 +475,7 @@ async def run_pr_agent(
         conference_name=conference_name,
         updated_yaml=verified_yaml,
         changes_summary=changes_summary,
+        source_urls=formatted_source_urls,
         current_yaml=current_yaml if current_yaml else "(file does not exist yet)",
         branch_name=branch_name,
     )
@@ -599,11 +607,12 @@ async def find_conference_deadlines(
 
     verified_yaml = aggregation_result.get("updated_yaml", "")
     changes_summary = aggregation_result.get("reasoning", "")
+    source_urls = aggregation_result.get("source_urls", [])
     branch_name = _generate_branch_name(conference_name)
     print(f"  Branch: {branch_name}")
 
     pr_result, pr_cost = await run_pr_agent(
-        conference_name, verified_yaml, changes_summary, branch_name
+        conference_name, verified_yaml, changes_summary, source_urls, branch_name
     )
     total_cost += pr_cost
     print(f"  PR stage cost: ${pr_cost:.4f}")

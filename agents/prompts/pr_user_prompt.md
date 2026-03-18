@@ -24,6 +24,12 @@ Write the following content to `src/data/conferences/{conference_name}.yml`:
 
 {changes_summary}
 
+## Source URLs
+
+Use the following URLs in the `Sources` section of the pull request body:
+
+{source_urls}
+
 ## Branch name
 
 Use this branch name: `{branch_name}`
