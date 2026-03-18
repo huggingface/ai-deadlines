@@ -25,7 +25,7 @@
   date: October 27-31, 2025
   start: '2025-10-27'
   end: '2025-10-31'
-  venue: Dublin Royal Convention Center, Dublin, Ireland
+  venue: Royal Dublin Convention Centre, Dublin, Ireland
   note: All important dates can be found <a href='https://acmmm2025.org/important-dates/'>here</a>. The time for all dates is 23:59 AoE (Anywhere-on-Earth).
   tags:
   - computer-vision
@@ -61,6 +61,10 @@
     - type: camera_ready
       label: Camera-ready submission
       date: '2026-08-06 23:59:59'
+      timezone: AoE
+    - type: registration
+      label: Author registration
+      date: '2026-08-20 23:59:59'
       timezone: AoE
   city: Rio de Janeiro
   country: Brazil

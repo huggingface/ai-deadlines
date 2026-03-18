@@ -19,9 +19,9 @@
   city: Rio de Janeiro
   country: Brazil
   venue: Windsor Convention Center and Hotels
-  date: April 12-13, 2026
+  date: April 12, 2026
   start: 2026-04-12
-  end: 2026-04-13
+  end: 2026-04-12
   tags:
   - natural-language-processing
   - software engineering
