@@ -45,15 +45,15 @@
     timezone: AoE
   - type: review_release
     label: Reviews Released
-    date: '2026-03-27 23:59:59'
+    date: '2026-03-20 23:59:59'
     timezone: AoE
   - type: rebuttal_start
     label: Rebuttal Period Starts
-    date: '2026-03-27 23:59:59'
+    date: '2026-03-20 23:59:59'
     timezone: AoE
   - type: rebuttal_end
     label: Rebuttal Period Ends
-    date: '2026-04-03 23:59:59'
+    date: '2026-03-27 23:59:59'
     timezone: AoE
   - type: notification
     label: Final Decisions
