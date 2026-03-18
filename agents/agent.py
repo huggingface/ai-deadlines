@@ -529,9 +529,10 @@ async def find_conference_deadlines(
     print(f"Processing conference: {conference_name}")
     if dry_run:
         print("DRY RUN: PR creation will be skipped")
+    pipeline_suffix = "" if dry_run else " -> PR"
     print(
         f"Pipeline: {num_retrieval_agents} retrieval agents "
-        f"\u2192 aggregation{'' if dry_run else ' \u2192 PR'}"
+        f"-> aggregation{pipeline_suffix}"
     )
 
     # === Stage 1: Information Retrieval ===

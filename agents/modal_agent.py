@@ -253,11 +253,14 @@ def process_single_conference(
 
 
 @app.function(timeout=600)
-def process_all_conferences() -> list[dict]:
+def process_all_conferences(num_retrieval_agents: int = 3) -> list[dict]:
     """Process all conferences in parallel.
 
     Each conference runs in its own Modal container with its own branch.
     After processing, each creates its own PR.
+
+    Args:
+        num_retrieval_agents: Number of retrieval agents to run per conference.
 
     Returns:
         List of results for each processed conference.
@@ -308,7 +311,11 @@ def process_all_conferences() -> list[dict]:
     print(f"Processing {len(conferences)} conferences in parallel")
     print(f"{'=' * 60}")
 
-    results = list(process_single_conference.map(conferences))
+    results = list(
+        process_single_conference.starmap(
+            (conference_name, num_retrieval_agents) for conference_name in conferences
+        )
+    )
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conferences)} conferences")
@@ -348,11 +355,14 @@ def scheduled_run():
 
 
 @app.function(timeout=600)
-def process_conferences_subset(conference_names: list[str]) -> list[dict]:
+def process_conferences_subset(
+    conference_names: list[str], num_retrieval_agents: int = 3
+) -> list[dict]:
     """Process a subset of conferences in parallel.
 
     Args:
         conference_names: List of conference names to process.
+        num_retrieval_agents: Number of retrieval agents to run per conference.
 
     Returns:
         List of results for each processed conference.
@@ -361,7 +371,11 @@ def process_conferences_subset(conference_names: list[str]) -> list[dict]:
     print(f"Processing {len(conference_names)} conferences in parallel: {conference_names}")
     print(f"{'=' * 60}")
 
-    results = list(process_single_conference.map(conference_names))
+    results = list(
+        process_single_conference.starmap(
+            (conference_name, num_retrieval_agents) for conference_name in conference_names
+        )
+    )
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conference_names)} conferences")
@@ -408,7 +422,9 @@ def main(
             print("Error: Cannot find local conferences directory to determine subset.")
             return
         print(f"Processing {len(conferences)} conferences (limited): {conferences}")
-        results = process_conferences_subset.remote(conferences)
+        results = process_conferences_subset.remote(
+            conferences, num_retrieval_agents=num_retrieval_agents
+        )
 
     elif all_conferences:
         # Process all conferences in parallel
@@ -419,7 +435,9 @@ def main(
         else:
             num_conferences = "all"
         print(f"Processing {num_conferences} conferences in parallel...")
-        results = process_all_conferences.remote()
+        results = process_all_conferences.remote(
+            num_retrieval_agents=num_retrieval_agents
+        )
 
         print(f"\n{'=' * 60}")
         print("Summary:")

@@ -80,8 +80,9 @@ Do not just blindly copy the deadlines of year XXXX to year XXXX + 1.
 Do not search for data of conferences which already have taken place.
 **Do NOT backfill or add new deadlines/fields to conference years that have already taken place.** Past conferences should be left exactly as-is in the YAML, even if you discover additional deadline information (e.g. rebuttal periods, notification dates, camera-ready deadlines) that is not currently listed. Focus your efforts exclusively on upcoming/future conference years.
 If only a conference of the given year is defined, it makes sense to search for data of the conference for the next year.
-Do not overwrite data of a year, only append in case you add data of a new year. 
-Only add deadlines which are upcoming.
+Do not overwrite or delete data of an existing year. The YAML is append-only: preserve every existing field, deadline, and year block exactly as-is, and only append new information when adding a new year or filling in verified missing data for an upcoming/future year.
+Never delete, prune, or remove existing deadlines just because they are now in the past. Existing conference entries should retain their historical deadlines and data.
+When adding a brand-new year entry, only include deadlines which are still upcoming for that new entry.
 When no timezone information is given, use the Anywhere on Earth (AoE) timezone (UTC+12). Use AoE and not UTC+12.
 The year of a conference should never be included in the "title" field of a .yml file.
 

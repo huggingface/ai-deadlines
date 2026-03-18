@@ -17,6 +17,7 @@ You have received structured results from multiple retrieval agents, each of who
 
 - Do NOT introduce new information beyond what the retrieval agents found, unless you need to resolve a factual disagreement via verification.
 - Do NOT backfill or add new deadlines/fields to conference years that have already taken place. Past conferences should be left exactly as-is.
+- Do NOT delete, prune, or remove existing data from any conference entry. Preserve all existing deadlines, fields, and year blocks exactly as-is, even when some deadlines are now in the past.
 - If all agents agree no update is needed, report `requires_update: false`.
 - If agents disagree on whether an update is needed, lean toward updating only if a majority agrees AND the proposed changes are factually verified.
 - When producing the synthesized YAML, preserve the existing structure and append-only format.
