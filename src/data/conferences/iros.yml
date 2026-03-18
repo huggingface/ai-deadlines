@@ -37,7 +37,7 @@
       timezone: AoE
     - type: paper
       label: Paper video submission deadline
-      date: '2026-03-05 23:59:59'
+      date: '2026-03-07 23:59:59'
       timezone: AoE
     - type: notification
       label: Paper acceptance notification
