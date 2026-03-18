@@ -29,23 +29,27 @@
   deadlines:
   - type: abstract
     label: Abstract and Full Paper Submission
-    date: '2026-03-16 23:59:59'
+    date: '2026-03-30 23:59:59'
     timezone: AoE
   - type: submission
     label: Full Paper Submission
-    date: '2026-03-16 23:59:59'
+    date: '2026-03-30 23:59:59'
     timezone: AoE
   - type: notification
     label: Final Notification
     date: '2026-05-29 23:59:59'
     timezone: AoE
   - type: camera_ready
-    label: Camera-ready Paper Upload and Author Registration
+    label: Camera-ready Paper Upload
+    date: '2026-06-15 23:59:59'
+    timezone: AoE
+  - type: registration
+    label: Author Registration and Early Registration
     date: '2026-06-29 23:59:59'
     timezone: AoE
   city: Padua
   country: Italy
-  venue: University of Padua, Padua, Italy
+  venue: Conference center of the School of Psychology, University of Padua, Padua, Italy
   date: September 14-17, 2026
   start: 2026-09-14
   end: 2026-09-17
@@ -54,4 +58,4 @@
   era_rating: b
   tags:
   - machine-learning
-  note: 35th International Conference on Artificial Neural Networks. More info <a href='https://e-nns.org/icann2026/call-for-papers-2/'>here</a>.
+  note: Paper submission deadline extended to 30th March 2026. More info <a href='https://e-nns.org/icann2026/call-for-papers-2/'>here</a>.
