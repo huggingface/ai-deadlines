@@ -8,6 +8,22 @@
       label: Paper submission deadline
       date: '2026-05-25 23:59:59'
       timezone: AoE
+    - type: reviewer_registration
+      label: Reviewer registration deadline
+      date: '2026-05-27 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Author response period start
+      date: '2026-07-07 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Author response period end
+      date: '2026-07-13 23:59:59'
+      timezone: AoE
+    - type: review_release
+      label: Meta review release
+      date: '2026-07-30 23:59:59'
+      timezone: AoE
     - type: commitment_deadline
       label: EMNLP commitment deadline
       date: '2026-08-02 23:59:59'
@@ -20,13 +36,13 @@
       label: Camera-ready deadline
       date: '2026-09-20 23:59:59'
       timezone: AoE
-  date: October 22 - 26, 2026
+  date: October 24 - 29, 2026
   tags:
   - natural-language-processing
   city: Budapest
   country: Hungary
   rankings: 'CCF: B, CORE: A*, THCPL: A'
   venue: TBA
-  start: '2026-10-22'
-  end: '2026-10-26'
+  start: '2026-10-24'
+  end: '2026-10-29'
   era_rating: a
