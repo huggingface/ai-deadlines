@@ -52,7 +52,7 @@
     timezone: AoE
   - type: camera_ready
     label: Camera-ready deadline
-    date: '2026-02-18 23:59:59'
+    date: '2026-02-11 23:59:59'
     timezone: AoE
   date: May 25-29, 2026
   city: Paphos
