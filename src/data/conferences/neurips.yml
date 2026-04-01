@@ -47,6 +47,10 @@
       label: Paper submission deadline
       date: '2026-05-06 23:59:59'
       timezone: AoE
+    - type: supplementary
+      label: Supplementary materials deadline
+      date: '2026-05-06 23:59:59'
+      timezone: AoE
     - type: notification
       label: Author notification
       date: '2026-09-24 23:59:59'
