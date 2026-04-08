@@ -31,14 +31,30 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: Sanitize PR Content
+        id: sanitize
+        run: |
+          # Extract PR title and body, removing potential prompt injection patterns
+          PR_TITLE=$(jq -r '.pull_request.title' "$GITHUB_EVENT_PATH")
+          PR_BODY=$(jq -r '.pull_request.body // ""' "$GITHUB_EVENT_PATH")
+          
+          # Log warning if suspicious patterns detected (but allow workflow to continue)
+          if echo "$PR_TITLE $PR_BODY" | grep -iE '(ignore|disregard).*(previous|prior|above|system).*(instruction|prompt|rule)'; then
+            echo "::warning::Potential prompt injection pattern detected in PR content"
+          fi
+          
+          # Note: The actual sanitization and prompt isolation must be handled by claude-code-action itself
+          # This step serves as a detection and logging mechanism only
+
       - name: Run Claude Code Review
         id: claude-review
         uses: anthropics/claude-code-action@bee87b3258c251f9279e5371b0cc3660f37f3f77  # v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
+          plugin_marketplaces: 'https://github.com/anthropics/claude-code.git@bee87b3258c251f9279e5371b0cc3660f37f3f77'
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
-
+          # SECURITY NOTE: Ensure claude-code-action v1 implements proper prompt isolation
+          # to prevent user-controlled PR content from overriding system instructions
