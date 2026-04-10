@@ -1,7 +1,7 @@
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, ChartNoAxesGantt } from "lucide-react";
 
 interface HeaderProps {
   onSearch: (query: string) => void;
@@ -32,6 +32,13 @@ const Header = ({ onSearch, showEmptyMessage = false }: HeaderProps) => {
               >
                 <CalendarDays className="h-5 w-5" />
                 Calendar
+              </Link>
+              <Link
+                to="/timeline"
+                className="text-neutral-600 hover:text-primary flex items-center gap-2"
+              >
+                <ChartNoAxesGantt className="h-5 w-5" />
+                Timeline
               </Link>
             </nav>
           </div>

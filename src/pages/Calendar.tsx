@@ -89,7 +89,7 @@ const CalendarPage = () => {
     if (!dateString) return null;
     if (dateString === 'TBD') return null;
     
-    const isDate = (value: any): value is Date => {
+    const isDate = (value: unknown): value is Date => {
       return value && Object.prototype.toString.call(value) === '[object Date]';
     };
 

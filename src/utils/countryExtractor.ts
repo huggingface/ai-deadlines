@@ -6,7 +6,7 @@ export function extractCountry(place: string): string | null {
   
   // Extract the last part after the last comma, which is typically the country
   const parts = place.split(',');
-  let country = parts[parts.length - 1].trim();
+  const country = parts[parts.length - 1].trim();
   
   // Handle special cases like "USA" which might appear in different forms
   if (['USA', 'U.S.A.', 'United States', 'United States of America'].includes(country)) {
@@ -40,7 +40,7 @@ export function extractCountry(place: string): string | null {
 /**
  * Gets all unique countries from conferences data
  */
-export function getAllCountries(conferences: any[]): string[] {
+export function getAllCountries(conferences: Array<{ country?: string }>): string[] {
   if (!Array.isArray(conferences)) return [];
   
   const countries = new Set<string>();
