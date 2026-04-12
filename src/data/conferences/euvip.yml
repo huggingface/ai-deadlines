@@ -1,0 +1,25 @@
+- title: EUVIP
+  year: 2026
+  id: euvip26
+  full_name: European Conference on Visual Information Processing
+  link: https://euvip2026.github.io/
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: "2026-05-21 23:59:59"
+      timezone: UTC+02
+  timezone: Europe/Luxembourg
+  city: Luxembourg
+  country: Luxembourg
+  venue: Parc Hotel Alvisse, 120 Rte d'Echternach, 1453 Dommeldange, Luxembourg
+  date: September 28 - October 1, 2026
+  start: 2026-09-28
+  end: 2026-10-01
+  tags:
+    - computer vision
+    - image processing
+    - signal processing
+    - machine learning
+    - deep learning
+    - visual information processing
+  note: To check other calls (e.g., Tutorials, Special Sessions, etc.), please visit https://euvip2026.github.io/calls/
