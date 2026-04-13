@@ -59,3 +59,20 @@
   tags:
   - human-computer-interaction
   note: Mandatory abstract deadline on Sep 04, 2025. More info <a href='https://chi2026.acm.org/authors/papers/'>here</a>.
+
+- title: CHI
+  year: 2027
+  id: chi27
+  full_name: The ACM Conference on Human Factors in Computing Systems
+  link: https://chi2027.acm.org/
+  deadlines: []
+  city: Pittsburgh
+  country: United States
+  venue: David L. Lawrence Convention Center, Pittsburgh, USA
+  date: May 10 - May 14, 2027
+  start: 2027-05-10
+  end: 2027-05-14
+  hindex: 128
+  tags:
+  - human-computer-interaction
+  note: Submission deadlines to be announced. More info <a href='https://chi2027.acm.org/'>here</a>.
