@@ -43,15 +43,19 @@
   deadlines:
     - type: abstract
       label: Abstract submission deadline
-      date: '2026-05-18 23:59:00'
+      date: '2026-05-16 23:59:00'
       timezone: AoE
     - type: paper
       label: Full paper submission deadline
-      date: '2026-05-25 23:59:00'
+      date: '2026-05-23 23:59:00'
       timezone: AoE
     - type: notification
       label: Author notification
-      date: '2026-08-06 23:59:00'
+      date: '2026-08-07 23:59:00'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-08-20 23:59:00'
       timezone: AoE
   city: Rome
   country: Italy
