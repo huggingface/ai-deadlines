@@ -9,6 +9,14 @@
       label: Paper submission deadline
       date: '2025-07-04 23:59:59'
       timezone: AoE
+    - type: notification
+      label: Notification of acceptance
+      date: '2025-09-09 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready submission
+      date: '2025-09-19 23:59:59'
+      timezone: AoE
   date: November 5-9, 2025
   tags:
   - natural-language-processing
