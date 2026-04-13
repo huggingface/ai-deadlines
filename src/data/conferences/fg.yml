@@ -17,13 +17,17 @@
     label: Notifications to authors (Round 1)
     date: '2025-12-11 23:59:59'
     timezone: AoE
+  - type: camera_ready
+    label: Revisions due (Round 1)
+    date: '2026-01-25 23:59:59'
+    timezone: AoE
   - type: abstract
     label: Abstract Submission (Round 2)
     date: '2026-01-09 23:59:59'
     timezone: AoE
   - type: submission
-    label: Paper Submission (Round 2)
-    date: '2026-01-15 23:59:59'
+    label: Paper Submission (Round 2) - Extended
+    date: '2026-01-25 23:59:59'
     timezone: AoE
   - type: notification
     label: Notifications to authors (Round 2)
@@ -36,6 +40,7 @@
   date: May 25-29, 2026
   city: Kyoto
   country: Japan
+  venue: Kyoto Research Park (KRP)
   start: 2026-05-25
   end: 2026-05-29
   tags:
