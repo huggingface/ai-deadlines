@@ -49,3 +49,22 @@
   country: Netherlands
   rankings: 'CCF: N, CORE: B, THCPL: N'
   era_rating: a
+- title: CEC
+  year: 2027
+  id: cec2027
+  full_name: IEEE Congress on Evolutionary Computation
+  link: http://ieeecec.org
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2027-01-15 23:59:59'
+      timezone: AoE
+  date: July 25-28, 2027
+  start: 2027-07-25
+  end: 2027-07-28
+  tags:
+  - machine-learning
+  city: Edinburgh
+  country: United Kingdom
+  rankings: 'CCF: N, CORE: B, THCPL: N'
+  era_rating: a
