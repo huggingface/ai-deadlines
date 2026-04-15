@@ -3,12 +3,11 @@
 Implements a 3-stage pipeline:
 1. Retrieval: N agents independently search the web for conference information
 2. Aggregation: A majority-vote agent synthesizes the retrieval results
-3. PR Creation: An agent writes the updated YAML and creates a pull request
+3. Push: An agent writes the updated YAML and pushes directly to main
 
 Usage:
 
 ```bash
-http://localhost:8080/ <name>
 uv run --env-file keys.env -m agents.agent --conference_name <name> --num-retrieval-agents 5
 uv run --env-file keys.env -m agents.agent --conference_name <name> --dry-run
 ```
@@ -100,19 +99,19 @@ AGGREGATION_RESULT_SCHEMA = {
     "required": ["reasoning", "requires_update", "updated_yaml", "source_urls"],
 }
 
-PR_RESULT_SCHEMA = {
+PUSH_RESULT_SCHEMA = {
     "type": "object",
     "properties": {
-        "created_pr": {
+        "pushed": {
             "type": "boolean",
-            "description": "Whether a PR was created",
+            "description": "Whether the update was committed and pushed to main",
         },
-        "pr_url": {
+        "commit_sha": {
             "type": "string",
-            "description": "URL of the created PR (if any)",
+            "description": "The SHA of the commit that was pushed (if any)",
         },
     },
-    "required": ["created_pr"],
+    "required": ["pushed"],
 }
 
 
@@ -191,28 +190,21 @@ def _get_exa_mcp_servers() -> dict[str, McpHttpServerConfig]:
 # --- Shared agent runner ---
 
 
-async def _run_agent(
+MAX_RETRIES = 3
+SILENT_EXIT_THRESHOLD = 2  # message_count <= this with empty result triggers retry
+
+
+async def _run_agent_once(
     system_prompt: str,
     user_prompt: str,
     output_schema: dict,
     agent_label: str = "agent",
     mcp_servers: dict[str, McpHttpServerConfig] | None = None,
-) -> tuple[dict, float]:
-    """Run a single agent query with structured output.
-
-    Wraps a single ``query()`` call with the message loop, stderr handling,
-    logging, and structured output extraction so each stage doesn't duplicate
-    this boilerplate.
-
-    Args:
-        system_prompt: The system prompt for the agent.
-        user_prompt: The user prompt for the agent.
-        output_schema: JSON schema for structured output.
-        agent_label: Label for log messages (e.g. "retrieval-1", "aggregation").
-        mcp_servers: Optional MCP server configuration.
+) -> tuple[dict, float, int]:
+    """Run a single agent query attempt.
 
     Returns:
-        A tuple of (structured output dict, cost in USD).
+        A tuple of (structured output dict, cost in USD, message count).
     """
 
     def on_stderr(data: str):
@@ -304,7 +296,65 @@ async def _run_agent(
         result["error"] = str(e)
 
     print(f"[{agent_label}] Completed. Total messages: {message_count}")
-    return result, cost_usd
+    return result, cost_usd, message_count
+
+
+async def _run_agent(
+    system_prompt: str,
+    user_prompt: str,
+    output_schema: dict,
+    agent_label: str = "agent",
+    mcp_servers: dict[str, McpHttpServerConfig] | None = None,
+) -> tuple[dict, float]:
+    """Run a single agent query with structured output and automatic retries.
+
+    The Claude Agent SDK on Modal can silently exit after only the SystemMessage,
+    producing an empty result. This wrapper detects that (low message count with
+    an empty result) and retries up to MAX_RETRIES times.
+
+    Args:
+        system_prompt: The system prompt for the agent.
+        user_prompt: The user prompt for the agent.
+        output_schema: JSON schema for structured output.
+        agent_label: Label for log messages (e.g. "retrieval-1", "aggregation").
+        mcp_servers: Optional MCP server configuration.
+
+    Returns:
+        A tuple of (structured output dict, cost in USD).
+    """
+    total_cost = 0.0
+
+    for attempt in range(1, MAX_RETRIES + 1):
+        result, cost, message_count = await _run_agent_once(
+            system_prompt=system_prompt,
+            user_prompt=user_prompt,
+            output_schema=output_schema,
+            agent_label=agent_label,
+            mcp_servers=mcp_servers,
+        )
+        total_cost += cost
+
+        is_silent_exit = (
+            message_count <= SILENT_EXIT_THRESHOLD
+            and not result
+        )
+
+        if not is_silent_exit or attempt == MAX_RETRIES:
+            if is_silent_exit:
+                print(
+                    f"[{agent_label}] WARNING: SDK silent exit persisted after "
+                    f"{MAX_RETRIES} attempts"
+                )
+            return result, total_cost
+
+        print(
+            f"[{agent_label}] SDK silent exit detected "
+            f"({message_count} messages, empty result). "
+            f"Retrying ({attempt}/{MAX_RETRIES})..."
+        )
+        await asyncio.sleep(2 * attempt)
+
+    return result, total_cost
 
 
 # --- Stage 1: Information Retrieval ---
@@ -421,42 +471,27 @@ async def run_aggregation_agent(
     )
 
 
-# --- Stage 3: PR Creation ---
+# --- Stage 3: Push to Main ---
 
 
-async def _get_git_remote_info() -> str:
-    """Run ``git remote -v`` and return the output."""
-    proc = await asyncio.create_subprocess_exec(
-        "git", "remote", "-v",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-        cwd=str(PROJECT_ROOT),
-    )
-    stdout, _ = await proc.communicate()
-    return stdout.decode().strip()
-
-
-async def run_pr_agent(
+async def run_push_agent(
     conference_name: str,
     verified_yaml: str,
     changes_summary: str,
     source_urls: list[str],
-    branch_name: str,
 ) -> tuple[dict, float]:
-    """Run the PR agent to write YAML and create a pull request.
+    """Run the push agent to write updated YAML and push directly to main.
 
     Args:
         conference_name: Name of the conference.
         verified_yaml: The verified updated YAML content to write.
         changes_summary: Summary of what changed.
         source_urls: Source URLs supporting the update.
-        branch_name: Git branch name to use for the PR.
 
     Returns:
-        Tuple of (PR result dict with created_pr and pr_url, cost in USD).
+        Tuple of (push result dict with pushed and commit_sha, cost in USD).
     """
     current_yaml = await load_conference_data(conference_name)
-    git_remotes = await _get_git_remote_info()
     formatted_source_urls = (
         "\n".join(f"- {url}" for url in source_urls)
         if source_urls
@@ -466,8 +501,6 @@ async def run_pr_agent(
     system_template = await read_prompt("prompts/pr_system_prompt.md")
     system_prompt = system_template.format(
         conference_name=conference_name,
-        git_remotes=git_remotes,
-        branch_name=branch_name,
     )
 
     user_template = await read_prompt("prompts/pr_user_prompt.md")
@@ -477,40 +510,18 @@ async def run_pr_agent(
         changes_summary=changes_summary,
         source_urls=formatted_source_urls,
         current_yaml=current_yaml if current_yaml else "(file does not exist yet)",
-        branch_name=branch_name,
     )
 
     return await _run_agent(
         system_prompt=system_prompt,
         user_prompt=user_prompt,
-        output_schema=PR_RESULT_SCHEMA,
-        agent_label="pr",
+        output_schema=PUSH_RESULT_SCHEMA,
+        agent_label="push",
         mcp_servers=None,
     )
 
 
 # --- Orchestrator ---
-
-
-def _generate_branch_name(conference_name: str) -> str:
-    """Generate a unique branch name with a date stamp to avoid collisions."""
-    stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    return f"feature/update_{conference_name}_{stamp}"
-
-
-async def _checkout_main() -> None:
-    """Switch back to the main branch after PR creation."""
-    proc = await asyncio.create_subprocess_exec(
-        "git", "checkout", "main",
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE,
-        cwd=str(PROJECT_ROOT),
-    )
-    stdout, stderr = await proc.communicate()
-    if proc.returncode == 0:
-        print("[cleanup] Switched back to main branch")
-    else:
-        print(f"[cleanup] Warning: could not switch to main: {stderr.decode().strip()}")
 
 
 async def find_conference_deadlines(
@@ -522,22 +533,22 @@ async def find_conference_deadlines(
 
     Stage 1: Run N retrieval agents sequentially to gather information.
     Stage 2: Run an aggregation agent to perform majority vote.
-    Stage 3: If an update is needed, run a PR agent to create a pull request.
+    Stage 3: If an update is needed, write the YAML and push directly to main.
 
     Args:
         conference_name: Name of the conference.
         num_retrieval_agents: Number of retrieval agents to run (default 3).
-        dry_run: If True, skip PR creation and just print the aggregated result.
+        dry_run: If True, skip pushing and just print the aggregated result.
 
     Returns:
-        Final result dict with created_pr, pr_url, reasoning, and total_cost_usd.
+        Final result dict with pushed, reasoning, and total_cost_usd.
     """
     total_cost = 0.0
 
     print(f"Processing conference: {conference_name}")
     if dry_run:
-        print("DRY RUN: PR creation will be skipped")
-    pipeline_suffix = "" if dry_run else " -> PR"
+        print("DRY RUN: push will be skipped")
+    pipeline_suffix = "" if dry_run else " -> push"
     print(
         f"Pipeline: {num_retrieval_agents} retrieval agents "
         f"-> aggregation{pipeline_suffix}"
@@ -572,58 +583,69 @@ async def find_conference_deadlines(
     total_cost += aggregation_cost
 
     requires_update = aggregation_result.get("requires_update", False)
+
+    # Fallback: if aggregation returned empty (SDK silent exit) but retrieval
+    # agents unanimously agreed on an update, use the first retrieval result.
+    valid_results = [r for r in retrieval_results if r.get("requires_update") is not None]
+    all_agree_update = (
+        len(valid_results) >= 2
+        and all(r.get("requires_update") is True for r in valid_results)
+    )
+    if not aggregation_result and all_agree_update:
+        print(
+            "\nWARNING: Aggregation agent returned empty (SDK silent exit). "
+            "All retrieval agents unanimously agreed on update — using "
+            "first retrieval result as fallback."
+        )
+        aggregation_result = valid_results[0]
+        requires_update = True
+
     print(f"\nAggregation result: requires_update={requires_update}")
     reasoning_preview = aggregation_result.get("reasoning", "N/A")[:200]
     print(f"Reasoning: {reasoning_preview}")
     print(f"  Aggregation stage cost: ${aggregation_cost:.4f}")
 
     if not requires_update:
-        print("\nNo update needed. Skipping PR creation.")
+        print("\nNo update needed. Skipping push.")
         print(f"\nTotal pipeline cost: ${total_cost:.4f}")
         return {
-            "created_pr": False,
-            "pr_url": None,
+            "pushed": False,
             "reasoning": aggregation_result.get("reasoning", ""),
             "updated_yaml": aggregation_result.get("updated_yaml", ""),
             "total_cost_usd": total_cost,
         }
 
     if dry_run:
-        print("\nDRY RUN: Update needed but skipping PR creation.")
+        print("\nDRY RUN: Update needed but skipping push.")
         print(f"Updated YAML:\n{aggregation_result.get('updated_yaml', '')}")
         print(f"\nTotal pipeline cost: ${total_cost:.4f}")
         return {
-            "created_pr": False,
-            "pr_url": None,
+            "pushed": False,
             "reasoning": aggregation_result.get("reasoning", ""),
             "updated_yaml": aggregation_result.get("updated_yaml", ""),
             "total_cost_usd": total_cost,
         }
 
-    # === Stage 3: PR Creation ===
+    # === Stage 3: Push to Main ===
     print(f"\n{'=' * 60}")
-    print("=== Stage 3: PR Creation ===")
+    print("=== Stage 3: Push to Main ===")
     print(f"{'=' * 60}")
 
     verified_yaml = aggregation_result.get("updated_yaml", "")
     changes_summary = aggregation_result.get("reasoning", "")
     source_urls = aggregation_result.get("source_urls", [])
-    branch_name = _generate_branch_name(conference_name)
-    print(f"  Branch: {branch_name}")
 
-    pr_result, pr_cost = await run_pr_agent(
-        conference_name, verified_yaml, changes_summary, source_urls, branch_name
+    push_result, push_cost = await run_push_agent(
+        conference_name, verified_yaml, changes_summary, source_urls
     )
-    total_cost += pr_cost
-    print(f"  PR stage cost: ${pr_cost:.4f}")
-
-    await _checkout_main()
+    total_cost += push_cost
+    print(f"  Push stage cost: ${push_cost:.4f}")
 
     print(f"\nTotal pipeline cost: ${total_cost:.4f}")
 
     return {
-        "created_pr": pr_result.get("created_pr", False),
-        "pr_url": pr_result.get("pr_url"),
+        "pushed": push_result.get("pushed", False),
+        "commit_sha": push_result.get("commit_sha"),
         "reasoning": aggregation_result.get("reasoning", ""),
         "total_cost_usd": total_cost,
     }
@@ -648,7 +670,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--dry-run",
         action="store_true",
-        help="Run retrieval and aggregation only, skip PR creation",
+        help="Run retrieval and aggregation only, skip pushing to main",
     )
     args = parser.parse_args()
 

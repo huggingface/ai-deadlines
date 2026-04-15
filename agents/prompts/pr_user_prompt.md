@@ -1,4 +1,4 @@
-Please write the updated conference data to the YAML file and create a pull request.
+Please write the updated conference data to the YAML file and push the change to main.
 
 ## Conference name
 
@@ -26,16 +26,10 @@ Write the following content to `src/data/conferences/{conference_name}.yml`:
 
 ## Source URLs
 
-Use the following URLs in the `Sources` section of the pull request body:
-
 {source_urls}
-
-## Branch name
-
-Use this branch name: `{branch_name}`
 
 ## Instructions
 
 1. Read the file `src/data/conferences/{conference_name}.yml` first, then overwrite it with the updated YAML content above.
-2. Create the branch `{branch_name}`, commit the changes, push to the correct remote (see system prompt for git remote layout), and open a pull request.
-3. Return structured output indicating whether the PR was created and its URL.
+2. Commit the change on main and push to origin.
+3. Return structured output indicating whether the push succeeded and the commit SHA.

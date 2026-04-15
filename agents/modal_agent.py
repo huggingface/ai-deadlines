@@ -1,18 +1,18 @@
 """Modal wrapper for conference deadlines agent.
 
 This module wraps the existing agent functionality to run on Modal's
-serverless infrastructure, processing all conferences in parallel.
-The agent handles all git operations (branch creation, commits, PRs) via
-its system prompt. This wrapper provides infrastructure and aggregates results.
+serverless infrastructure, processing conferences sequentially.
+Each conference is updated and pushed directly to main before the next
+one starts, so there are no merge conflicts between runs.
 
 Usage:
 
 ```bash
-# Run all conferences in parallel
-uv run modal run agents/modal_agent.py
+# Run all conferences sequentially (--detach keeps it running if your terminal disconnects)
+uv run modal run --detach agents/modal_agent.py
 
 # Run single conference (for testing)
-uv run modal run agents/modal_agent.py --conference-name neurips
+uv run modal run --detach agents/modal_agent.py --conference-name neurips
 
 # Deploy for weekly scheduled runs
 uv run modal deploy agents/modal_agent.py
@@ -23,12 +23,10 @@ Setup:
 2. Authenticate: uv run modal setup
 3. Create secrets:
    uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-api-key>
-   uv run modal secret create github-token GH_TOKEN=<token-with-repo-and-pr-scope>
+   uv run modal secret create github-token GH_TOKEN=<token-with-repo-scope>
    uv run modal secret create exa EXA_API_KEY=<your-key>
 
-Note: The GH_TOKEN token needs the following scopes:
-  - `repo` - for cloning and pushing to the repository
-  - `pull_request` or `repo` - for creating pull requests via the GitHub CLI
+Note: The GH_TOKEN needs the `repo` scope for cloning and pushing to the repository.
 """
 
 import os
@@ -114,8 +112,8 @@ app = modal.App(
 def setup_git_and_clone() -> None:
     """Configure git and clone the repository.
 
-    The agent handles branch creation and PR management via its system prompt,
-    so we only need to clone the repo and set up credentials here.
+    Sets up credentials and clones (or pulls) the repo so the agent can
+    commit and push directly to main.
     """
     import subprocess
 
@@ -172,15 +170,15 @@ def setup_git_and_clone() -> None:
         print("Updated repository to latest main")
 
 
-@app.function(timeout=600)
+@app.function(timeout=1200)
 def process_single_conference(
     conference_name: str, num_retrieval_agents: int = 3
 ) -> dict:
     """Process a single conference using the Claude Agent SDK.
 
-    The agent handles all git operations (branch creation, commits, PRs) via
-    its system prompt. This function just sets up the environment and returns
-    the agent's structured output for accurate reporting.
+    The agent commits and pushes updates directly to main. This function
+    sets up the environment and returns the agent's structured output for
+    accurate reporting.
 
     Args:
         conference_name: The name of the conference to process.
@@ -209,7 +207,6 @@ def process_single_conference(
     # See MODAL_DEBUGGING.md for details
     os.environ["DISABLE_EXA_MCP"] = "1"
 
-    # Setup git and clone repo (agent handles branch creation and PRs)
     setup_git_and_clone()
 
     # Add REPO_DIR first, then app directory (last insert is at position 0, so app takes priority)
@@ -234,11 +231,9 @@ def process_single_conference(
                 num_retrieval_agents=num_retrieval_agents,
             )
 
-            # Map agent result to our reporting format
             return {
                 "conference": conference_name,
-                "status": "pr_created" if agent_result.get("created_pr") else "no_changes",
-                "pr_url": agent_result.get("pr_url"),
+                "status": "pushed" if agent_result.get("pushed") else "no_changes",
                 "error": agent_result.get("error"),
             }
 
@@ -252,12 +247,9 @@ def process_single_conference(
     return asyncio.run(_process())
 
 
-@app.function(timeout=600)
+@app.function(timeout=43200)  # 12 hours max for all conferences
 def process_all_conferences(num_retrieval_agents: int = 3) -> list[dict]:
-    """Process all conferences in parallel.
-
-    Each conference runs in its own Modal container with its own branch.
-    After processing, each creates its own PR.
+    """Process all conferences sequentially, pushing each to main before the next.
 
     Args:
         num_retrieval_agents: Number of retrieval agents to run per conference.
@@ -267,17 +259,13 @@ def process_all_conferences(num_retrieval_agents: int = 3) -> list[dict]:
     """
     import pwd
 
-    # Switch to non-root user (required for git operations)
     agent_user = pwd.getpwnam("agent")
     os.setgid(agent_user.pw_gid)
     os.setuid(agent_user.pw_uid)
     os.environ["HOME"] = agent_user.pw_dir
 
-    # Clone repo first to get the list of conferences
-    # We use a dummy conference name here since we just need to clone
     import subprocess
 
-    # Configure git (minimal setup just to clone)
     subprocess.run(
         ["git", "config", "--global", "user.email", "agent@modal.com"],
         check=True,
@@ -304,18 +292,17 @@ def process_all_conferences(num_retrieval_agents: int = 3) -> list[dict]:
             check=True,
         )
 
-    # Get conferences from yml files in the cloned repo
     conferences = get_conferences()
 
     print(f"\n{'=' * 60}")
-    print(f"Processing {len(conferences)} conferences in parallel")
+    print(f"Processing {len(conferences)} conferences sequentially")
     print(f"{'=' * 60}")
 
-    results = list(
-        process_single_conference.starmap(
-            (conference_name, num_retrieval_agents) for conference_name in conferences
-        )
-    )
+    results = []
+    for i, conference_name in enumerate(conferences, 1):
+        print(f"\n[{i}/{len(conferences)}] {conference_name}")
+        result = process_single_conference.remote(conference_name, num_retrieval_agents)
+        results.append(result)
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conferences)} conferences")
@@ -329,19 +316,16 @@ def process_all_conferences(num_retrieval_agents: int = 3) -> list[dict]:
     schedule=modal.Cron("0 0 * * 0"),  # Run weekly on Sunday at midnight UTC
 )
 def scheduled_run():
-    """Scheduled weekly run of all conferences in parallel."""
+    """Scheduled weekly run of all conferences sequentially."""
     print("Starting scheduled weekly conference update...")
     results = process_all_conferences.remote()
 
-    # Summary
-    pr_created = sum(1 for r in results if r.get("status") == "pr_created")
-    pr_updated = sum(1 for r in results if r.get("status") == "pr_updated")
+    pushed = sum(1 for r in results if r.get("status") == "pushed")
     no_changes = sum(1 for r in results if r.get("status") == "no_changes")
     errors = sum(1 for r in results if r.get("status") == "error")
 
     print("\nWeekly run completed:")
-    print(f"  - PRs created: {pr_created}")
-    print(f"  - PRs updated: {pr_updated}")
+    print(f"  - Pushed to main: {pushed}")
     print(f"  - No changes: {no_changes}")
     print(f"  - Errors: {errors}")
 
@@ -354,11 +338,11 @@ def scheduled_run():
     return results
 
 
-@app.function(timeout=600)
+@app.function(timeout=43200)
 def process_conferences_subset(
     conference_names: list[str], num_retrieval_agents: int = 3
 ) -> list[dict]:
-    """Process a subset of conferences in parallel.
+    """Process a subset of conferences sequentially.
 
     Args:
         conference_names: List of conference names to process.
@@ -368,14 +352,14 @@ def process_conferences_subset(
         List of results for each processed conference.
     """
     print(f"\n{'=' * 60}")
-    print(f"Processing {len(conference_names)} conferences in parallel: {conference_names}")
+    print(f"Processing {len(conference_names)} conferences sequentially: {conference_names}")
     print(f"{'=' * 60}")
 
-    results = list(
-        process_single_conference.starmap(
-            (conference_name, num_retrieval_agents) for conference_name in conference_names
-        )
-    )
+    results = []
+    for i, conference_name in enumerate(conference_names, 1):
+        print(f"\n[{i}/{len(conference_names)}] {conference_name}")
+        result = process_single_conference.remote(conference_name, num_retrieval_agents)
+        results.append(result)
 
     print(f"\n{'=' * 60}")
     print(f"Completed processing {len(conference_names)} conferences")
@@ -395,7 +379,7 @@ def main(
 
     Args:
         conference_name: Single conference name to process (for testing).
-        all_conferences: If True, process all conferences in parallel.
+        all_conferences: If True, process all conferences sequentially.
         limit: Limit number of conferences to process (for testing).
     """
     if conference_name and all_conferences:
@@ -427,14 +411,12 @@ def main(
         )
 
     elif all_conferences:
-        # Process all conferences in parallel
-        # Note: We read from local repo here for the count, Modal will read from cloned repo
         local_conferences_dir = Path(__file__).parent.parent / CONFERENCES_DIR
         if local_conferences_dir.exists():
             num_conferences = len(list(local_conferences_dir.glob("*.yml")))
         else:
             num_conferences = "all"
-        print(f"Processing {num_conferences} conferences in parallel...")
+        print(f"Processing {num_conferences} conferences sequentially...")
         results = process_all_conferences.remote(
             num_retrieval_agents=num_retrieval_agents
         )
@@ -443,25 +425,18 @@ def main(
         print("Summary:")
         print(f"{'=' * 60}")
 
-        pr_created = [r for r in results if r.get("status") == "pr_created"]
-        pr_updated = [r for r in results if r.get("status") == "pr_updated"]
+        pushed = [r for r in results if r.get("status") == "pushed"]
         no_changes = [r for r in results if r.get("status") == "no_changes"]
         errors = [r for r in results if r.get("status") == "error"]
 
-        print(f"PRs created: {len(pr_created)}")
-        print(f"PRs updated: {len(pr_updated)}")
+        print(f"Pushed to main: {len(pushed)}")
         print(f"No changes: {len(no_changes)}")
         print(f"Errors: {len(errors)}")
 
-        if pr_created:
-            print("\nNew PRs:")
-            for r in pr_created:
-                print(f"  - {r['conference']}: {r.get('pr_url', 'N/A')}")
-
-        if pr_updated:
-            print("\nUpdated PRs:")
-            for r in pr_updated:
-                print(f"  - {r['conference']}: {r.get('pr_url', 'N/A')}")
+        if pushed:
+            print("\nPushed:")
+            for r in pushed:
+                print(f"  - {r['conference']}")
 
         if errors:
             print("\nErrors:")

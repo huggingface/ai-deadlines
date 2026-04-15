@@ -24,11 +24,11 @@ Next, the agent can be run like so on a conference of choice:
 uv run --env-file keys.env -m agents.agent --conference_name neurips
 ```
 
-The agent will automatically fetch relevant information from the web using the [Exa MCP server](https://docs.exa.ai/reference/exa-mcp) to populate the data at `src/data/conferences` and open a pull request.
+The agent will automatically fetch relevant information from the web using the [Exa MCP server](https://docs.exa.ai/reference/exa-mcp) to populate the data at `src/data/conferences` and push the update directly to main.
 
 ## Modal deployment
 
-To automatically let the AI agents populate deadlines data, we leverage [Modal](https://modal.com/)'s serverless infrastructure.
+To automatically let the AI agents populate deadlines data, we leverage [Modal](https://modal.com/)'s serverless infrastructure. Conferences are processed **sequentially** — each update is committed and pushed to main before the next conference starts, avoiding merge conflicts.
 
 ### Setup
 
@@ -38,11 +38,11 @@ To automatically let the AI agents populate deadlines data, we leverage [Modal](
 
 ```bash
 uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-api-key>
-uv run modal secret create github-token GH_TOKEN=<token-with-repo-and-pr-scope>
+uv run modal secret create github-token GH_TOKEN=<token-with-repo-scope>
 uv run modal secret create exa EXA_API_KEY=<your-key>
 ```
 
-> **Note:** The `GH_TOKEN` needs the `repo` scope (for cloning, pushing, and creating pull requests).
+> **Note:** The `GH_TOKEN` needs the `repo` scope (for cloning and pushing to the repository).
 
 ### Running a single conference
 
@@ -50,9 +50,9 @@ uv run modal secret create exa EXA_API_KEY=<your-key>
 uv run modal run agents/modal_agent.py --conference-name neurips
 ```
 
-### Running all conferences in parallel
+### Running all conferences
 
-By default (no flags), the script processes **all** conferences in parallel — each in its own Modal container:
+By default (no flags), the script processes **all** conferences sequentially:
 
 ```bash
 uv run modal run agents/modal_agent.py
@@ -78,16 +78,15 @@ To deploy the agent so it runs automatically every week (Sunday at midnight UTC)
 uv run modal deploy agents/modal_agent.py
 ```
 
-The structure looks as follows:
+The per-conference pipeline looks as follows:
 
 ```mermaid
 flowchart LR
     A1["Retrieval Agent 1"] --> V["Aggregation Agent\n(majority vote)"]
     A2["Retrieval Agent 2"] --> V
     A3["Retrieval Agent 3"] --> V
-    V -->|"selected result"| B["Verification Agent"]
-    B -->|"structured output: reasoning + verdict"| C{verdict?}
-    C -->|true| D["PR Agent"]
-    C -->|false| E["Return: no PR"]
-    D -->|"structured output: PR result"| F["Return result"]
+    V -->|"selected result"| C{update needed?}
+    C -->|yes| D["Push Agent"]
+    C -->|no| E["Return: no changes"]
+    D -->|"commit & push to main"| F["Return result"]
 ```
