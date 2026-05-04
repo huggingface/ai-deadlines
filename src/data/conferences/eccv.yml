@@ -6,9 +6,9 @@
   city: Malmö
   country: Sweden
   venue: Malmö Arena and Malmömässan
-  date: September 8-13, 2026
+  date: September 8-12, 2026
   start: 2026-09-08
-  end: 2026-09-13
+  end: 2026-09-12
   era_rating: a
   tags:
   - computer-vision
@@ -45,6 +45,10 @@
     label: Rebuttal Deadline
     date: '2026-05-11 21:00:00'
     timezone: UTC
+  - type: submission
+    label: AI Art Submission
+    date: '2026-06-14 23:59:59'
+    timezone: AoE
   - type: notification
     label: Final Decisions
     date: '2026-06-17 23:59:59'
@@ -52,4 +56,8 @@
   - type: camera_ready
     label: Camera Ready Deadline
     date: '2026-06-26 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: AI Art Acceptance Notification
+    date: '2026-06-29 23:59:59'
     timezone: AoE
