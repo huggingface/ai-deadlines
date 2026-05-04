@@ -23,7 +23,7 @@
     - type: notification
       label: Paper acceptance notification
       date: '2026-06-05 23:59:59'
-      timezone:AoE
+      timezone: AoE
     - type: camera_ready
       label: Camera-ready paper submission
       date: '2026-06-19 23:59:59'
