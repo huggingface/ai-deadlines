@@ -50,8 +50,8 @@
       label: Reviews released
       date: '2026-04-17 23:59:59'
       timezone: AoE
-    - type: rebuttal_start
-      label: Rebuttal period
+    - type: rebuttal_end
+      label: Rebuttal period ends
       date: '2026-04-24 23:59:59'
       timezone: AoE
     - type: notification
@@ -71,4 +71,17 @@
   - computer-vision
   city: Vienna
   country: Austria
+  rankings: 'CCF: C, CORE: A, THCPL: B'
+- title: ICDAR
+  year: 2027
+  id: icdar2027
+  full_name: International Conference on Document Analysis and Recognition
+  link: https://icdar2027.org/
+  date: August 18-22, 2027
+  start: 2027-08-18
+  end: 2027-08-22
+  tags:
+  - computer-vision
+  city: Kuala Lumpur
+  country: Malaysia
   rankings: 'CCF: C, CORE: A, THCPL: B'
