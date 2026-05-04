@@ -42,6 +42,26 @@
   link: https://kdd2026.kdd.org/
   deadlines:
     - type: abstract
+      label: Abstract submission (First Cycle)
+      date: '2025-07-24 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission (First Cycle)
+      date: '2025-07-31 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Rebuttal period start (First Cycle)
+      date: '2025-10-04 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Rebuttal period end (First Cycle)
+      date: '2025-10-18 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Notification (First Cycle)
+      date: '2025-11-23 23:59:59'
+      timezone: AoE
+    - type: abstract
       label: Abstract submission (Second Cycle)
       date: '2026-02-01 23:59:59'
       timezone: AoE
@@ -50,15 +70,15 @@
       date: '2026-02-08 23:59:59'
       timezone: AoE
     - type: rebuttal_start
-      label: Rebuttal period start
+      label: Rebuttal period start (Second Cycle)
       date: '2026-04-04 23:59:59'
       timezone: AoE
     - type: rebuttal_end
-      label: Rebuttal period end
+      label: Rebuttal period end (Second Cycle)
       date: '2026-04-17 23:59:59'
       timezone: AoE
     - type: notification
-      label: Notification
+      label: Notification (Second Cycle)
       date: '2026-05-16 23:59:59'
       timezone: AoE
   city: Jeju
@@ -71,5 +91,5 @@
   tags:
   - data-mining
   - machine-learning
-  note: Second cycle deadlines shown. First cycle deadlines were July 24/31, 2025. AI for Sciences Track accepts submissions only in second cycle.
+  note: KDD 2026 has two submission cycles. First cycle deadlines were July 24/31, 2025. Second cycle deadlines are February 1/8, 2026. AI for Sciences Track accepts submissions only in second cycle.
   hindex: 124
