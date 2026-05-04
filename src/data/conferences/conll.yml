@@ -43,7 +43,7 @@
     timezone: AoE
   - type: camera_ready
     label: Camera-ready papers due
-    date: '2026-05-12 23:59:59'
+    date: '2026-05-18 23:59:59'
     timezone: AoE
   city: San Diego
   country: USA
