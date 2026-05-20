@@ -8,6 +8,14 @@
       label: Paper submission deadline
       date: "2026-05-21 23:59:59"
       timezone: UTC+02
+    - type: notification
+      label: Notification of acceptance
+      date: "2026-07-18 23:59:59"
+      timezone: UTC+02
+    - type: camera_ready
+      label: Camera-ready submission deadline
+      date: "2026-07-25 23:59:59"
+      timezone: UTC+02
   timezone: Europe/Luxembourg
   city: Luxembourg
   country: Luxembourg
