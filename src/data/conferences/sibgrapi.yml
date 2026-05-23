@@ -1,0 +1,38 @@
+- title: SIBGRAPI
+  year: 2026
+  id: sibgrapi26
+  full_name: Conference on Graphics, Patterns and Images
+  link: https://sibgrapi.sbc.org.br/2026/
+  deadlines:
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-05-30 23:59:59'
+      timezone: UTC
+    - type: first-notification
+      label: First notification
+      date: '2026-07-07 23:59:59'
+      timezone: UTC  
+    - type: revision-deadline
+      label: Revision submission deadline
+      date: '2026-07-18 23:59:59'
+      timezone: UTC  
+    - type: final-notification
+      label: Final notification
+      date: '2026-08-03 23:59:59'
+      timezone: UTC  
+    - type: camera-ready
+      label: Camera-ready version
+      date: '2026-08-15 23:59:59'
+      timezone: UTC
+  city: Goiânia
+  country: Brazil
+  venue: Federal University of Goiás (UFG)
+  date: September 29 to October 2, 2026
+  start: '2026-09-29'
+  end: '2026-10-02'
+  hindex: 22
+  tags:
+  - image-processing
+  - pattern-recognition
+  - computer-vision
+  - computer-graphics
