@@ -1,0 +1,17 @@
+- title: HICSS
+  year: 2027
+  id: hicss27
+  full_name: Hawaii International Conference on System Sciences
+  link: https://hicss.hawaii.edu/
+  city: Waikoloa
+  country: USA
+  date: January 5-8, 2027
+  era_rating: a
+  tags:
+  - information-systems
+  deadlines:
+  - type: submission
+    label: Paper Submission
+    date: '2026-06-15 23:59:59'
+    timezone: Pacific/Honolulu
+  note: 'Paper submission deadline on June 15th, 2026 at 11:59 PM HST. Conference held January 5-8, 2027 at Hilton Waikoloa Village, Big Island, Hawaii.'
