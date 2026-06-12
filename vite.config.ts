@@ -8,8 +8,10 @@ import yaml from "@modyfi/vite-plugin-yaml";
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   server: {
-    host: "::",
-    port: 8080,
+    // Use 5173 locally to avoid conflicting with Cursor's port-forward on 8080 (HF Space app_port).
+    host: "127.0.0.1",
+    port: 5173,
+    strictPort: false,
   },
   plugins: [
     react(),

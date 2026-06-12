@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Calendar from "./pages/Calendar";
+import MigrationDialog from "./components/MigrationDialog";
 
 const queryClient = new QueryClient();
 
@@ -15,6 +16,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <MigrationDialog />
         <div className="min-h-screen w-full" style={{ WebkitOverflowScrolling: "touch" }}>
           <Routes>
             <Route path="/" element={<Index />} />

@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import { CalendarDays, Globe, Tag, Clock, AlarmClock, CalendarPlus } from "lucide-react";
 import { Conference } from "@/types/conference";
-import { formatDistanceToNow, parseISO, isValid, format, parse, addDays } from "date-fns";
+import { isValid, format } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,7 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useState, useEffect } from "react";
 import { getDeadlineInLocalTime } from '@/utils/dateUtils';
-import { getAllDeadlines, getNextUpcomingDeadline, getUpcomingDeadlines, getDaysRemaining, getCountdownColorClass } from '@/utils/deadlineUtils';
+import { getNextUpcomingDeadline, getUpcomingDeadlines, getDaysRemaining, getCountdownColorClass } from '@/utils/deadlineUtils';
 
 interface ConferenceDialogProps {
   conference: Conference;
@@ -93,80 +93,60 @@ const ConferenceDialog = ({ conference, open, onOpenChange }: ConferenceDialogPr
     return "text-green-600";
   };
 
-  const parseDateFromString = (dateStr: string) => {
-    try {
-      // Handle formats like "October 19-25, 2025" or "Sept 9-12, 2025"
-      const [monthDay, year] = dateStr.split(", ");
-      const [month, dayRange] = monthDay.split(" ");
-      const [startDay] = dayRange.split("-");
-      
-      // Construct a date string in a format that can be parsed
-      const dateString = `${month} ${startDay} ${year}`;
-      const date = parse(dateString, 'MMMM d yyyy', new Date());
-      
-      if (!isValid(date)) {
-        // Try alternative format for abbreviated months
-        return parse(dateString, 'MMM d yyyy', new Date());
-      }
-      
-      return date;
-    } catch (error) {
-      console.error("Error parsing date:", error);
-      return new Date();
-    }
-  };
-
   const createCalendarEvent = (type: 'google' | 'apple') => {
     try {
-      if (!conference.deadline || conference.deadline === 'TBD') {
-        throw new Error('No valid deadline found');
-      }
-
-      // Parse the deadline date
-      const deadlineDate = parseISO(conference.deadline);
-      if (!isValid(deadlineDate)) {
-        throw new Error('Invalid deadline date');
+      if (!nextDeadline || !deadlineDate || !isValid(deadlineDate)) {
+        throw new Error('No valid upcoming deadline found');
       }
 
       // Create an end date 1 hour after the deadline
       const endDate = new Date(deadlineDate.getTime() + (60 * 60 * 1000));
 
-      const formatDateForGoogle = (date: Date) => format(date, "yyyyMMdd'T'HHmmss'Z'");
-      const formatDateForApple = (date: Date) => format(date, "yyyyMMdd'T'HHmmss'Z'");
+      const formatCalendarDate = (date: Date) => format(date, "yyyyMMdd'T'HHmmss");
+      const escapeICSText = (value: string) =>
+        value
+          .replace(/\\/g, '\\\\')
+          .replace(/\n/g, '\\n')
+          .replace(/,/g, '\\,')
+          .replace(/;/g, '\\;');
 
-      const title = encodeURIComponent(`${conference.title} deadline`);
-      const locationStr = encodeURIComponent(location);
-      const description = encodeURIComponent(
-        `Paper Submission Deadline for ${conference.full_name || conference.title}\n` +
-        (conference.abstract_deadline ? `Abstract Deadline: ${conference.abstract_deadline}\n` : '') +
+      const eventTitle = `${conference.title} ${nextDeadline.label}`;
+      const localTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const descriptionText =
+        `${nextDeadline.label} for ${conference.full_name || conference.title}\n` +
+        `Deadline: ${format(deadlineDate, "MMMM d, yyyy 'at' HH:mm:ss")} (${localTimezone})\n` +
         `Dates: ${conference.date}\n` +
         `Location: ${location}\n` +
-        (conference.link ? `Website: ${conference.link}` : '')
-      );
+        (conference.link ? `Website: ${conference.link}` : '');
 
       if (type === 'google') {
-        const url = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-          `&text=${title}` +
-          `&dates=${formatDateForGoogle(deadlineDate)}/${formatDateForGoogle(endDate)}` +
-          `&details=${description}` +
-          `&location=${locationStr}` +
-          `&sprop=website:${encodeURIComponent(conference.link || '')}`;
+        const params = new URLSearchParams({
+          action: 'TEMPLATE',
+          text: eventTitle,
+          dates: `${formatCalendarDate(deadlineDate)}/${formatCalendarDate(endDate)}`,
+          details: descriptionText,
+          location,
+          ctz: localTimezone,
+          sprop: `website:${conference.link || ''}`,
+        });
+        const url = `https://calendar.google.com/calendar/render?${params.toString()}`;
         window.open(url, '_blank');
       } else {
-        const url = `data:text/calendar;charset=utf8,BEGIN:VCALENDAR
+        const calendarContent = `BEGIN:VCALENDAR
 VERSION:2.0
+PRODID:-//AI Conference Deadlines//EN
 BEGIN:VEVENT
-URL:${conference.link || ''}
-DTSTART:${formatDateForApple(deadlineDate)}
-DTEND:${formatDateForApple(endDate)}
-SUMMARY:${title}
-DESCRIPTION:${description}
-LOCATION:${location}
+URL:${escapeICSText(conference.link || '')}
+DTSTART:${formatCalendarDate(deadlineDate)}
+DTEND:${formatCalendarDate(endDate)}
+SUMMARY:${escapeICSText(eventTitle)}
+DESCRIPTION:${escapeICSText(descriptionText)}
+LOCATION:${escapeICSText(location)}
 END:VEVENT
 END:VCALENDAR`;
         
         const link = document.createElement('a');
-        link.href = url;
+        link.href = `data:text/calendar;charset=utf8,${encodeURIComponent(calendarContent)}`;
         link.download = `${conference.title.toLowerCase().replace(/\s+/g, '-')}-deadline.ics`;
         document.body.appendChild(link);
         link.click();
