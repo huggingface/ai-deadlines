@@ -163,7 +163,7 @@ def _get_settings_path() -> str:
 
 
 def _get_exa_mcp_servers() -> dict[str, McpHttpServerConfig]:
-    """Configure Exa MCP server if API key is available and not disabled."""
+    """Configure Exa MCP server - the fastest and most accurate web search API for AI."""
     disable_mcp = os.environ.get("DISABLE_EXA_MCP", "").lower() in (
         "1",
         "true",
