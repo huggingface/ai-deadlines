@@ -1,0 +1,26 @@
+- title: INLG
+  year: 2026
+  id: inlg2026
+  full_name: International Conference on Natural Language Generation
+  link: https://2026.inlgmeeting.org/
+  city: Utrecht
+  country: Netherlands
+  date: October 17-21, 2026
+  start: '2026-10-17'
+  end: '2026-10-21'
+  tags:
+  - natural-language-processing
+  deadlines:
+  - type: submission
+    label: Direct submission
+    date: '2026-07-15 23:59:59'
+    timezone: AoE
+  - type: commitment_deadline
+    label: Pre-reviewed ARR commitment
+    date: '2026-08-05 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Author notification date
+    date: '2026-08-15 23:59:59'
+    timezone: AoE
+  note: 'Endorsed by the Special Interest Group for Natural Language Generation (SIGGEN) of the Association for Computational Linguistics.'
