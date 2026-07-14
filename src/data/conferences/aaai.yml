@@ -93,7 +93,7 @@
   year: 2027
   id: aaai27
   full_name: AAAI Conference on Artificial Intelligence
-  link: https://aaai.org/conference/aaai/
+  link: https://aaai.org/conference/aaai/aaai-27/
   deadlines: []
   date: February 16 - 23, 2027
   start: 2027-02-16
@@ -108,5 +108,5 @@
   rankings: 'CCF: A, CORE: A*, THCPL: A'
   venue: Palais des congrès de Montréal, Montréal, Canada
   hindex: 220
-  note: Submission deadlines not yet announced. More info <a href='https://aaai.org/conference/aaai/'>here</a>.
+  note: Submission deadlines not yet announced. More info <a href='https://aaai.org/conference/aaai/aaai-27/'>here</a>.
   era_rating: a
