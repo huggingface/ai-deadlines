@@ -27,5 +27,6 @@
   country: Greece
   venue: Thessaloniki, Greece
   tags:
+  - machine-learning
   - computer-vision
   rankings: 'CCF: C, CORE: N, THCPL: N'
