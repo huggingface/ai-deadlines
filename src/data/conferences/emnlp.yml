@@ -34,7 +34,7 @@
       timezone: AoE
     - type: camera_ready
       label: Camera-ready deadline
-      date: '2026-09-20 23:59:59'
+      date: '2026-08-30 23:59:59'
       timezone: AoE
   date: October 24 - 29, 2026
   tags:
@@ -42,7 +42,7 @@
   city: Budapest
   country: Hungary
   rankings: 'CCF: B, CORE: A*, THCPL: A'
-  venue: TBA
+  venue: Hungexpo, Budapest, Hungary
   start: '2026-10-24'
   end: '2026-10-29'
   era_rating: a
