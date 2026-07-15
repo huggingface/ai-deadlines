@@ -5,6 +5,7 @@
   link: https://2026.inlgmeeting.org/
   city: Utrecht
   country: Netherlands
+  era_rating: b
   date: October 17-21, 2026
   start: '2026-10-17'
   end: '2026-10-21'
@@ -13,7 +14,7 @@
   deadlines:
   - type: submission
     label: Direct submission
-    date: '2026-07-15 23:59:59'
+    date: '2026-07-18 23:59:59'
     timezone: AoE
   - type: commitment_deadline
     label: Pre-reviewed ARR commitment

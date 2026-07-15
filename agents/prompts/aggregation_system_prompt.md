@@ -13,6 +13,10 @@ You have received structured results from multiple retrieval agents, each of who
 3. **Verify disputed facts**: When agents disagree on a factual claim (e.g. venue name, dates, deadlines), use web search to independently verify the claim against the official conference website before accepting any agent's answer. Do NOT blindly pick the majority if you can verify the truth.
 4. **Synthesize** a single, authoritative result that represents the best consensus.
 
+## Turn budget
+
+You have at most **{max_turns} tool-use turns**. Use them only to resolve factual disagreements between retrieval agents. Do not perform broad research — that was the retrieval agents' job. Return structured output as soon as consensus is reached.
+
 ## CRITICAL: Only accept changes for upcoming conferences
 
 You must **only** accept proposed changes for **upcoming** conference years — that is, years that have not yet taken place as of today's date (see "Today is {date}" above).

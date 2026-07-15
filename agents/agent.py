@@ -193,6 +193,42 @@ def _get_exa_mcp_servers() -> dict[str, McpHttpServerConfig]:
 MAX_RETRIES = 3
 SILENT_EXIT_THRESHOLD = 2  # message_count <= this with empty result triggers retry
 
+# Per-agent limits (override per stage with e.g. RETRIEVAL_MAX_TURNS)
+DEFAULT_MAX_TURNS = 12
+DEFAULT_MAX_BUDGET_USD = 1.50
+STAGE_LIMIT_DEFAULTS: dict[str, tuple[int, float]] = {
+    "retrieval": (12, 1.50),
+    "aggregation": (8, 1.00),
+    "push": (6, 0.50),
+}
+
+
+def _get_stage_limits(stage: str) -> tuple[int, float]:
+    """Return (max_turns, max_budget_usd) for a pipeline stage."""
+    default_turns, default_budget = STAGE_LIMIT_DEFAULTS.get(
+        stage, (DEFAULT_MAX_TURNS, DEFAULT_MAX_BUDGET_USD)
+    )
+
+    stage_turns = os.environ.get(f"{stage.upper()}_MAX_TURNS")
+    global_turns = os.environ.get("AGENT_MAX_TURNS")
+    if stage_turns:
+        max_turns = int(stage_turns)
+    elif global_turns:
+        max_turns = int(global_turns)
+    else:
+        max_turns = default_turns
+
+    stage_budget = os.environ.get(f"{stage.upper()}_MAX_BUDGET_USD")
+    global_budget = os.environ.get("AGENT_MAX_BUDGET_USD")
+    if stage_budget:
+        max_budget_usd = float(stage_budget)
+    elif global_budget:
+        max_budget_usd = float(global_budget)
+    else:
+        max_budget_usd = default_budget
+
+    return max_turns, max_budget_usd
+
 
 async def _run_agent_once(
     system_prompt: str,
@@ -200,6 +236,8 @@ async def _run_agent_once(
     output_schema: dict,
     agent_label: str = "agent",
     mcp_servers: dict[str, McpHttpServerConfig] | None = None,
+    max_turns: int | None = None,
+    max_budget_usd: float | None = None,
 ) -> tuple[dict, float, int]:
     """Run a single agent query attempt.
 
@@ -220,10 +258,21 @@ async def _run_agent_once(
             "schema": output_schema,
         },
     }
+    if max_turns is not None:
+        options_kwargs["max_turns"] = max_turns
+    if max_budget_usd is not None:
+        options_kwargs["max_budget_usd"] = max_budget_usd
     if mcp_servers:
         options_kwargs["mcp_servers"] = mcp_servers
 
     options = ClaudeAgentOptions(**options_kwargs)
+    limits = []
+    if max_turns is not None:
+        limits.append(f"max_turns={max_turns}")
+    if max_budget_usd is not None:
+        limits.append(f"max_budget_usd=${max_budget_usd:.2f}")
+    if limits:
+        print(f"[{agent_label}] Limits: {', '.join(limits)}")
 
     subagent_names: dict[str, str] = {}
     tool_names: dict[str, str] = {}
@@ -276,6 +325,11 @@ async def _run_agent_once(
                             )
 
             elif isinstance(message, ResultMessage):
+                if message.subtype in ("error_max_turns", "error_max_budget_usd"):
+                    print(
+                        f"[{agent_label}] Limit reached: {message.subtype} "
+                        f"(cost=${message.total_cost_usd or 0:.4f})"
+                    )
                 if hasattr(message, "error") and message.error:
                     print(f"[{agent_label}][result] ERROR: {message.error}")
                 if message.total_cost_usd and message.total_cost_usd > 0:
@@ -305,6 +359,8 @@ async def _run_agent(
     output_schema: dict,
     agent_label: str = "agent",
     mcp_servers: dict[str, McpHttpServerConfig] | None = None,
+    max_turns: int | None = None,
+    max_budget_usd: float | None = None,
 ) -> tuple[dict, float]:
     """Run a single agent query with structured output and automatic retries.
 
@@ -331,6 +387,8 @@ async def _run_agent(
             output_schema=output_schema,
             agent_label=agent_label,
             mcp_servers=mcp_servers,
+            max_turns=max_turns,
+            max_budget_usd=max_budget_usd,
         )
         total_cost += cost
 
@@ -376,10 +434,12 @@ async def run_retrieval_agent(
     app_readme = await read_app_readme()
 
     system_template = await read_prompt("prompts/retrieval_system_prompt.md")
+    max_turns, max_budget_usd = _get_stage_limits("retrieval")
     system_prompt = system_template.format(
         conference_name=conference_name,
         date=format_date_verbose(datetime.now()),
         app_readme=app_readme,
+        max_turns=max_turns,
     )
 
     user_template = await read_prompt("prompts/retrieval_user_prompt.md")
@@ -396,6 +456,8 @@ async def run_retrieval_agent(
         output_schema=RETRIEVAL_RESULT_SCHEMA,
         agent_label=f"retrieval-{agent_index}",
         mcp_servers=mcp_servers or None,
+        max_turns=max_turns,
+        max_budget_usd=max_budget_usd,
     )
 
 
@@ -442,9 +504,11 @@ async def run_aggregation_agent(
     conference_data = await load_conference_data(conference_name)
 
     system_template = await read_prompt("prompts/aggregation_system_prompt.md")
+    max_turns, max_budget_usd = _get_stage_limits("aggregation")
     system_prompt = system_template.format(
         conference_name=conference_name,
         date=format_date_verbose(datetime.now()),
+        max_turns=max_turns,
     )
 
     results_text = ""
@@ -468,6 +532,8 @@ async def run_aggregation_agent(
         output_schema=AGGREGATION_RESULT_SCHEMA,
         agent_label="aggregation",
         mcp_servers=mcp_servers or None,
+        max_turns=max_turns,
+        max_budget_usd=max_budget_usd,
     )
 
 
@@ -499,8 +565,10 @@ async def run_push_agent(
     )
 
     system_template = await read_prompt("prompts/pr_system_prompt.md")
+    max_turns, max_budget_usd = _get_stage_limits("push")
     system_prompt = system_template.format(
         conference_name=conference_name,
+        max_turns=max_turns,
     )
 
     user_template = await read_prompt("prompts/pr_user_prompt.md")
@@ -518,6 +586,8 @@ async def run_push_agent(
         output_schema=PUSH_RESULT_SCHEMA,
         agent_label="push",
         mcp_servers=None,
+        max_turns=max_turns,
+        max_budget_usd=max_budget_usd,
     )
 
 

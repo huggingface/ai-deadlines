@@ -22,11 +22,21 @@ Setup:
 1. Install Modal: uv add modal
 2. Authenticate: uv run modal setup
 3. Create secrets:
-   uv run modal secret create anthropic ANTHROPIC_API_KEY=<your-api-key>
+   uv run modal secret create anthropic \\
+     ANTHROPIC_BASE_URL=https://router.huggingface.co \\
+     ANTHROPIC_AUTH_TOKEN=<hf-token> \\
+     ANTHROPIC_API_KEY=<hf-token> \\
+     ANTHROPIC_CUSTOM_HEADERS="X-HF-Bill-To: huggingface" \\
+     ANTHROPIC_DEFAULT_OPUS_MODEL=zai-org/GLM-5.2 \\
+     ANTHROPIC_DEFAULT_SONNET_MODEL=zai-org/GLM-5.2 \\
+     ANTHROPIC_DEFAULT_HAIKU_MODEL=zai-org/GLM-5.2 \\
+     CLAUDE_CODE_SUBAGENT_MODEL=zai-org/GLM-5.2
    uv run modal secret create github-token GH_TOKEN=<token-with-repo-scope>
    uv run modal secret create exa EXA_API_KEY=<your-key>
 
 Note: The GH_TOKEN needs the `repo` scope for cloning and pushing to the repository.
+The `anthropic` secret routes Claude Code through HF Inference Providers (not a direct
+Anthropic API key). See https://huggingface.co/docs/inference-providers/en/integrations/claude-code
 """
 
 import os
