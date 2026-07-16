@@ -241,9 +241,16 @@ def process_single_conference(
                 num_retrieval_agents=num_retrieval_agents,
             )
 
+            skipped_aggregation = agent_result.get("skipped_aggregation", False)
+            status = "pushed" if agent_result.get("pushed") else "no_changes"
+            if skipped_aggregation:
+                status = "no_changes (early exit after retrieval)"
+
             return {
                 "conference": conference_name,
-                "status": "pushed" if agent_result.get("pushed") else "no_changes",
+                "status": status,
+                "skipped_aggregation": skipped_aggregation,
+                "total_cost_usd": agent_result.get("total_cost_usd"),
                 "error": agent_result.get("error"),
             }
 
@@ -331,12 +338,15 @@ def scheduled_run():
     results = process_all_conferences.remote()
 
     pushed = sum(1 for r in results if r.get("status") == "pushed")
-    no_changes = sum(1 for r in results if r.get("status") == "no_changes")
+    no_changes = sum(
+        1 for r in results if str(r.get("status", "")).startswith("no_changes")
+    )
+    early_exits = sum(1 for r in results if r.get("skipped_aggregation"))
     errors = sum(1 for r in results if r.get("status") == "error")
 
     print("\nWeekly run completed:")
     print(f"  - Pushed to main: {pushed}")
-    print(f"  - No changes: {no_changes}")
+    print(f"  - No changes: {no_changes} ({early_exits} skipped aggregation)")
     print(f"  - Errors: {errors}")
 
     if errors:
@@ -436,11 +446,14 @@ def main(
         print(f"{'=' * 60}")
 
         pushed = [r for r in results if r.get("status") == "pushed"]
-        no_changes = [r for r in results if r.get("status") == "no_changes"]
+        no_changes = [
+            r for r in results if str(r.get("status", "")).startswith("no_changes")
+        ]
+        early_exits = [r for r in results if r.get("skipped_aggregation")]
         errors = [r for r in results if r.get("status") == "error"]
 
         print(f"Pushed to main: {len(pushed)}")
-        print(f"No changes: {len(no_changes)}")
+        print(f"No changes: {len(no_changes)} ({len(early_exits)} skipped aggregation)")
         print(f"Errors: {len(errors)}")
 
         if pushed:

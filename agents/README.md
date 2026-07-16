@@ -91,6 +91,8 @@ flowchart LR
     D -->|"commit & push to main"| F["Return result"]
 ```
 
+When at least two retrieval agents return valid structured output and all of them agree `requires_update: false`, aggregation and push are skipped and the pipeline returns early with no changes. This saves cost on conferences whose YAML already matches the official site. If any agent reports an update, or fewer than two agents return valid results, aggregation runs as usual.
+
 ## Hugging Face Jobs deployment
 
 To run the same pipeline on [Hugging Face Jobs](https://huggingface.co/docs/huggingface_hub/en/guides/jobs) (useful when debugging issues that only appear on remote runners, e.g. Modal), use [`hf_jobs_agent.py`](hf_jobs_agent.py). It follows the **tarball upload** pattern: local `agents/`, `.claude/`, and `README.md` are packed into `code.tar.gz`, uploaded to a **private** Hugging Face model repo (`<your-username>/ai-deadlines-agent-code` by default), and each job downloads that tarball before cloning `huggingface/ai-deadlines` and running `python -m agents.agent`. No Git push of agent code is required to iterate on prompts or agent logic.

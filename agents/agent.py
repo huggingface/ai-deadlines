@@ -594,6 +594,31 @@ async def run_push_agent(
 # --- Orchestrator ---
 
 
+def _valid_retrieval_results(retrieval_results: list[dict]) -> list[dict]:
+    return [r for r in retrieval_results if r.get("requires_update") is not None]
+
+
+def _all_agree_update(retrieval_results: list[dict]) -> bool:
+    valid = _valid_retrieval_results(retrieval_results)
+    return len(valid) >= 2 and all(r.get("requires_update") is True for r in valid)
+
+
+def _all_agree_no_update(retrieval_results: list[dict]) -> bool:
+    valid = _valid_retrieval_results(retrieval_results)
+    return len(valid) >= 2 and all(r.get("requires_update") is False for r in valid)
+
+
+def _combine_retrieval_reasoning(retrieval_results: list[dict]) -> str:
+    false_results = [
+        r
+        for r in retrieval_results
+        if r.get("requires_update") is False and r.get("reasoning")
+    ]
+    if not false_results:
+        return ""
+    return max(false_results, key=lambda r: len(r["reasoning"]))["reasoning"]
+
+
 async def find_conference_deadlines(
     conference_name: str,
     num_retrieval_agents: int = 3,
@@ -642,6 +667,20 @@ async def find_conference_deadlines(
         print(f"  Agent {i}: requires_update={requires_update}")
     print(f"  Retrieval stage cost: ${retrieval_cost:.4f}")
 
+    if _all_agree_no_update(retrieval_results):
+        print(
+            "\nAll retrieval agents agree: no update needed. "
+            "Skipping aggregation and push."
+        )
+        print(f"\nTotal pipeline cost: ${total_cost:.4f}")
+        return {
+            "pushed": False,
+            "reasoning": _combine_retrieval_reasoning(retrieval_results),
+            "updated_yaml": "",
+            "total_cost_usd": total_cost,
+            "skipped_aggregation": True,
+        }
+
     # === Stage 2: Aggregation (Majority Vote) ===
     print(f"\n{'=' * 60}")
     print("=== Stage 2: Aggregation (Majority Vote) ===")
@@ -656,11 +695,8 @@ async def find_conference_deadlines(
 
     # Fallback: if aggregation returned empty (SDK silent exit) but retrieval
     # agents unanimously agreed on an update, use the first retrieval result.
-    valid_results = [r for r in retrieval_results if r.get("requires_update") is not None]
-    all_agree_update = (
-        len(valid_results) >= 2
-        and all(r.get("requires_update") is True for r in valid_results)
-    )
+    valid_results = _valid_retrieval_results(retrieval_results)
+    all_agree_update = _all_agree_update(retrieval_results)
     if not aggregation_result and all_agree_update:
         print(
             "\nWARNING: Aggregation agent returned empty (SDK silent exit). "
