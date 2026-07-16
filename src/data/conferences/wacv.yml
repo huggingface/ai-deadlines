@@ -96,39 +96,39 @@
     timezone: AoE
   - type: review_release
     label: Round 1 Reviews and Decisions To Authors
-    date: '2026-08-08 02:39:00'
-    timezone: America/New_York
+    date: '2026-08-09 23:59:59'
+    timezone: AoE
   - type: rebuttal_and_revision
     label: Round 1 Rebuttal and Revision Submission
-    date: '2026-08-20 23:59:59'
+    date: '2026-08-21 23:59:59'
     timezone: AoE
   - type: registration
     label: Round 2 New Paper Registration
-    date: '2026-08-20 23:59:59'
+    date: '2026-08-21 23:59:59'
     timezone: AoE
   - type: submission
     label: Round 2 Paper Submissions
-    date: '2026-08-27 23:59:59'
+    date: '2026-08-28 23:59:59'
     timezone: AoE
   - type: supplementary
     label: Round 2 Supplemental Material
-    date: '2026-08-29 23:59:59'
+    date: '2026-08-30 23:59:59'
     timezone: AoE
   - type: notification
     label: Round 2 Reviews and Final Decisions to Authors
-    date: '2026-10-09 03:59:00'
-    timezone: America/New_York
+    date: '2026-10-09 23:59:59'
+    timezone: AoE
   - type: notification
     label: Round 1 Final Decisions Released to Authors
-    date: '2026-10-09 03:59:00'
-    timezone: America/New_York
+    date: '2026-10-09 23:59:59'
+    timezone: AoE
   - type: camera_ready
     label: Camera Ready Both Rounds
-    date: '2026-11-01 23:59:59'
+    date: '2026-11-02 23:59:59'
     timezone: AoE
-  date: January 5 - January 9, 2027
-  start: 2027-01-05
-  end: 2027-01-09
+  date: January 4 - January 8, 2027
+  start: 2027-01-04
+  end: 2027-01-08
   city: Buena Vista, FL
   country: USA
   venue: Disney Springs, Buena Vista, FL

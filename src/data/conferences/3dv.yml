@@ -14,18 +14,18 @@
     timezone: UTC-7
   - type: notification
     label: Preliminary Notification
-    date: '2026-10-27 23:59:59'
+    date: '2026-10-27 11:00:00'
     timezone: UTC-7
   - type: notification
     label: Final Notification
-    date: '2026-12-02 23:59:59'
+    date: '2026-12-02 11:00:00'
     timezone: UTC-7
   date: April 6-9, 2027
   start: 2027-04-06
   end: 2027-04-09
   city: Thessaloniki
   country: Greece
-  venue: Thessaloniki, Greece
+  venue: Thessaloniki Concert Hall (M2 building), Thessaloniki, Greece
   tags:
   - machine-learning
   - computer-vision
