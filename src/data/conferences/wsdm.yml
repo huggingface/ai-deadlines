@@ -63,3 +63,41 @@
   - data-mining
   era_rating: b
   rankings: 'CCF: B, CORE: A*, THCPL: B'
+
+- title: WSDM
+  year: 2027
+  id: wsdm27
+  full_name: ACM International Conference on Web Search and Data Mining
+  link: https://www.wsdm-conference.org/2027/
+  deadlines:
+    - type: abstract
+      label: Abstract submission (full papers)
+      date: '2026-08-17 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission (full papers)
+      date: '2026-08-24 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification (full papers)
+      date: '2026-11-02 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission (short papers)
+      date: '2026-11-17 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification (short papers)
+      date: '2026-12-18 23:59:59'
+      timezone: AoE
+  city: Hong Kong
+  country: Hong Kong
+  venue: Cordis, Hong Kong
+  date: February 15-19, 2027
+  start: 2027-02-15
+  end: 2027-02-19
+  tags:
+  - web-search
+  - data-mining
+  era_rating: b
+  rankings: 'CCF: B, CORE: A*, THCPL: B'
