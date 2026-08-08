@@ -73,10 +73,46 @@
   year: 2027
   id: eurographics27
   full_name: The 48th Annual Conference of the European Association for Computer Graphics
-  link: https://www.eg.org/wp/eg-events/eurographics-annual-conference/
-  city: Pisa
+  link: https://eg2027.isti.cnr.it/
+  deadlines:
+    - type: abstract
+      label: Abstract and submission form deadline
+      date: '2026-09-25 23:59:59'
+      timezone: UTC
+    - type: paper
+      label: Full paper submission deadline
+      date: '2026-10-01 23:59:59'
+      timezone: UTC
+    - type: review_release
+      label: Reviews released
+      date: '2026-11-23 23:59:59'
+      timezone: UTC
+    - type: rebuttal
+      label: Rebuttal due
+      date: '2026-11-30 23:59:59'
+      timezone: UTC
+    - type: notification
+      label: Conditional acceptance or rejection notification
+      date: '2026-12-18 23:59:59'
+      timezone: UTC
+    - type: camera_ready
+      label: Revised version deadline
+      date: '2027-01-26 23:59:59'
+      timezone: UTC
+    - type: notification
+      label: Final notification
+      date: '2027-02-09 23:59:59'
+      timezone: UTC
+    - type: camera_ready
+      label: Camera-ready version due
+      date: '2027-02-23 23:59:59'
+      timezone: UTC
+  city: Lucca
   country: Italy
-  venue: Pisa, Italy
+  venue: IMT Campus, Lucca, Italy
+  date: May 10 - 14, 2027
+  start: 2027-05-10
+  end: 2027-05-14
   tags:
   - computer-graphics
   era_rating: a
