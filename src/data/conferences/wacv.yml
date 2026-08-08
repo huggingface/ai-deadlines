@@ -88,11 +88,15 @@
   deadlines:
   - type: registration
     label: Round 1 Paper Registration
-    date: '2026-06-18 23:59:59'
+    date: '2026-06-19 23:59:59'
     timezone: AoE
   - type: submission
     label: Round 1 Paper Submission
-    date: '2026-06-25 23:59:59'
+    date: '2026-06-26 23:59:59'
+    timezone: AoE
+  - type: supplementary
+    label: Round 1 Supplementary Material
+    date: '2026-06-28 23:59:59'
     timezone: AoE
   - type: review_release
     label: Round 1 Reviews and Decisions To Authors
