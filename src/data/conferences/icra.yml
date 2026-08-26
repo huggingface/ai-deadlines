@@ -55,7 +55,20 @@
   year: 2027
   id: icra27
   full_name: IEEE International Conference on Robotics and Automation
-  link: https://www.ieee-ras.org/conferences-workshops/fully-sponsored/icra/
+  link: https://2027.ieee-icra.org/
+  deadlines:
+  - type: submission
+    label: Paper Submission
+    date: '2026-09-15 23:59:59'
+    timezone: PST
+  - type: notification
+    label: Notification of Acceptance
+    date: '2027-01-31 23:59:59'
+    timezone: PST
+  - type: camera_ready
+    label: Camera-Ready Submission
+    date: '2027-03-06 23:59:59'
+    timezone: PST
   city: Seoul
   country: South Korea
   venue: COEX, Seoul, South Korea
@@ -63,6 +76,8 @@
   start: '2027-05-24'
   end: '2027-05-28'
   era_rating: a
+  hindex: 129
   tags:
   - robotics
   - computer-vision
+  - machine-learning
