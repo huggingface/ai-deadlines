@@ -42,3 +42,50 @@
   - retrieval
   - web mining
   - content analysis
+- title: WWW
+  year: 2027
+  id: www27
+  full_name: The Web Conference
+  link: https://www2027.thewebconf.org/
+  era_rating: a
+  deadlines:
+  - type: abstract
+    label: Abstract Submission
+    date: '2026-10-18 23:59:59'
+    timezone: AoE
+  - type: submission
+    label: Paper Submission
+    date: '2026-10-25 23:59:59'
+    timezone: AoE
+  - type: review_release
+    label: Result Release
+    date: '2026-12-21 23:59:59'
+    timezone: AoE
+  - type: rebuttal_start
+    label: Rebuttal Period Start
+    date: '2026-12-21 00:00:00'
+    timezone: AoE
+  - type: rebuttal_end
+    label: Rebuttal Period End
+    date: '2026-12-31 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Notification
+    date: '2027-01-04 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera Ready
+    date: '2027-01-31 23:59:59'
+    timezone: AoE
+  city: Dublin
+  country: Ireland
+  date: May 10-14, 2027
+  start: 2027-05-10
+  end: 2027-05-14
+  tags:
+  - machine-learning
+  - recommendation
+  - semantics and knowledge
+  - retrieval
+  - web mining
+  - content analysis
