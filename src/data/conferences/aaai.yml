@@ -94,7 +94,39 @@
   id: aaai27
   full_name: AAAI Conference on Artificial Intelligence
   link: https://aaai.org/conference/aaai/aaai-27/
-  deadlines: []
+  deadlines:
+    - type: abstract
+      label: Abstract submission deadline
+      date: '2026-07-21 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Paper submission deadline
+      date: '2026-07-28 23:59:59'
+      timezone: AoE
+    - type: supplementary
+      label: Supplementary material and code deadline
+      date: '2026-07-31 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Phase 1 rejection notifications
+      date: '2026-09-24 23:59:59'
+      timezone: AoE
+    - type: rebuttal_start
+      label: Author feedback window start
+      date: '2026-10-19 23:59:59'
+      timezone: AoE
+    - type: rebuttal_end
+      label: Author feedback window end
+      date: '2026-10-25 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Final acceptance/rejection notices
+      date: '2026-11-30 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Camera-ready deadline
+      date: '2026-12-14 23:59:59'
+      timezone: AoE
   date: February 16 - 23, 2027
   start: 2027-02-16
   end: 2027-02-23
@@ -108,5 +140,5 @@
   rankings: 'CCF: A, CORE: A*, THCPL: A'
   venue: Palais des congrès de Montréal, Montréal, Canada
   hindex: 220
-  note: Submission deadlines not yet announced. More info <a href='https://aaai.org/conference/aaai/aaai-27/'>here</a>.
+  note: All deadlines are "anywhere on earth" (AoE). Deadlines vary by track; the dates listed are for the Main Technical Track. More info <a href='https://aaai.org/conference/aaai/aaai-27/'>here</a>.
   era_rating: a
