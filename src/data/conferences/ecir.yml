@@ -55,14 +55,66 @@
   id: ecir27
   full_name: European Conference on Information Retrieval
   link: https://www.ecir2027.co.uk/
-  deadlines: []
+  deadlines:
+    - type: submission
+      label: Workshop proposal deadline
+      date: '2026-09-07 23:59:59'
+      timezone: AoE
+    - type: abstract
+      label: Full paper abstract deadline
+      date: '2026-09-21 23:59:59'
+      timezone: AoE
+    - type: paper
+      label: Full paper submission deadline
+      date: '2026-10-05 23:59:59'
+      timezone: AoE
+    - type: abstract
+      label: Short paper abstract deadline
+      date: '2026-10-05 23:59:59'
+      timezone: AoE
+    - type: submission
+      label: Short paper submission deadline
+      date: '2026-10-12 23:59:59'
+      timezone: AoE
+    - type: abstract
+      label: Reproducibility abstract deadline
+      date: '2026-10-12 23:59:59'
+      timezone: AoE
+    - type: submission
+      label: Reproducibility paper submission deadline
+      date: '2026-10-19 23:59:59'
+      timezone: AoE
+    - type: abstract
+      label: Doctoral Consortium abstract deadline
+      date: '2026-10-26 23:59:59'
+      timezone: AoE
+    - type: submission
+      label: Demo / Doctoral Consortium paper / Industry Day / tutorial proposal / resource paper deadline
+      date: '2026-11-02 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Notification of acceptance
+      date: '2026-12-07 23:59:59'
+      timezone: AoE
+    - type: registration
+      label: Author and early registration deadline
+      date: '2026-12-21 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Tutorial camera-ready deadline
+      date: '2027-01-10 23:59:59'
+      timezone: AoE
+    - type: registration
+      label: Regular registration deadline
+      date: '2027-02-08 23:59:59'
+      timezone: AoE
   city: Southampton
   country: United Kingdom
-  venue: University of Southampton, Southampton, United Kingdom
+  venue: Southampton Football Club (St Mary's Stadium), Southampton, United Kingdom
   date: March 21 - March 25, 2027
   start: '2027-03-21'
   end: '2027-03-25'
   tags:
   - data-mining
-  note: More info <a href='https://www.ecir2027.co.uk/'>here</a>. Submission deadlines TBA.
+  note: More info <a href='https://www.ecir2027.co.uk/'>here</a>. Deadlines are "current proposed" per the official website and may be subject to change.
   era_rating: b
