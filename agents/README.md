@@ -86,12 +86,27 @@ flowchart LR
     A2["Retrieval Agent 2"] --> V
     A3["Retrieval Agent 3"] --> V
     V -->|"selected result"| C{update needed?}
-    C -->|yes| D["Push Agent"]
-    C -->|no| E["Return: no changes"]
-    D -->|"commit & push to main"| F["Return result"]
+    C -->|yes| D["Validate YAML + git push"]
+    C -->|no| E["Return: no_changes"]
+    D -->|"commit & push to main"| F["Return pushed + commit_sha"]
 ```
 
-When at least two retrieval agents return valid structured output and all of them agree `requires_update: false`, aggregation and push are skipped and the pipeline returns early with no changes. This saves cost on conferences whose YAML already matches the official site. If any agent reports an update, or fewer than two agents return valid results, aggregation runs as usual.
+Aggregation runs only if **at least one** retrieval agent returns `requires_update: true`. Otherwise the pipeline exits with `no_changes` (or `timeout` if retrieval produced no structured output because agents hit the wall-clock cap). This skips majority vote when nobody proposed an update.
+
+Each retrieval/aggregation agent is capped at **5 minutes** wall-clock by default (`AGENT_WALL_CLOCK_SECONDS`, overridable per stage with `RETRIEVAL_WALL_CLOCK_SECONDS` / `AGGREGATION_WALL_CLOCK_SECONDS`). Set a value to `0` to disable the cap. Retrieval `max_turns` stays at 12; a `PostToolUse` hook injects “budget exhausted, return structured output now” on the last search result so agents fail closed instead of dying on `error_max_turns`.
+
+Status values returned by Modal `process_single_conference`:
+
+| Status | Meaning |
+|--------|---------|
+| `pushed` | Commit is on `main`; includes `commit_sha` |
+| `no_changes` | Agents verified; push skipped |
+| `error` | Exception, auth/git failure, or YAML validation failed |
+| `timeout` | Modal function or per-agent wall-clock deadline hit |
+
+Deadline timezones in YAML must be **`AoE`** (never `UTC-12` or `UTC+12`). Invalid YAML is not pushed.
+
+The Modal function timeout for a single conference is **3600s** (1 hour), configurable at deploy time with `MODAL_CONFERENCE_TIMEOUT`. This is a backstop; the per-agent wall-clock cap is the primary control.
 
 ## Hugging Face Jobs deployment
 
@@ -147,3 +162,11 @@ uv run --env-file keys.env python -m agents.hf_jobs_agent --conference-name neur
 Use `hf jobs ps` and `hf jobs logs <job-id>` (or the job URL printed by the CLI) to inspect runs.
 
 > **Note:** By default, Exa MCP is disabled in the remote job (`DISABLE_EXA_MCP=1`), matching the Modal workaround. Pass `--enable-exa-mcp` to enable it.
+
+## Tests
+
+Unit tests for year labels, status/git mapping, aggregation short-circuit, YAML validation, and the last-turn search-budget helper:
+
+```bash
+uv run pytest agents/tests
+```

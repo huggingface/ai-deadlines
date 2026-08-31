@@ -8,6 +8,12 @@ Name: {conference_name}
 
 {conference_data}
 
+## Today and year labels
+
+{year_labels}
+
+Use these labels. Do not re-classify years yourself.
+
 ## Colleague results
 
 Below are the structured results from each colleague agent. Each result contains their independent assessment of whether an update is needed, their reasoning, proposed YAML content, and source URLs.
@@ -18,7 +24,7 @@ Below are the structured results from each colleague agent. Each result contains
 
 Perform a majority vote and synthesis:
 
-1. **Identify upcoming vs past years.** For each year block in the current data above, compare its `end` (or `start`/`date`) field to today's date. Years whose `end`/`start` is on or before today are **past** and must be preserved exactly as-is — reject any proposed change to them, even if multiple agents agree. Only proposals affecting **upcoming** years (or adding a brand-new upcoming year) are eligible for synthesis.
+1. **Use the precomputed year labels above.** PAST years must be preserved exactly as-is — reject any proposed change to them, even if multiple agents agree. Only proposals affecting UPCOMING years (or adding a MISSING_NEXT_YEAR / UNKNOWN edition with verified dates) are eligible for synthesis.
 
 2. **Compare** the results from all colleagues, considering only their proposals for upcoming years. Note where they agree and disagree on:
    - Whether an update is needed (`requires_update`)

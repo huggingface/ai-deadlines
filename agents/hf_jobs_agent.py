@@ -219,7 +219,7 @@ def build_remote_command(
         "apt-get install -y -qq git curl ca-certificates gnupg",
         gh_block,
         "python -m pip install --no-cache-dir --break-system-packages -q "
-        "'claude-agent-sdk>=0.1.18' 'aiofiles>=24.1.0'",
+        "'claude-agent-sdk>=0.1.18' 'aiofiles>=24.1.0' 'pyyaml>=6.0'",
         "id -u agent >/dev/null 2>&1 || useradd -m -s /bin/bash agent",
         'git config --global user.email "agent@hf-jobs.com"',
         'git config --global user.name "HF Jobs Conference Agent"',

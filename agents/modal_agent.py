@@ -82,6 +82,7 @@ image = (
     .pip_install(
         "claude-agent-sdk>=0.1.18",
         "aiofiles>=24.1.0",
+        "pyyaml>=6.0",
     )
     .run_commands(
         # Create non-root user (required for claude-agent-sdk bypassPermissions)
@@ -180,7 +181,12 @@ def setup_git_and_clone() -> None:
         print("Updated repository to latest main")
 
 
-@app.function(timeout=1200)
+def _modal_conference_timeout() -> int:
+    """Per-conference function timeout in seconds (deploy-time env). Default 3600."""
+    return int(os.environ.get("MODAL_CONFERENCE_TIMEOUT", "3600"))
+
+
+@app.function(timeout=_modal_conference_timeout())
 def process_single_conference(
     conference_name: str, num_retrieval_agents: int = 3
 ) -> dict:
@@ -235,33 +241,34 @@ def process_single_conference(
     from agents.agent import find_conference_deadlines
 
     async def _process():
+        from agents.pipeline_utils import (
+            conference_result_payload,
+            remote_call_error_payload,
+        )
+
         try:
             agent_result = await find_conference_deadlines(
                 conference_name,
                 num_retrieval_agents=num_retrieval_agents,
             )
-
-            skipped_aggregation = agent_result.get("skipped_aggregation", False)
-            status = "pushed" if agent_result.get("pushed") else "no_changes"
-            if skipped_aggregation:
-                status = "no_changes (early exit after retrieval)"
-
-            return {
-                "conference": conference_name,
-                "status": status,
-                "skipped_aggregation": skipped_aggregation,
-                "total_cost_usd": agent_result.get("total_cost_usd"),
-                "error": agent_result.get("error"),
-            }
+            return conference_result_payload(conference_name, agent_result)
 
         except Exception as e:
-            return {
-                "conference": conference_name,
-                "status": "error",
-                "error": str(e),
-            }
+            return remote_call_error_payload(conference_name, e)
 
     return asyncio.run(_process())
+
+
+def _invoke_single_conference(
+    conference_name: str, num_retrieval_agents: int = 3
+) -> dict:
+    """Call ``process_single_conference`` and map Modal timeouts to status=timeout."""
+    try:
+        return process_single_conference.remote(conference_name, num_retrieval_agents)
+    except Exception as e:
+        from agents.pipeline_utils import remote_call_error_payload
+
+        return remote_call_error_payload(conference_name, e)
 
 
 @app.function(timeout=43200)  # 12 hours max for all conferences
@@ -318,7 +325,7 @@ def process_all_conferences(num_retrieval_agents: int = 3) -> list[dict]:
     results = []
     for i, conference_name in enumerate(conferences, 1):
         print(f"\n[{i}/{len(conferences)}] {conference_name}")
-        result = process_single_conference.remote(conference_name, num_retrieval_agents)
+        result = _invoke_single_conference(conference_name, num_retrieval_agents)
         results.append(result)
 
     print(f"\n{'=' * 60}")
@@ -338,16 +345,22 @@ def scheduled_run():
     results = process_all_conferences.remote()
 
     pushed = sum(1 for r in results if r.get("status") == "pushed")
-    no_changes = sum(
-        1 for r in results if str(r.get("status", "")).startswith("no_changes")
-    )
+    no_changes = sum(1 for r in results if r.get("status") == "no_changes")
     early_exits = sum(1 for r in results if r.get("skipped_aggregation"))
+    timeouts = sum(1 for r in results if r.get("status") == "timeout")
     errors = sum(1 for r in results if r.get("status") == "error")
 
     print("\nWeekly run completed:")
     print(f"  - Pushed to main: {pushed}")
     print(f"  - No changes: {no_changes} ({early_exits} skipped aggregation)")
+    print(f"  - Timeouts: {timeouts}")
     print(f"  - Errors: {errors}")
+
+    if timeouts:
+        print("\nTimeouts:")
+        for r in results:
+            if r.get("status") == "timeout":
+                print(f"  - {r['conference']}: {r.get('error', 'timeout')}")
 
     if errors:
         print("\nErrors:")
@@ -378,7 +391,7 @@ def process_conferences_subset(
     results = []
     for i, conference_name in enumerate(conference_names, 1):
         print(f"\n[{i}/{len(conference_names)}] {conference_name}")
-        result = process_single_conference.remote(conference_name, num_retrieval_agents)
+        result = _invoke_single_conference(conference_name, num_retrieval_agents)
         results.append(result)
 
     print(f"\n{'=' * 60}")
@@ -412,7 +425,7 @@ def main(
 
     if conference_name:
         print(f"Processing single conference: {conference_name}")
-        result = process_single_conference.remote(
+        result = _invoke_single_conference(
             conference_name, num_retrieval_agents=num_retrieval_agents
         )
         print(f"\nResult: {result}")
@@ -446,20 +459,27 @@ def main(
         print(f"{'=' * 60}")
 
         pushed = [r for r in results if r.get("status") == "pushed"]
-        no_changes = [
-            r for r in results if str(r.get("status", "")).startswith("no_changes")
-        ]
+        no_changes = [r for r in results if r.get("status") == "no_changes"]
         early_exits = [r for r in results if r.get("skipped_aggregation")]
+        timeouts = [r for r in results if r.get("status") == "timeout"]
         errors = [r for r in results if r.get("status") == "error"]
 
         print(f"Pushed to main: {len(pushed)}")
         print(f"No changes: {len(no_changes)} ({len(early_exits)} skipped aggregation)")
+        print(f"Timeouts: {len(timeouts)}")
         print(f"Errors: {len(errors)}")
 
         if pushed:
             print("\nPushed:")
             for r in pushed:
-                print(f"  - {r['conference']}")
+                sha = r.get("commit_sha")
+                sha_note = f" ({sha})" if sha else ""
+                print(f"  - {r['conference']}{sha_note}")
+
+        if timeouts:
+            print("\nTimeouts:")
+            for r in timeouts:
+                print(f"  - {r['conference']}: {r.get('error', 'timeout')}")
 
         if errors:
             print("\nErrors:")
