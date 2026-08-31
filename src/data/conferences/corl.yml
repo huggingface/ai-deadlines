@@ -16,21 +16,24 @@
   start: '2025-09-27'
   end: '2025-09-30'
   era_rating: a
-
 - title: CoRL
   year: 2026
   id: corl26
   full_name: The Conference on Robot Learning
   link: https://www.corl.org/
   deadlines:
-    - type: abstract
-      label: Abstract submission deadline
-      date: '2026-05-26 11:59:00'
-      timezone: UTC
-    - type: paper
-      label: Paper submission deadline
-      date: '2026-05-29 11:59:00'
-      timezone: UTC
+  - type: abstract
+    label: Abstract submission deadline
+    date: '2026-05-26 11:59:00'
+    timezone: UTC
+  - type: paper
+    label: Paper submission deadline
+    date: '2026-05-29 11:59:00'
+    timezone: UTC
+  - type: camera_ready
+    label: Camera-ready deadline
+    date: '2026-10-12 23:59:59'
+    timezone: AoE
   date: November 9-12, 2026
   tags:
   - machine-learning
@@ -41,5 +44,5 @@
   venue: JW Marriott Austin, 110 E 2nd St, Austin, TX 78701
   start: '2026-11-09'
   end: '2026-11-12'
-  note: Workshops on Nov 9, main conference Nov 10-12
+  note: 'Main conference Nov 9-11 (JW Marriott Austin, Hilton Austin, Bass Hall); workshops Nov 12'
   era_rating: a
