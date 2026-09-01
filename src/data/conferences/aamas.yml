@@ -65,3 +65,46 @@
   - robotics
   rankings: 'CCF: B, CORE: A*, THCPL: B'
   era_rating: a
+
+- title: AAMAS
+  year: 2027
+  id: aamas27
+  full_name: International Conference on Autonomous Agents and Multiagent Systems
+  link: https://warwick.ac.uk/fac/sci/dcs/aamas2027/
+  deadlines:
+  - type: abstract
+    label: Abstract submission
+    date: '2026-10-01 23:59:59'
+    timezone: AoE
+  - type: paper
+    label: Paper submission
+    date: '2026-10-08 23:59:59'
+    timezone: AoE
+  - type: rebuttal_start
+    label: Rebuttal period start
+    date: '2026-11-20 23:59:59'
+    timezone: AoE
+  - type: rebuttal_end
+    label: Rebuttal period end
+    date: '2026-11-24 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Author notification
+    date: '2026-12-21 23:59:59'
+    timezone: AoE
+  - type: camera_ready
+    label: Camera-ready deadline
+    date: '2027-01-25 23:59:59'
+    timezone: AoE
+  date: May 3-7, 2027
+  city: Hanoi
+  country: Vietnam
+  venue: JW Marriott Hotel, Hanoi, Vietnam
+  start: '2027-05-03'
+  end: '2027-05-07'
+  tags:
+  - machine-learning
+  - robotics
+  rankings: 'CCF: B, CORE: A*, THCPL: B'
+  era_rating: a
+  note: Dates listed are for the Main Track. More info <a href='https://warwick.ac.uk/fac/sci/dcs/aamas2027/'>here</a>.
