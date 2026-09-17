@@ -10,13 +10,17 @@ env:
   # Configure your Hugging Face Space here (format: username/space-name)
   HF_SPACE: huggingface/ai-deadlines
 
+permissions: {}
+
 jobs:
   deploy:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0  # Fetch full history for proper git push
           lfs: true
