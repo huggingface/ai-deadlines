@@ -1,7 +1,5 @@
 name: Update Conferences
 
-permissions:
-  contents: write
 
 on:
   workflow_dispatch:  # Allow manual trigger
@@ -9,8 +7,13 @@ on:
     paths:
       - 'src/data/conferences.yml'
 
+permissions: {}
+
 jobs:
   update-conferences:
+    permissions:
+      contents: write
+      pull-requests: write
     runs-on: ubuntu-latest
     
     steps:
