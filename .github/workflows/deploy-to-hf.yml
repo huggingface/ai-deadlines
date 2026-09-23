@@ -10,8 +10,12 @@ env:
   # Configure your Hugging Face Space here (format: username/space-name)
   HF_SPACE: huggingface/ai-deadlines
 
+permissions: {}
+
 jobs:
   deploy:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     
     steps:
