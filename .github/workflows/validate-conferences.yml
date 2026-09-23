@@ -11,8 +11,12 @@ on:
       - 'src/data/conferences/**'
       - 'scripts/validate-conferences.ts'
 
+permissions: {}
+
 jobs:
   validate:
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
