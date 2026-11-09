@@ -30,3 +30,35 @@
   - large-language-models
   - knowledge-graphs
   venue: Prague University of Economics and Business, Nám. W. Churchilla 4, Prague 130 67, Czech Republic
+
+- title: BIS
+  year: 2027
+  id: bis2027
+  full_name: International Conference on Business Information Systems
+  link: https://bisconf.org/2027
+  deadlines:
+    - type: submission
+      label: Paper submission deadline
+      date: '2027-01-10 23:59:59'
+      timezone: AoE
+    - type: notification
+      label: Author notification
+      date: '2027-03-05 23:59:59'
+      timezone: AoE
+    - type: camera_ready
+      label: Final paper submission
+      date: '2027-03-24 23:59:59'
+      timezone: AoE
+  city: Poznań
+  country: Poland
+  date: June 23-25, 2027
+  start: '2027-06-23'
+  end: '2027-06-25'
+  era_rating: b
+  tags:
+  - information-systems
+  - machine-learning
+  - large-language-models
+  - knowledge-graphs
+  venue: Poznań University of Economics and Business, Poznań, Poland
+
