@@ -1,0 +1,32 @@
+- title: ECAF
+  year: 2027
+  id: ecaf27
+  full_name: European Conference on Algorithmic Fairness
+  link: https://2027.ecafconference.org/callForPapers
+  deadlines:
+  - type: submission
+    label: Paper and extended abstract submission
+    date: '2027-03-25 23:59:59'
+    timezone: AoE
+  - type: submission
+    label: Poster submission
+    date: '2027-03-25 23:59:59'
+    timezone: AoE
+  - type: submission
+    label: Interactive session proposal
+    date: '2027-03-25 23:59:59'
+    timezone: AoE
+  - type: notification
+    label: Acceptance notification
+    date: '2027-05-05 23:59:59'
+    timezone: AoE
+  date: August 25-27, 2027
+  start: 2027-08-25
+  end: 2027-08-27
+  city: Vilnius
+  country: Lithuania
+  venue: Faculty of Mathematics and Informatics, Vilnius University, Naugarduko street 24
+  tags:
+  - machine-learning
+  - fairness
+  note: Sixth European Conference on Algorithmic Fairness (formerly EWAF). Full papers (up to 15 pages, double-blind) and extended abstracts (up to 4 pages, single-blind), plus poster and interactive-session proposals, are due 25 March 2027, 23:59 AoE. Acceptance notifications are 5 May 2027. Proceedings are published in PMLR. Call for papers <a href='https://2027.ecafconference.org/callForPapers'>here</a>.
